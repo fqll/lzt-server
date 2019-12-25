@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomasky.departure.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.UserInfo">
+    <!--@mbg.generated-->
+    <id column="id" property="id" />
+    <result column="portrait_url" property="portraitUrl" />
+    <result column="open_id" property="openId" />
+    <result column="last_company_id" property="lastCompanyId" />
+    <result column="employee_status" property="employeeStatus" />
+    <result column="entry_company_id" property="entryCompanyId" />
+    <result column="entry_status" property="entryStatus" />
+    <result column="created_id" property="createdId" />
+    <result column="last_modify_id" property="lastModifyId" />
+    <result column="created_time" property="createdTime" />
+    <result column="last_modify_time" property="lastModifyTime" />
+    <result column="version_num" property="versionNum" />
+    <result column="deleted" property="deleted" />
+    <result column="is_valid" property="isValid" />
+    <result column="nick_name" property="nickName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, portrait_url, open_id, last_company_id, employee_status, entry_company_id, entry_status, 
+    created_id, last_modify_id, created_time, last_modify_time, version_num, deleted, 
+    is_valid, nick_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from user_info
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_info (portrait_url, open_id, last_company_id, employee_status, entry_company_id,
+      entry_status, created_id, last_modify_id, created_time, last_modify_time,
+      version_num, deleted, is_valid, nick_name)
+    values (#{portraitUrl}, #{openId}, #{lastCompanyId}, #{employeeStatus}, #{entryCompanyId},
+      #{entryStatus}, #{createdId}, #{lastModifyId}, #{createdTime}, #{lastModifyTime},
+      #{versionNum}, #{deleted}, #{isValid}, #{nickName})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="portraitUrl != null">
+        portrait_url,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="lastCompanyId != null">
+        last_company_id,
+      </if>
+      <if test="employeeStatus != null">
+        employee_status,
+      </if>
+      <if test="entryCompanyId != null">
+        entry_company_id,
+      </if>
+      <if test="entryStatus != null">
+        entry_status,
+      </if>
+      <if test="createdId != null">
+        created_id,
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="versionNum != null">
+        version_num,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="portraitUrl != null">
+        #{portraitUrl},
+      </if>
+      <if test="openId != null">
+        #{openId},
+      </if>
+      <if test="lastCompanyId != null">
+        #{lastCompanyId},
+      </if>
+      <if test="employeeStatus != null">
+        #{employeeStatus},
+      </if>
+      <if test="entryCompanyId != null">
+        #{entryCompanyId},
+      </if>
+      <if test="entryStatus != null">
+        #{entryStatus},
+      </if>
+      <if test="createdId != null">
+        #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        #{versionNum},
+      </if>
+      <if test="deleted != null">
+        #{deleted},
+      </if>
+      <if test="isValid != null">
+        #{isValid},
+      </if>
+      <if test="nickName != null">
+        #{nickName},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.UserInfo">
+    <!--@mbg.generated-->
+    update user_info
+    <set>
+      <if test="portraitUrl != null">
+        portrait_url = #{portraitUrl},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId},
+      </if>
+      <if test="lastCompanyId != null">
+        last_company_id = #{lastCompanyId},
+      </if>
+      <if test="employeeStatus != null">
+        employee_status = #{employeeStatus},
+      </if>
+      <if test="entryCompanyId != null">
+        entry_company_id = #{entryCompanyId},
+      </if>
+      <if test="entryStatus != null">
+        entry_status = #{entryStatus},
+      </if>
+      <if test="createdId != null">
+        created_id = #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id = #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        version_num = #{versionNum},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.UserInfo">
+    <!--@mbg.generated-->
+    update user_info
+    set portrait_url = #{portraitUrl},
+      open_id = #{openId},
+      last_company_id = #{lastCompanyId},
+      employee_status = #{employeeStatus},
+      entry_company_id = #{entryCompanyId},
+      entry_status = #{entryStatus},
+      created_id = #{createdId},
+      last_modify_id = #{lastModifyId},
+      created_time = #{createdTime},
+      last_modify_time = #{lastModifyTime},
+      version_num = #{versionNum},
+      deleted = #{deleted},
+      is_valid = #{isValid},
+      nick_name = #{nickName}
+    where id = #{id}
+  </update>
+  <select id="selectUserInfoList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from user_info
+  </select>
+  <select id="selectByOpenId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from user_info
+    where open_id = #{openId}
+  </select>
+  <select id="selectManageUserList" resultType="com.tomasky.departure.vo.ApproverVo">
+      SELECT
+          t1.ID AS userId,
+          t1.portrait_url AS portraitUrl,
+          t3.role_name AS roleName
+      FROM
+          user_info t1
+          INNER JOIN user_role_info t2 ON t1.ID = t2.user_id
+          INNER JOIN role_info t3 ON t2.role_id = t3.ID
+      WHERE
+          t2.company_id = #{companyId}
+          AND t2.role_id !=5
+          AND t2.audit_status='1'
+          AND t2.job_status='0'
+  </select>
+  <select id="selectByCompanyIdAndOpenId" resultType="com.tomasky.departure.model.UserInfo">
+      SELECT
+          t1. *
+      FROM
+          user_info t1
+          INNER JOIN user_role_info t2 ON t1.ID = t2.user_id
+      WHERE
+          t2.company_id=#{companyId}
+          and t1.open_id=#{openId}
+  </select>
+    <select id="selectByUserIdList" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from user_info
+      <where>
+        <if test="list != null and list.size() != 0">
+          id in
+          <foreach close=")" collection="list" item="userId" open="(" separator=",">
+            #{userId}
+          </foreach>
+        </if>
+      </where>
+    </select>
+</mapper>

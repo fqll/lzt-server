@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomasky.departure.mapper.DepartureInfoMapper">
+  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.DepartureInfo">
+    <!--@mbg.generated-->
+    <id column="id" property="id" />
+    <result column="company_id" property="companyId" />
+    <result column="employee_id" property="employeeId" />
+    <result column="audit_status" property="auditStatus" />
+    <result column="audit_user_id" property="auditUserId" />
+    <result column="official_departure_reason" property="officialDepartureReason" />
+    <result column="personal_departure_reason" property="personalDepartureReason" />
+    <result column="employee_name" property="employeeName" />
+    <result column="gender" property="gender" />
+    <result column="id_card_no" property="idCardNo" />
+    <result column="department" property="department" />
+    <result column="employee_post" property="employeePost" />
+    <result column="entry_date" property="entryDate" />
+    <result column="departure_date" property="departureDate" />
+    <result column="official_evaluate" property="officialEvaluate" />
+    <result column="personal_evaluate" property="personalEvaluate" />
+    <result column="created_id" property="createdId" />
+    <result column="last_modify_id" property="lastModifyId" />
+    <result column="created_time" property="createdTime" />
+    <result column="last_modify_time" property="lastModifyTime" />
+    <result column="version_num" property="versionNum" />
+    <result column="deleted" property="deleted" />
+    <result column="is_valid" property="isValid" />
+    <result column="is_check" property="isCheck" />
+    <result column="code" property="code" />
+    <result column="departure_reason" property="departureReason" />
+    <result column="remark" property="remark" />
+    <result column="submit_date" property="submitDate" />
+    <result column="next_company_id" property="nextCompanyId" />
+    <result column="delay_entry_date" property="delayEntryDate" />
+    <result column="follow_status" property="followStatus" />
+    <result column="follow_user_id" property="followUserId" />
+    <result column="check_stage" property="checkStage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, company_id, employee_id, audit_status, audit_user_id, official_departure_reason, 
+    personal_departure_reason, employee_name, gender, id_card_no, department, employee_post, 
+    entry_date, departure_date, official_evaluate, personal_evaluate, created_id, last_modify_id, 
+    created_time, last_modify_time, version_num, deleted, is_valid, is_check, code, departure_reason, 
+    remark, submit_date, next_company_id, delay_entry_date, follow_status, follow_user_id, 
+    check_stage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from departure_info
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from departure_info
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.DepartureInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into departure_info (company_id, employee_id, audit_status, audit_user_id, official_departure_reason, 
+      personal_departure_reason, employee_name, gender, id_card_no, department, 
+      employee_post, entry_date, departure_date, official_evaluate, personal_evaluate, 
+      created_id, last_modify_id, created_time, last_modify_time, version_num, 
+      deleted, is_valid, is_check, code, departure_reason, remark, submit_date, 
+      next_company_id, delay_entry_date, follow_status, follow_user_id, check_stage
+      )
+    values (#{companyId}, #{employeeId}, #{auditStatus}, #{auditUserId}, #{officialDepartureReason}, 
+      #{personalDepartureReason}, #{employeeName}, #{gender}, #{idCardNo}, #{department}, 
+      #{employeePost}, #{entryDate}, #{departureDate}, #{officialEvaluate}, #{personalEvaluate}, 
+      #{createdId}, #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum}, 
+      #{deleted}, #{isValid}, #{isCheck}, #{code}, #{departureReason}, #{remark}, #{submitDate}, 
+      #{nextCompanyId}, #{delayEntryDate}, #{followStatus}, #{followUserId}, #{checkStage}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.DepartureInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into departure_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="auditUserId != null">
+        audit_user_id,
+      </if>
+      <if test="officialDepartureReason != null">
+        official_departure_reason,
+      </if>
+      <if test="personalDepartureReason != null">
+        personal_departure_reason,
+      </if>
+      <if test="employeeName != null">
+        employee_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="idCardNo != null">
+        id_card_no,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="employeePost != null">
+        employee_post,
+      </if>
+      <if test="entryDate != null">
+        entry_date,
+      </if>
+      <if test="departureDate != null">
+        departure_date,
+      </if>
+      <if test="officialEvaluate != null">
+        official_evaluate,
+      </if>
+      <if test="personalEvaluate != null">
+        personal_evaluate,
+      </if>
+      <if test="createdId != null">
+        created_id,
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="versionNum != null">
+        version_num,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+      <if test="isCheck != null">
+        is_check,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="departureReason != null">
+        departure_reason,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="submitDate != null">
+        submit_date,
+      </if>
+      <if test="nextCompanyId != null">
+        next_company_id,
+      </if>
+      <if test="delayEntryDate != null">
+        delay_entry_date,
+      </if>
+      <if test="followStatus != null">
+        follow_status,
+      </if>
+      <if test="followUserId != null">
+        follow_user_id,
+      </if>
+      <if test="checkStage != null">
+        check_stage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus},
+      </if>
+      <if test="auditUserId != null">
+        #{auditUserId},
+      </if>
+      <if test="officialDepartureReason != null">
+        #{officialDepartureReason},
+      </if>
+      <if test="personalDepartureReason != null">
+        #{personalDepartureReason},
+      </if>
+      <if test="employeeName != null">
+        #{employeeName},
+      </if>
+      <if test="gender != null">
+        #{gender},
+      </if>
+      <if test="idCardNo != null">
+        #{idCardNo},
+      </if>
+      <if test="department != null">
+        #{department},
+      </if>
+      <if test="employeePost != null">
+        #{employeePost},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate},
+      </if>
+      <if test="departureDate != null">
+        #{departureDate},
+      </if>
+      <if test="officialEvaluate != null">
+        #{officialEvaluate},
+      </if>
+      <if test="personalEvaluate != null">
+        #{personalEvaluate},
+      </if>
+      <if test="createdId != null">
+        #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        #{versionNum},
+      </if>
+      <if test="deleted != null">
+        #{deleted},
+      </if>
+      <if test="isValid != null">
+        #{isValid},
+      </if>
+      <if test="isCheck != null">
+        #{isCheck},
+      </if>
+      <if test="code != null">
+        #{code},
+      </if>
+      <if test="departureReason != null">
+        #{departureReason},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+      <if test="submitDate != null">
+        #{submitDate},
+      </if>
+      <if test="nextCompanyId != null">
+        #{nextCompanyId},
+      </if>
+      <if test="delayEntryDate != null">
+        #{delayEntryDate},
+      </if>
+      <if test="followStatus != null">
+        #{followStatus},
+      </if>
+      <if test="followUserId != null">
+        #{followUserId},
+      </if>
+      <if test="checkStage != null">
+        #{checkStage},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.DepartureInfo">
+    <!--@mbg.generated-->
+    update departure_info
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus},
+      </if>
+      <if test="auditUserId != null">
+        audit_user_id = #{auditUserId},
+      </if>
+      <if test="officialDepartureReason != null">
+        official_departure_reason = #{officialDepartureReason},
+      </if>
+      <if test="personalDepartureReason != null">
+        personal_departure_reason = #{personalDepartureReason},
+      </if>
+      <if test="employeeName != null">
+        employee_name = #{employeeName},
+      </if>
+      <if test="gender != null">
+        gender = #{gender},
+      </if>
+      <if test="idCardNo != null">
+        id_card_no = #{idCardNo},
+      </if>
+      <if test="department != null">
+        department = #{department},
+      </if>
+      <if test="employeePost != null">
+        employee_post = #{employeePost},
+      </if>
+      <if test="entryDate != null">
+        entry_date = #{entryDate},
+      </if>
+      <if test="departureDate != null">
+        departure_date = #{departureDate},
+      </if>
+      <if test="officialEvaluate != null">
+        official_evaluate = #{officialEvaluate},
+      </if>
+      <if test="personalEvaluate != null">
+        personal_evaluate = #{personalEvaluate},
+      </if>
+      <if test="createdId != null">
+        created_id = #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id = #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        version_num = #{versionNum},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid},
+      </if>
+      <if test="isCheck != null">
+        is_check = #{isCheck},
+      </if>
+      <if test="code != null">
+        code = #{code},
+      </if>
+      <if test="departureReason != null">
+        departure_reason = #{departureReason},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="submitDate != null">
+        submit_date = #{submitDate},
+      </if>
+      <if test="nextCompanyId != null">
+        next_company_id = #{nextCompanyId},
+      </if>
+      <if test="delayEntryDate != null">
+        delay_entry_date = #{delayEntryDate},
+      </if>
+      <if test="followStatus != null">
+        follow_status = #{followStatus},
+      </if>
+      <if test="followUserId != null">
+        follow_user_id = #{followUserId},
+      </if>
+      <if test="checkStage != null">
+        check_stage = #{checkStage},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.DepartureInfo">
+    <!--@mbg.generated-->
+    update departure_info
+    set company_id = #{companyId},
+      employee_id = #{employeeId},
+      audit_status = #{auditStatus},
+      audit_user_id = #{auditUserId},
+      official_departure_reason = #{officialDepartureReason},
+      personal_departure_reason = #{personalDepartureReason},
+      employee_name = #{employeeName},
+      gender = #{gender},
+      id_card_no = #{idCardNo},
+      department = #{department},
+      employee_post = #{employeePost},
+      entry_date = #{entryDate},
+      departure_date = #{departureDate},
+      official_evaluate = #{officialEvaluate},
+      personal_evaluate = #{personalEvaluate},
+      created_id = #{createdId},
+      last_modify_id = #{lastModifyId},
+      created_time = #{createdTime},
+      last_modify_time = #{lastModifyTime},
+      version_num = #{versionNum},
+      deleted = #{deleted},
+      is_valid = #{isValid},
+      is_check = #{isCheck},
+      code = #{code},
+      departure_reason = #{departureReason},
+      remark = #{remark},
+      submit_date = #{submitDate},
+      next_company_id = #{nextCompanyId},
+      delay_entry_date = #{delayEntryDate},
+      follow_status = #{followStatus},
+      follow_user_id = #{followUserId},
+      check_stage = #{checkStage}
+    where id = #{id}
+  </update>
+    <select id="selectDepartureCount" resultType="int">
+      SELECT COUNT ( ID )
+      FROM
+          departure_info
+      WHERE
+          company_id = #{companyId}
+          AND departure_date &gt;= '${beginDate}'
+          AND audit_status = '4'
+    </select>
+  <select id="selectDepartureRateVoList" resultType="com.tomasky.departure.vo.DepartureRateVo">
+        SELECT
+            personal_departure_reason AS personalDepartureReason,
+            COUNT ( ID ) AS departureCount
+        FROM
+            departure_info
+        WHERE
+            company_id = #{companyId}
+        GROUP BY
+            personal_departure_reason
+  </select>
+  <select id="selectAuditDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
+        SELECT
+            t1.ID AS departureId,
+            t1.employee_name AS employeeName,
+            t1.submit_date AS submitDate,
+            t1.departure_date AS departureDate,
+            t1.departure_reason AS departureReason,
+            t1.audit_status AS auditStatus,
+            t2.read_status AS readStatus
+        FROM
+            departure_info t1
+            INNER JOIN departure_audit t2 ON t2.departure_id = t1.ID
+        WHERE
+            t1.audit_status = '1'
+            AND t1.audit_user_id = #{userId}
+            AND t1.company_id = #{companyId}
+            AND t2.operate_type = '1'
+  </select>
+  <select id="selectCopyDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
+        SELECT
+            t2.ID AS departureId,
+            t2.employee_name AS employeeName,
+            t2.submit_date AS submitDate,
+	        t2.departure_date AS departureDate,
+	        t2.departure_reason AS departureReason,
+	        t2.audit_status AS auditStatus,
+	        t1.read_status AS readStatus
+        FROM
+            departure_audit t1
+            INNER JOIN departure_info t2 ON t1.departure_id = t2.ID
+        WHERE
+            t1.audit_role_type = '0'
+            AND t2.audit_status != '-1'
+            AND t1.user_id =#{userId}
+            AND t2.company_id = #{companyId}
+  </select>
+  <select id="selectSelfDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
+        SELECT ID AS departureId,
+          employee_name AS employeeName,
+          to_char( created_time, 'yyyy-MM-dd' ) as submitDate,
+          audit_status AS auditStatus
+          FROM
+              departure_info
+          WHERE
+              employee_id =#{userId}
+          AND company_id = #{companyId}
+
+  </select>
+    <select id="selectValidDepartureInfoList" resultType="com.tomasky.departure.vo.DepartureInfoListVo">
+        SELECT
+            t1.ID AS ID,
+            t2.company_name AS companyName,
+            t1.employee_post AS employeePost,
+            t1.departure_date AS departureDate
+        FROM
+            departure_info t1
+            INNER JOIN company_info t2 ON t1.company_id = t2.ID
+        WHERE
+            employee_id = #{userId}
+            AND audit_status in ('3','4','5')
+    </select>
+    <select id="selectDepartureCode" resultType="java.lang.Integer">
+        select count(id) from departure_info where code=#{departureCode}
+    </select>
+  <select id="selectAuditedDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
+        SELECT
+            t2.ID AS departureId,
+            t2.employee_name AS employeeName,
+            t2.submit_date AS submitDate,
+	        t2.departure_date AS departureDate,
+	        t2.departure_reason AS departureReason,
+            t2.audit_status AS auditStatus,
+            t1.follow_status AS followStatus
+        FROM
+            departure_audit t1
+            INNER JOIN departure_info t2 ON t1.departure_id = t2.ID
+        WHERE
+            t1.audit_role_type = '1'
+            AND t2.audit_status != '-1'
+            AND t1.audit_result IS NOT NULL
+            AND t1.user_id =#{userId}
+            AND t2.company_id = #{companyId}
+  </select>
+  <select id="selectCreatedDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
+        SELECT
+            t2.ID AS departureId,
+            t2.employee_name AS employeeName,
+            t2.submit_date AS submitDate,
+	        t2.departure_date AS departureDate,
+	        t2.departure_reason AS departureReason,
+            t2.audit_status AS auditStatus
+        FROM
+            departure_audit t1
+            INNER JOIN departure_info t2 ON t1.departure_id = t2.ID
+        WHERE
+            t1.audit_role_type = '2'
+            AND t2.audit_status != '-1'
+            AND t1.user_id =#{userId}
+            AND t2.company_id = #{companyId}
+        ORDER BY t2.last_modify_time desc
+  </select>
+  <select id="selectCreateLog" resultType="com.tomasky.departure.vo.ApproverLogVo">
+        SELECT
+            t1.created_id AS userId,
+            t2.nick_name AS nickName,
+            0 AS auditOrder,
+            '发起申请' AS auditStage,
+            to_char( t1.created_time, 'MM-dd HH24:MI' ) AS operateTime
+        FROM
+            departure_info t1
+            INNER JOIN user_role_info t2 ON t1.created_id = t2.user_id
+            AND t1.company_id = t2.company_id
+        WHERE
+            t1.ID = #{id}
+  </select>
+    <select id="selectQuitEmployeeVoList" resultType="com.tomasky.departure.vo.QuitEmployeeVo">
+          SELECT ID AS ID ,
+              employee_post AS employeePost,
+              departure_date AS departureDate,
+              audit_status AS auditStatus,
+              employee_name AS nickName
+          FROM
+              departure_info
+          WHERE
+              company_id = #{companyId}
+          <if test="nickName != null and nickName != ''">
+            AND employee_name like '%${nickName}%'
+          </if>
+    </select>
+    <select id="selectMonthDepartureRateVoList" resultType="com.tomasky.departure.vo.MonthDepartureRateVo">
+          SELECT
+                to_char( to_date( departure_date, 'yyyy-MM-dd' ), 'yyyy-MM' ) AS monthValue,
+                COUNT ( 1 ) AS departureCount
+          FROM
+              departure_info
+          WHERE
+              company_id = #{companyId}
+              AND audit_status IN ( '3', '4', '5' )
+              AND departure_date BETWEEN '${beginDate}' AND '${endDate}'
+          GROUP BY
+              monthValue
+    </select>
+  <select id="selectDelayEntryVoList" resultType="com.tomasky.departure.vo.DelayEntryVo">
+        SELECT
+            ID AS departureId,
+            employee_name AS employeeName,
+            to_char( delay_entry_date, 'yyyy-MM-dd' ) AS delayEntryDate
+        FROM
+            departure_info
+        WHERE
+            next_company_id = #{companyId}
+            AND audit_status = #{auditStatus}
+            <if test="nickName != null and nickName != ''">
+              AND employee_name like '%${nickName}%'
+            </if>
+  </select>
+  <select id="selectDraftLis" resultType="com.tomasky.departure.vo.DraftListVo">
+        SELECT ID AS ID ,
+            employee_name AS employeeName,
+            to_char( created_time, 'MM-dd HH24:MI' ) AS createdTime
+        FROM
+            departure_info
+        WHERE
+            created_id = #{userId}
+            AND company_id = #{companyId}
+            AND audit_status = '-1'
+  </select>
+  <select id="selectUnreadApprovalCount" resultType="int">
+        SELECT COUNT ( t1.ID )
+        FROM
+            departure_info t1 INNER JOIN departure_audit t2 ON t2.departure_id = t1.ID
+        WHERE
+            t1.audit_status = '1'
+            AND t1.audit_user_id = #{userId}
+            AND t1.company_id = #{companyId}
+            AND t2.operate_type = '1'
+            AND t2.read_status = '0'
+  </select>
+  <select id="selectUnreadCopyCount" resultType="int">
+        SELECT COUNT
+            ( t1.ID )
+        FROM
+            departure_audit t1
+            INNER JOIN departure_info t2 ON t1.departure_id = t2.ID
+        WHERE
+            t1.audit_role_type = '0'
+            AND t2.audit_status != '-1'
+            AND t1.user_id = #{userId}
+            AND t2.company_id = #{companyId}
+            AND t1.read_status = '0'
+  </select>
+  <select id="selectCompanyDepartureRateVoList" resultType="com.tomasky.departure.vo.DepartureRateVo">
+    SELECT
+            official_departure_reason AS personalDepartureReason,
+            COUNT ( ID ) AS departureCount
+        FROM
+            departure_info
+        WHERE
+            company_id = #{companyId}
+        GROUP BY
+            official_departure_reason
+  </select>
+  <select id="selectEmployeeCheckVoList" resultType="com.tomasky.departure.vo.EmployeeCheckVo">
+    SELECT
+        id AS id,
+        employee_name AS employeeName,
+        departure_date AS departureDate,
+        entry_date AS entryDate,
+        to_char( delay_entry_date, 'yyyy-MM-dd' ) AS delayEntryDate
+    FROM
+        departure_info
+    WHERE
+        check_stage = '1'
+        <if test='type=="0"'>
+            AND next_company_id = ${companyId}
+            AND follow_user_id = #{userId}
+        </if>
+        <if test='type=="1"'>
+          AND company_id = ${companyId}
+          AND created_id = #{userId}
+        </if>
+  </select>
+</mapper>

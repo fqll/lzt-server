@@ -1,0 +1,83 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://192.168.1.61:5432/departure
+    username: ota
+    password: ota
+    driver-class: org.postgresql.Driver
+    validation-query: SELECT 1
+    hikari:
+      connection-test-query: SELECT 1
+  jpa:
+    show-sql: true
+
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:postgresql://10.10.11.24:9999/lzt-test
+    username: ota
+    password: ota@fanqie.COM888
+    driver-class: org.postgresql.Driver
+    validation-query: SELECT 1
+    hikari:
+      connection-test-query: SELECT 1
+  jpa:
+    show-sql: true
+
+---
+spring:
+  profiles: u_production
+  datasource:
+    url: jdbc:postgresql://10.10.11.24:9999/departure
+    username: ota
+    password: ota@fanqie.COM888
+    driver-class: org.postgresql.Driver
+    max-active: 10
+    min-idle: 1
+    max-wait: 60000
+    remove-abandoned: true
+    test-on-borrow: true
+    remove-abandoned-timeout: 120
+    log-abandoned: true
+    time-between-eviction-runs-millis: 60000
+    validation-query: SELECT 1
+  jpa:
+    show-sql: true
+
+---
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+pagehelper:
+  helper-dialect: postgresql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  mail:
+    host: smtp.qq.com
+    username: 1205124840@qq.com
+    password: dotybnmjcfcpgbfe
+    default-encoding: UTF-8
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    cache: false
+wechat:
+  domain: https://api.weixin.qq.com
+  appid: wx31a7c44a0202573a
+  secret: 237f74b4e0f37bfb1f35cb9b1c48da7f
+  mch_id: 1220633201
+  apiclient_cert_url: /data/static/files/cert/wx_pay_api_cert.p12
+

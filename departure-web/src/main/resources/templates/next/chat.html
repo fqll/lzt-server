@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>聊天界面</title>
+    <style>
+        <!--
+        chat
+
+        -->
+        h5 {
+            margin: 0
+        }
+
+        img {
+            max-width: 100%;
+            vertical-align: middle
+        }
+
+        input {
+            outline: 0
+        }
+
+        body {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #f1f1f1;
+            color: #333;
+            font-size: .26rem
+        }
+
+        .header {
+            border-bottom: 1px solid #dfdfdf;
+            padding: 0 .2rem;
+            height: 1rem;
+            line-height: 1rem;
+            background: #fff;
+            position: fixed;
+            width: 100%;
+            max-width: 720px;
+            box-sizing: border-box;
+            z-index: 100
+        }
+
+        .back {
+            position: absolute;
+            top: 0;
+            left: .3rem;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAB3klEQVRoQ+3bUU7CQBAG4FmC9VGPAr2AXsETgI/SFzyBcALjA/AI3sAbeAOsN/FRS9I120hCMKW1uzvzb2vfaLpJv8500p0Mijp2qI556R+MGPHhcnelv/rv6b36sL0/6AjHq92DzvVUKbosoErNtndncxs0LDheZGtSND7G5dS7SSf9l6ZoSHAZ1iA10fPbJPr1IOo+ADjwKWyB0vS0TaJpXeDxdVDgSiwR5ZqGaRKlwYNrYm/TJNo0xRZ1z2axq7VcWAgwJ1YczI0VBUtgxcBSWBGwJJYdLI1lBSNg2cAoWBYwEtY7GA3rFYyI9QZGxXoBI2Odg9GxTsGDRTbuKVqf2jLmmqz3s7ZbUif74VCwTiIcEtYaPFjtrntav6Kn8eH9WaX0cJltFNGoDIzwzjrtWnYO3LmUNunSqaK1fz9CQlsVrcOCEAraGTiU9HYKDgHtHIyO9gJGRnsDo6K9ghHR3sFoaBYwEpoNjIJmBSOg2cHSaBGwQcfLzIwePXJ3S8TABlrVQDDXuO6aiIIl0OJgbjQEmBMNA/4Duh2jh/tqXVnI2jRcWgfduvHhKnQrB8T36J+PkxkRXRTntJ5vk3Pzu/EBVbTKFKbhT5/9tPV/8mgcxhMLg4iwS3jnwN+KIHhMlL5aeAAAAABJRU5ErkJggg==') no-repeat;
+            width: .2rem;
+            height: .4rem;
+            margin-top: .34rem;
+            background-size: .2rem .4rem
+        }
+
+        .header .tit {
+            font-size: .32rem;
+            vertical-align: middle;
+            text-align: center;
+            height: 1rem;
+            line-height: 1rem;
+            font-weight: 400
+        }
+
+        .header .right {
+            position: absolute;
+            right: .3rem;
+            top: 0;
+            float: none;
+            font-size: .3rem;
+            line-height: 1.2rem
+        }
+
+        #message {
+            background-color: #f1f1f1;
+            padding: 1.2rem .3rem 1rem
+        }
+
+        .time {
+            font-size: .24rem;
+            color: #999;
+            margin-bottom: .3rem;
+            text-align: center
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 0;
+            height: 1rem;
+            background-color: #fff;
+            line-height: 1rem;
+            width: 100%;
+            max-width: 720px;
+            border-top: 1px solid #ddd
+        }
+
+        #footer img {
+            margin-left: .2rem;
+            width: .5rem
+        }
+
+        #footer input {
+            margin-left: .2rem;
+            width: 3.5rem;
+            height: .64rem;
+            border-radius: .1rem;
+            border: .01rem solid #ddd;
+            padding: 0 .15rem
+        }
+
+        #footer p {
+            width: 1.2rem;
+            height: .68rem;
+            font-size: .3rem;
+            color: #fff;
+            line-height: .68rem;
+            text-align: center;
+            background-color: #ddd;
+            border-radius: .1rem;
+            float: right;
+            margin-top: .2rem;
+            margin-right: .2rem
+        }
+
+        .reply:after, .ask:after, .msg:after {
+            content: "";
+            clear: both;
+            display: table
+        }
+
+        .msg {
+            position: relative
+        }
+
+        .reply .msg .name {
+            position: absolute;
+            font-size: .24rem;
+            color: #999;
+            top: -.1rem;
+            left: .9rem
+        }
+
+        .msg > img {
+            width: .8rem;
+            float: left
+        }
+
+        .reply .msg > p {
+            top: .3rem
+        }
+
+        .msg > p {
+            float: left;
+            margin: 0 .4rem;
+            padding: .25rem;
+            background: #fff;
+            font-size: .3rem;
+            position: relative;
+            border-radius: .2rem;
+            max-width: 5rem;
+            min-height: .8rem;
+            box-sizing: border-box;
+            word-wrap: break-word
+        }
+
+        .msg_input {
+            position: absolute;
+            background: url(./../images/msg-input.png) no-repeat;
+            background-size: .31rem auto;
+            width: .31rem;
+            height: .51rem;
+            left: -.31rem;
+            top: .25rem
+        }
+
+        .ask .msg img, .ask .msg p, .ask .msg {
+            float: right
+        }
+
+        .ask .msg_input {
+            left: auto;
+            right: -.11rem;
+            transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -o-transform: rotate(180deg)
+        }
+
+        .reply, .ask {
+            padding-bottom: .7rem
+        }
+
+        .alert_novip, .flower_num, .give_flower {
+            display: none;
+            padding: .3rem .5rem;
+            font-size: .28rem
+        }
+
+        .alert_novip p, .flower_num p {
+            margin-bottom: .45rem
+        }
+
+        .layui-layer-wrap button {
+            font-size: .28rem;
+            padding: .2rem .3rem;
+            margin-top: .1rem;
+            background: #f8f8f8;
+            border-radius: 10px
+        }
+
+        .flower_num button {
+            padding: .2rem .5rem;
+            border-radius: 10px
+        }
+
+        .layui-layer-wrap button:first-child {
+            float: left
+        }
+
+        .layui-layer-wrap button:last-child {
+            float: right;
+            background: #ff7171;
+            color: #fff
+        }
+
+        .alert_novip button {
+            padding: .2rem .3rem;
+            border-radius: 10px
+        }
+
+        .flower {
+            width: .8rem;
+            margin: 0 auto
+        }
+
+        .give_flower {
+            text-align: center
+        }
+
+        .give_flower p {
+            text-align: center;
+            line-height: 1.5
+        }
+
+        .give_flower input {
+            width: 1rem;
+            margin-right: .1rem;
+            margin-top: .2rem
+        }
+
+        .give_flower button {
+            display: block;
+            width: 3rem;
+            font-size: .28rem;
+            margin: 0 auto;
+            margin-top: .6rem;
+            float: none !important;
+            line-height: .65rem;
+            border-radius: 10px
+        }
+    </style>
+    <script>
+        document.write("<script src='https://libs.baidu.com/jquery/1.10.2/jquery.min.js'><\/script>");
+    </script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement, resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth >= 720) {
+                        docEl.style.fontSize = '100px';
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 720) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<header class="header">
+    <a onclick="location.href='../next/employee_look.html'" style="color: #3296fa;width: 20px;height: 20px;margin-top: .34rem;background-size: 20px 20px;" class="back" href="javascript:history.back()"><span style="position: relative;left: 20px;display: inline-block;width: 60px;top:-17px;font-size: 16px">返回</span></a>
+    <h5 style="margin: 0" class="tit">番茄来了（BOSS）</h5>
+    <div style="line-height: 1rem;color: #3296fa" class="right">资料</div>
+</header>
+<div id="message">
+    <div class="ask">
+        <div id="timer1" class="time">05/22 06:30</div>
+        <div class="msg">
+            <img src="/image/example.png" alt=""/>
+            <p>
+                <i clas="msg_input"></i>
+                你好，向你咨询一下张三的工作情况
+            </p>
+        </div>
+    </div>
+    <div class="reply">
+        <div id="timer2" class="time">05/22 06:30</div>
+        <div class="msg">
+            <img src="/image/logo.png" alt=""/>
+            <span class="name">番茄来了（BOSS）</span>
+            <p>
+                <i class="msg_input"></i>
+                你好
+            </p>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <img src="/image/image.png" alt=""/>
+    <img src="/image/mood.png" alt=""/>
+    <input class="my-input" type="text"/>
+    <p class="send">发送</p>
+</div>
+<script>
+    var date = new Date()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var hours = date.getHours()
+    var minutes = date.getMinutes()
+    month = month < 10 ? '0' + month : month
+    day = day < 10 ? '0' + day : day
+    hours = hours < 10 ? '0' + hours : hours
+    minutes = minutes < 10 ? '0' + minutes : minutes
+    $('#timer1').text(month + '/' + day + ' ' + hours + ':' + '00')
+    $('#timer2').text(month + '/' + day + ' ' + hours + ':' + minutes)
+</script>
+<script>
+    let canSend = false;
+    $(function () {
+        $('#footer').on('keyup', 'input', function () {
+            if ($(this).val().length > 0) {
+                $(this).next().css('background', '#114F8E').prop('disabled', true);
+                canSend = true;
+            } else {
+                $(this).next().css('background', '#ddd').prop('disabled', false);
+                canSend = false;
+            }
+        })
+        $('#footer .send').click(send)
+        $("#footer .my-input").keydown(function (e) {
+            if (e.keyCode == 13) {
+                return send();
+            }
+        });
+    })
+    var arr = ['该员工工作态度较差', '业务能力欠缺！'];
+    test()
+
+    function test() {
+        $(arr).each(function (i) {
+            setTimeout(function () {
+                reply("../image/logo.png", arr[i])
+            }, sj() * 500)
+        })
+    }
+
+    function reply(headSrc, str) {
+        var html = "<div class='reply'><div class='msg'><img src=" + headSrc + " /><span class='name'>番茄来了（BOSS）</span><p><i class='msg_input'></i>" + str + "</p></div></div>";
+        return upView(html);
+    }
+
+    function ask(headSrc, str) {
+        var html = "<div class='ask'><div class='msg'><img src=" + headSrc + " />" + "<p><i class='msg_input'></i>" + str + "</p></div></div>";
+        return upView(html);
+    }
+
+    function upView(html) {
+        let message = $('#message');
+        message.append(html);
+        return $('html,body').animate({scrollTop: message.outerHeight() - window.innerHeight}, 200);
+    }
+
+    function send(msg) {
+        if (canSend) {
+            let input = $("#footer .my-input");
+            ask("../image/example.png", input.val());
+            input.val('');
+            test();
+        }
+    }
+
+    function sj() {
+        return parseInt(Math.random() * 10)
+    }
+</script>
+</body>
+</html>

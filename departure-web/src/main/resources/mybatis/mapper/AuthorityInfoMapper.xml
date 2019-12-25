@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomasky.departure.mapper.AuthorityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.AuthorityInfo">
+    <!--@mbg.generated-->
+    <id column="id" property="id" />
+    <result column="authority_code" property="authorityCode" />
+    <result column="authority_name" property="authorityName" />
+    <result column="status" property="status" />
+    <result column="created_id" property="createdId" />
+    <result column="last_modify_id" property="lastModifyId" />
+    <result column="created_time" property="createdTime" />
+    <result column="last_modify_time" property="lastModifyTime" />
+    <result column="version_num" property="versionNum" />
+    <result column="deleted" property="deleted" />
+    <result column="is_valid" property="isValid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, authority_code, authority_name, "status", created_id, last_modify_id, created_time, 
+    last_modify_time, version_num, deleted, is_valid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from authority_info
+    where id = #{id}
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from authority_info
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.AuthorityInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into authority_info (authority_code, authority_name, "status", created_id, last_modify_id,
+      created_time, last_modify_time, version_num, deleted, is_valid)
+    values (#{authorityCode}, #{authorityName}, #{status}, #{createdId}, #{lastModifyId},
+      #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.AuthorityInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into authority_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="authorityCode != null">
+        authority_code,
+      </if>
+      <if test="authorityName != null">
+        authority_name,
+      </if>
+      <if test="status != null">
+        "status",
+      </if>
+      <if test="createdId != null">
+        created_id,
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="versionNum != null">
+        version_num,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="authorityCode != null">
+        #{authorityCode},
+      </if>
+      <if test="authorityName != null">
+        #{authorityName},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="createdId != null">
+        #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        #{versionNum},
+      </if>
+      <if test="deleted != null">
+        #{deleted},
+      </if>
+      <if test="isValid != null">
+        #{isValid},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.AuthorityInfo">
+    <!--@mbg.generated-->
+    update authority_info
+    <set>
+      <if test="authorityCode != null">
+        authority_code = #{authorityCode},
+      </if>
+      <if test="authorityName != null">
+        authority_name = #{authorityName},
+      </if>
+      <if test="status != null">
+        "status" = #{status},
+      </if>
+      <if test="createdId != null">
+        created_id = #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id = #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        version_num = #{versionNum},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.AuthorityInfo">
+    <!--@mbg.generated-->
+    update authority_info
+    set authority_code = #{authorityCode},
+      authority_name = #{authorityName},
+      "status" = #{status},
+      created_id = #{createdId},
+      last_modify_id = #{lastModifyId},
+      created_time = #{createdTime},
+      last_modify_time = #{lastModifyTime},
+      version_num = #{versionNum},
+      deleted = #{deleted},
+      is_valid = #{isValid}
+    where id = #{id}
+  </update>
+  <select id="selectAuthorityVoList" resultType="com.tomasky.departure.vo.AuthorityVo">
+        SELECT
+            id AS ID,
+          authority_code AS authorityCode,
+          authority_name AS authorityName
+      FROM
+          authority_info
+      WHERE
+          status = '1'
+  </select>
+    <select id="selectAllAuthorityInfo" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from authority_info
+      where status = '1'
+    </select>
+</mapper>

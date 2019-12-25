@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <title>HR首页</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html{
+            font-size: 62.5%;
+        }
+        .info-head{
+            margin: 2rem 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 5rem;
+        }
+        .info-head div p:first-child{
+            color: rgb(37,37,37);
+            font-size: 1.81rem;
+            font-weight: bold;
+        }
+        .info-head div p:last-child{
+            color:rgb(150,150,150);
+            font-size: 1.4rem;
+        }
+        .info-head div p:nth-child(2){
+            color:rgb(150,150,150);
+            font-size: 1.4rem;
+        }
+        .info-head div p span{
+            padding: 0 0.5rem;
+            border-right: 1px solid rgb(150,150,150);
+        }
+        .info-head div p span:first-child{
+            padding-left: 0;
+        }
+        .info-head div p span:last-child{
+            border-right: none;
+        }
+        .info-head img{
+            width: auto;
+            height: 4rem;
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            border:1px solid rgb(200,200,200)
+        }
+        .dash-line{
+            width: 100%;
+            border-bottom: 1px dashed rgb(200,200,200);
+        }
+        .info-head div{
+            display: flex;
+            padding: 0.5rem 0;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .echarts{
+            margin: 2rem 2rem;
+        }
+        .list{
+            margin: 2rem 2rem;
+        }
+        .echarts p{
+            color: rgb(37,37,37);
+            font-size: 1.81rem;
+            font-weight: bold;
+        }
+        #echarts-wrap{
+            width: 100%;
+            height: 20rem;
+        }
+        .title{
+            color: rgb(37,37,37);
+            font-size: 1.81rem;
+            font-weight: bold;
+        }
+        .list-wrap{
+            margin-top: 1rem;
+        }
+        .list div div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .list div div p{
+            color: rgb(150,150,150);
+            font-size: 1.6rem;
+        }
+        .list div div button{
+            margin-left: 1rem;
+        }
+        .wrap{
+            padding-bottom: 5rem;
+        }
+        .button-bar{
+            height: 5rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+        }
+        .button-bar button{
+            width: 50%;
+            height: 100%;
+            font-size: 1.61rem;
+            border: 1px solid rgb(220,220,220);
+            background: none;
+        }
+        .small-btn{
+            border: 1px solid rgb(150,150,150);
+            border-radius: 0.3rem;
+            background: none;
+            color: rgb(107,107,107);
+            padding: 0.1rem 0.5rem;
+            font-size: 1.6rem;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="info-head">
+        <div>
+            <p>番茄来了</p>
+            <p><span>在职人数：300人</span></p>
+            <p><span>年离职率: 50%</span><span>月离职率: 30%</span></p>
+        </div>
+        <img src="/image/logo.png" />
+    </div>
+    <div class="dash-line">
+    </div>
+    <!--<div class="echarts">-->
+    <!--<p>离职原因：</p>-->
+    <!--<div id="echarts-wrap">-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <div class="dash-line"></div>
+    <div class="list">
+        <p class="title">最近离职员工列表</p>
+        <div class="list-wrap">
+            <div>
+                <p>张三 2019-07-21 离职待审批</p>
+                <button class="small-btn" onclick="location.href= 'audit_departure.html'">审批</button>
+                <!--<button class="small-btn" onclick="alert('关注成功')">关注</button>-->
+            </div>
+            <div>
+                <p>张三 2019-07-21 离职待审批</p>
+                <button class="small-btn" onclick="location.href= 'audit_departure.html'">审批</button>
+                <!--<button class="small-btn" onclick="alert('关注成功')">关注</button>-->
+            </div>
+            <div>
+                <p>张三 2019-07-21 离职待审批</p>
+                <button class="small-btn" onclick="location.href= 'audit_departure.html'">审批</button>
+                <!--<button class="small-btn" onclick="alert('关注成功')">关注</button>-->
+            </div>
+        </div>
+    </div>
+    <div class="button-bar">
+        <button onclick="location.href= 'new_departure.html'">办理离职</button>
+        <button style="border-left: none" onclick="location.href= 'search_departure.html'">查询离职</button>
+    </div>
+</div>
+</body>
+<!--<script src="../js/echarts.min.js"></script>-->
+<!--<script src="../js/echarts_pie.js"></script>-->
+</html>

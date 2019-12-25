@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <title>查询离职列表</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html{
+            font-size: 62.5%;
+        }
+        .aui-navBar {
+            height: 44px;
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            z-index: 102;
+            background: #fff;
+        }
+
+        .aui-navBar-item {
+            height: 44px;
+            min-width: 25%;
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 25%;
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            padding: 0 0.9rem;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            font-size: 1.60rem;
+            white-space: nowrap;
+            overflow: hidden;
+            color: #3296fa;
+            position: relative;
+        }
+
+        .aui-navBar-item:first-child {
+            -webkit-box-ordinal-group: 2;
+            -webkit-order: 1;
+            -ms-flex-order: 1;
+            order: 1;
+            margin-right: -25%;
+        }
+
+        .aui-navBar-item:last-child {
+            -webkit-box-ordinal-group: 4;
+            -webkit-order: 3;
+            -ms-flex-order: 3;
+            order: 3;
+            -webkit-box-pack: end;
+            -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+        }
+
+        .aui-center {
+            -webkit-box-ordinal-group: 3;
+            -webkit-order: 2;
+            -ms-flex-order: 2;
+            order: 2;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 44px;
+            width: 50%;
+            margin-left: 25%;
+        }
+
+        .aui-center-title {
+            text-align: center;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
+            font-size: 1.80rem;
+            color: #333;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: block;
+            border: none;
+            float: left;
+            background-size: 20px;
+            background-repeat: no-repeat;
+        }
+
+        .icon-return {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAB3klEQVRoQ+3bUU7CQBAG4FmC9VGPAr2AXsETgI/SFzyBcALjA/AI3sAbeAOsN/FRS9I120hCMKW1uzvzb2vfaLpJv8500p0Mijp2qI556R+MGPHhcnelv/rv6b36sL0/6AjHq92DzvVUKbosoErNtndncxs0LDheZGtSND7G5dS7SSf9l6ZoSHAZ1iA10fPbJPr1IOo+ADjwKWyB0vS0TaJpXeDxdVDgSiwR5ZqGaRKlwYNrYm/TJNo0xRZ1z2axq7VcWAgwJ1YczI0VBUtgxcBSWBGwJJYdLI1lBSNg2cAoWBYwEtY7GA3rFYyI9QZGxXoBI2Odg9GxTsGDRTbuKVqf2jLmmqz3s7ZbUif74VCwTiIcEtYaPFjtrntav6Kn8eH9WaX0cJltFNGoDIzwzjrtWnYO3LmUNunSqaK1fz9CQlsVrcOCEAraGTiU9HYKDgHtHIyO9gJGRnsDo6K9ghHR3sFoaBYwEpoNjIJmBSOg2cHSaBGwQcfLzIwePXJ3S8TABlrVQDDXuO6aiIIl0OJgbjQEmBMNA/4Duh2jh/tqXVnI2jRcWgfduvHhKnQrB8T36J+PkxkRXRTntJ5vk3Pzu/EBVbTKFKbhT5/9tPV/8mgcxhMLg4iwS3jnwN+KIHhMlL5aeAAAAABJRU5ErkJggg==');
+        }
+        /*  */
+        .el-input__inner {
+            -webkit-appearance: none;
+            background-color: #fff;
+            background-image: none;
+            border-radius: 0.4rem;
+            border: 1px solid #dcdfe6;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #606266;
+            display: inline-block;
+            font-size: 1.6rem;
+            height: 3rem;
+            line-height: 3em;
+            outline: 0;
+            padding: 0 1.5rem;
+            -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            width: 50%;
+        }
+        .el-table th {
+            white-space: nowrap;
+            overflow: hidden;
+            user-select: none;
+            /*text-align: left;*/
+            font-size: 1.60rem;
+            color: #909399;
+        }
+        .el-table tr{
+            height: 2.4rem;
+            border-bottom: 1px solid #ebeef5;
+        }
+        .el-table td{
+            font-size: 1.6rem;
+        }
+    </style>
+</head>
+<body>
+<header class="aui-navBar aui-navBar-fixed">
+    <a onclick="history.go(-1)" href="javascript:;" class="aui-navBar-item">
+        <i class="icon icon-return"></i>返回
+    </a>
+    <div class="aui-center">
+        <span class="aui-center-title">查询离职列表</span>
+    </div>
+</header>
+<p style="width: 100%;text-align: center;position: relative">
+    <input class="el-input__inner" type="text" placeholder="输入员工姓名"/>
+    <img style=" height:1.5rem; position: absolute;right: 27%; top:0.75rem" src="/image/search.png" />
+</p>
+<table class="el-table" style="width: 100%;margin-top: 2rem;padding: 0 1rem;">
+    <tr style="text-align: center">
+        <th>员工姓名</th>
+        <th>提交离职时间</th>
+        <th>当前审批状态</th>
+    </tr>
+    <tr style="text-align: center;font-size: 1.6rem">
+        <td>张三</td>
+        <td>2019-07-21 10：10：10</td>
+        <td>待审批</td>
+    </tr>
+    <tr style="text-align: center">
+        <td>张三三</td>
+        <td>2019-07-17 11：11：11</td>
+        <td>审批通过</td>
+    </tr>
+    <tr style="text-align: center">
+        <td>张三三三</td>
+        <td>2019-07-12 12：12：12</td>
+        <td>审批拒绝</td>
+    </tr>
+</table>
+</body>
+</html>
