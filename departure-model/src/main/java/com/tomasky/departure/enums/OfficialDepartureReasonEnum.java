@@ -4,10 +4,14 @@ package com.tomasky.departure.enums;
  * Created by sam on 2019-08-07.15:17
  */
 public enum OfficialDepartureReasonEnum {
-    INCAPACITY("0", "能力欠缺"),
-    NOT_SOCIABLE("1", "缺乏团队精神"),
-    NOT_MATCH_VALUES("2", "价值观不符"),
-    BUSINESS_ADJUSTMENT("3", "业务调整");
+    INCAPACITY("0", "试用期内辞退"),
+    NOT_SOCIABLE("1", "工作态度"),
+    NOT_MATCH_VALUES("2", "工作能力"),
+    BUSINESS_ADJUSTMENT("3", "违反公司条例"),
+    LAYOFFS_REASON("4", "组织调整/裁员"),
+    PERFORMANCE_REASON("5", "绩效不达标"),
+    EXPIRATION_CONTRACT("6", "合同到期"),
+    OTHER_REASON("7", "其他");
 
     private String value;
     private String name;

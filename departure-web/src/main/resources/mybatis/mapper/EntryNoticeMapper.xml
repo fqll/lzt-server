@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomasky.departure.mapper.EntryNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.EntryNotice">
+    <!--@mbg.generated-->
+    <id column="id" property="id" />
+    <result column="user_id" property="userId" />
+    <result column="company_id" property="companyId" />
+    <result column="entry_employee_name" property="entryEmployeeName" />
+    <result column="entry_position" property="entryPosition" />
+    <result column="report_date" property="reportDate" />
+    <result column="report_location" property="reportLocation" />
+    <result column="reception_personnel" property="receptionPersonnel" />
+    <result column="contact_number" property="contactNumber" />
+    <result column="created_id" property="createdId" />
+    <result column="last_modify_id" property="lastModifyId" />
+    <result column="created_time" property="createdTime" />
+    <result column="last_modify_time" property="lastModifyTime" />
+    <result column="version_num" property="versionNum" />
+    <result column="deleted" property="deleted" />
+    <result column="is_valid" property="isValid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, company_id, entry_employee_name, entry_position, report_date, report_location, 
+    reception_personnel, contact_number, created_id, last_modify_id, created_time, last_modify_time, 
+    version_num, deleted, is_valid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from entry_notice
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from entry_notice
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.EntryNotice" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into entry_notice (user_id, company_id, entry_employee_name, entry_position, report_date, 
+      report_location, reception_personnel, contact_number, created_id, last_modify_id, 
+      created_time, last_modify_time, version_num, deleted, is_valid)
+    values (#{userId}, #{companyId}, #{entryEmployeeName}, #{entryPosition}, #{reportDate}, 
+      #{reportLocation}, #{receptionPersonnel}, #{contactNumber}, #{createdId}, #{lastModifyId}, 
+      #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.EntryNotice" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into entry_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="entryEmployeeName != null">
+        entry_employee_name,
+      </if>
+      <if test="entryPosition != null">
+        entry_position,
+      </if>
+      <if test="reportDate != null">
+        report_date,
+      </if>
+      <if test="reportLocation != null">
+        report_location,
+      </if>
+      <if test="receptionPersonnel != null">
+        reception_personnel,
+      </if>
+      <if test="contactNumber != null">
+        contact_number,
+      </if>
+      <if test="createdId != null">
+        created_id,
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="versionNum != null">
+        version_num,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId},
+      </if>
+      <if test="companyId != null">
+        #{companyId},
+      </if>
+      <if test="entryEmployeeName != null">
+        #{entryEmployeeName},
+      </if>
+      <if test="entryPosition != null">
+        #{entryPosition},
+      </if>
+      <if test="reportDate != null">
+        #{reportDate},
+      </if>
+      <if test="reportLocation != null">
+        #{reportLocation},
+      </if>
+      <if test="receptionPersonnel != null">
+        #{receptionPersonnel},
+      </if>
+      <if test="contactNumber != null">
+        #{contactNumber},
+      </if>
+      <if test="createdId != null">
+        #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        #{versionNum},
+      </if>
+      <if test="deleted != null">
+        #{deleted},
+      </if>
+      <if test="isValid != null">
+        #{isValid},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.EntryNotice">
+    <!--@mbg.generated-->
+    update entry_notice
+    <set>
+      <if test="userId != null">
+        user_id = #{userId},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId},
+      </if>
+      <if test="entryEmployeeName != null">
+        entry_employee_name = #{entryEmployeeName},
+      </if>
+      <if test="entryPosition != null">
+        entry_position = #{entryPosition},
+      </if>
+      <if test="reportDate != null">
+        report_date = #{reportDate},
+      </if>
+      <if test="reportLocation != null">
+        report_location = #{reportLocation},
+      </if>
+      <if test="receptionPersonnel != null">
+        reception_personnel = #{receptionPersonnel},
+      </if>
+      <if test="contactNumber != null">
+        contact_number = #{contactNumber},
+      </if>
+      <if test="createdId != null">
+        created_id = #{createdId},
+      </if>
+      <if test="lastModifyId != null">
+        last_modify_id = #{lastModifyId},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime},
+      </if>
+      <if test="versionNum != null">
+        version_num = #{versionNum},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.EntryNotice">
+    <!--@mbg.generated-->
+    update entry_notice
+    set user_id = #{userId},
+      company_id = #{companyId},
+      entry_employee_name = #{entryEmployeeName},
+      entry_position = #{entryPosition},
+      report_date = #{reportDate},
+      report_location = #{reportLocation},
+      reception_personnel = #{receptionPersonnel},
+      contact_number = #{contactNumber},
+      created_id = #{createdId},
+      last_modify_id = #{lastModifyId},
+      created_time = #{createdTime},
+      last_modify_time = #{lastModifyTime},
+      version_num = #{versionNum},
+      deleted = #{deleted},
+      is_valid = #{isValid}
+    where id = #{id}
+  </update>
+</mapper>

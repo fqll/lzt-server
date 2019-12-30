@@ -8,6 +8,8 @@
     <result column="company_id" property="companyId" />
     <result column="audit_status" property="auditStatus" />
     <result column="job_status" property="jobStatus" />
+    <result column="is_default" property="isDefault" />
+    <result column="nick_name" property="nickName" />
     <result column="created_id" property="createdId" />
     <result column="last_modify_id" property="lastModifyId" />
     <result column="created_time" property="createdTime" />
@@ -15,13 +17,14 @@
     <result column="version_num" property="versionNum" />
     <result column="deleted" property="deleted" />
     <result column="is_valid" property="isValid" />
-    <result column="is_default" property="isDefault" />
-    <result column="nick_name" property="nickName" />
+    <result column="email_address" property="emailAddress" />
+    <result column="email_password" property="emailPassword" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_id, company_id, audit_status, job_status, created_id, last_modify_id, created_time, 
-    last_modify_time, version_num, deleted, is_valid, is_default, nick_name
+    id, user_id, company_id, audit_status, job_status, is_default, nick_name, created_id, 
+    last_modify_id, created_time, last_modify_time, version_num, deleted, is_valid, email_address, 
+    email_password
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -37,12 +40,12 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserRoleInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into user_role_info (user_id, company_id, audit_status, job_status, created_id,
-      last_modify_id, created_time, last_modify_time, version_num, deleted, 
-      is_valid, is_default, nick_name)
-    values (#{userId}, #{companyId}, #{auditStatus}, #{jobStatus}, #{createdId},
-      #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, 
-      #{isValid}, #{isDefault}, #{nickName})
+    insert into user_role_info (user_id, company_id, audit_status, job_status, is_default, nick_name, 
+      created_id, last_modify_id, created_time, last_modify_time, version_num, 
+      deleted, is_valid, email_address, email_password)
+    values (#{userId}, #{companyId}, #{auditStatus}, #{jobStatus}, #{isDefault}, #{nickName}, 
+      #{createdId}, #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum}, 
+      #{deleted}, #{isValid}, #{emailAddress}, #{emailPassword})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserRoleInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -59,6 +62,12 @@
       </if>
       <if test="jobStatus != null">
         job_status,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="nickName != null">
+        nick_name,
       </if>
       <if test="createdId != null">
         created_id,
@@ -81,11 +90,11 @@
       <if test="isValid != null">
         is_valid,
       </if>
-      <if test="isDefault != null">
-        is_default,
+      <if test="emailAddress != null">
+        email_address,
       </if>
-      <if test="nickName != null">
-        nick_name,
+      <if test="emailPassword != null">
+        email_password,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -100,6 +109,12 @@
       </if>
       <if test="jobStatus != null">
         #{jobStatus},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault},
+      </if>
+      <if test="nickName != null">
+        #{nickName},
       </if>
       <if test="createdId != null">
         #{createdId},
@@ -122,11 +137,11 @@
       <if test="isValid != null">
         #{isValid},
       </if>
-      <if test="isDefault != null">
-        #{isDefault},
+      <if test="emailAddress != null">
+        #{emailAddress},
       </if>
-      <if test="nickName != null">
-        #{nickName},
+      <if test="emailPassword != null">
+        #{emailPassword},
       </if>
     </trim>
   </insert>
@@ -145,6 +160,12 @@
       </if>
       <if test="jobStatus != null">
         job_status = #{jobStatus},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName},
       </if>
       <if test="createdId != null">
         created_id = #{createdId},
@@ -167,11 +188,11 @@
       <if test="isValid != null">
         is_valid = #{isValid},
       </if>
-      <if test="isDefault != null">
-        is_default = #{isDefault},
+      <if test="emailAddress != null">
+        email_address = #{emailAddress},
       </if>
-      <if test="nickName != null">
-        nick_name = #{nickName},
+      <if test="emailPassword != null">
+        email_password = #{emailPassword},
       </if>
     </set>
     where id = #{id}
@@ -183,6 +204,8 @@
       company_id = #{companyId},
       audit_status = #{auditStatus},
       job_status = #{jobStatus},
+      is_default = #{isDefault},
+      nick_name = #{nickName},
       created_id = #{createdId},
       last_modify_id = #{lastModifyId},
       created_time = #{createdTime},
@@ -190,8 +213,8 @@
       version_num = #{versionNum},
       deleted = #{deleted},
       is_valid = #{isValid},
-      is_default = #{isDefault},
-      nick_name = #{nickName}
+      email_address = #{emailAddress},
+      email_password = #{emailPassword}
     where id = #{id}
   </update>
   <delete id="deleteRefuseRecord">

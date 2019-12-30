@@ -1,6 +1,7 @@
 package com.tomasky.departure.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
 import com.tomasky.departure.common.utils.BaseModelUtils;
 import com.tomasky.departure.common.utils.CommonUtils;
@@ -19,6 +20,7 @@ import com.tomasky.departure.model.UserRoleInfo;
 import com.tomasky.departure.service.EntryService;
 import com.tomasky.departure.vo.DelayEntryVo;
 import com.tomasky.departure.vo.EmployeeCheckVo;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -141,21 +143,21 @@ public class EntryServiceImpl implements EntryService {
             if(! EmployeeJobStatus.INCUMBENCY.getValue().equals(userRoleInfo.getJobStatus())) {
                 throw new RuntimeException("当前用户在职状态异常");
             }
-            List<DelayEntryVo> delayEntryVoList = departureInfoMapper.selectDelayEntryVoList(companyId, departureAuditStatusEnum.getValue(), nickName);
-            if(! CollectionUtils.isEmpty(delayEntryVoList)) {
-                for(DelayEntryVo delayEntryVo : delayEntryVoList) {
-                    DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(delayEntryVo.getDepartureId());
-                    boolean chatAble = entryHelper.isChatAble(departureInfo, userId);
-                    delayEntryVo.setChatAble(chatAble);
-                }
+        List<DelayEntryVo> delayEntryVoList = departureInfoMapper.selectDelayEntryVoList(companyId, departureAuditStatusEnum.getValue(), nickName);
+        if(! CollectionUtils.isEmpty(delayEntryVoList)) {
+            for(DelayEntryVo delayEntryVo : delayEntryVoList) {
+                DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(delayEntryVo.getDepartureId());
+                boolean chatAble = entryHelper.isChatAble(departureInfo, userId);
+                delayEntryVo.setChatAble(chatAble);
             }
-            logger.info("查询离职列表接口结束");
-            return CommonUtils.setSuccessInfo(delayEntryVoList);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return CommonUtils.setErrorInfo(e);
         }
+        logger.info("查询离职列表接口结束");
+        return CommonUtils.setSuccessInfo(delayEntryVoList);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return CommonUtils.setErrorInfo(e);
     }
+}
 
     /**
      * 校验输入参数
@@ -186,5 +188,50 @@ public class EntryServiceImpl implements EntryService {
         }
         List<EmployeeCheckVo> employeeCheckVoList = departureInfoMapper.selectEmployeeCheckVoList(userId, companyId, type);
         return CommonUtils.setSuccessInfo(employeeCheckVoList);
+    }
+
+    @Override
+    public Map<String, Object> hasEmail(Integer userId, Integer companyId) {
+        logger.info("是否配置邮箱请求参数，userId=" + userId + "，companyId=" + companyId);
+        boolean hasEmail = false;
+        UserRoleInfo userRoleInfo = userRoleInfoMapper.selectByUserIdAndCompanyId(userId, companyId);
+        if (userRoleInfo == null) {
+            throw new RuntimeException("公司或者用户不存在");
+        }
+        String emailAddress = userRoleInfo.getEmailAddress();
+        if(StringUtils.isNoneBlank(emailAddress)) {
+            hasEmail = true;
+        }
+        logger.info("是否配置邮箱接口返回：" + hasEmail);
+        return CommonUtils.setSuccessInfo(hasEmail);
+    }
+
+    @Override
+    public void saveEmail(AddEmailBo addEmailBo) {
+        checkAddEmailBo(addEmailBo);
+
+    }
+
+    /**
+     * 校验输入参数
+     * @param addEmailBo
+     */
+    private void checkAddEmailBo(AddEmailBo addEmailBo) {
+        Integer userId = addEmailBo.getUserId();
+        if (userId == null) {
+            throw new RuntimeException("用户ID不能为空");
+        }
+        Integer companyId = addEmailBo.getCompanyId();
+        if (companyId == null) {
+            throw new RuntimeException("公司ID不能为空");
+        }
+        String emailAddress = addEmailBo.getEmailAddress();
+        if(StringUtils.isBlank(emailAddress)) {
+            throw new RuntimeException("邮箱地址不能为空");
+        }
+        String emailPassword = addEmailBo.getEmailPassword();
+        if(StringUtils.isBlank(emailAddress)) {
+            throw new RuntimeException("邮箱密码不能为空");
+        }
     }
 }

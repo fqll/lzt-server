@@ -2,7 +2,7 @@ package com.tomasky.departure.common.utils;
 
 import com.tomasky.departure.bo.message.MessageSendResult;
 import com.tomasky.departure.enums.SmsChannel;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;

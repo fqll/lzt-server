@@ -1,5 +1,6 @@
 package com.tomasky.departure.service;
 
+import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
 
 import java.util.Map;
@@ -36,4 +37,18 @@ public interface EntryService {
      * @return
      */
     Map<String, Object> findEmployeeCheckList(Integer userId, Integer companyId, String type);
+
+    /**
+     * 是否配置邮箱
+     * @param userId
+     * @param companyId
+     * @return
+     */
+    Map<String, Object> hasEmail(Integer userId, Integer companyId);
+
+    /**
+     * 保存邮箱地址和密码
+     * @param addEmailBo
+     */
+    void saveEmail(AddEmailBo addEmailBo);
 }

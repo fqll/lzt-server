@@ -1,14 +1,10 @@
 package com.tomasky.departure.mapper;
 
-import com.tomasky.departure.bo.JoinCompanyBo;
-import com.tomasky.departure.model.UserRoleInfo;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.tomasky.departure.bo.JoinCompanyBo;import com.tomasky.departure.model.UserRoleInfo;
+import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;import java.util.List;
 
 /**
- * Created by sam on 2019-08-06.15:31
+ * Created by sam on 2019-12-27.15:34
  */
 
 @Mapper

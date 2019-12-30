@@ -1,5 +1,6 @@
 package com.tomasky.departure.web;
 
+import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
 import com.tomasky.departure.common.utils.CommonUtils;
 import com.tomasky.departure.service.EntryService;
@@ -76,6 +77,33 @@ public class EntryController {
     @GetMapping(value = "getEmployeeCheckList")
     public Map<String, Object> getEmployeeCheckList(@RequestParam Integer userId, @RequestParam Integer companyId, @RequestParam String type) {
         return entryService.findEmployeeCheckList(userId, companyId, type);
+    }
+
+    /**
+     * 是否配置邮箱
+     * @param userId
+     * @param companyId
+     * @return
+     */
+    @GetMapping(value = "hasEmail")
+    public Map<String, Object> hasEmail(@RequestParam Integer userId, @RequestParam Integer companyId) {
+        return entryService.hasEmail(userId, companyId);
+    }
+
+    /**
+     * 保存邮箱地址和密码
+     * @param addEmailBo
+     * @return
+     */
+    @PostMapping(value = "saveEmail")
+    public Map<String, Object> saveEmail(@RequestBody AddEmailBo addEmailBo) {
+        try {
+            entryService.saveEmail(addEmailBo);
+            return CommonUtils.setSuccessInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return CommonUtils.setErrorInfo(e);
+        }
     }
 
 }

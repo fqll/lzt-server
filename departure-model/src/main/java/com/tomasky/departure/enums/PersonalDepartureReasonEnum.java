@@ -4,15 +4,18 @@ package com.tomasky.departure.enums;
  * Created by sam on 2019-08-07.15:18
  */
 public enum PersonalDepartureReasonEnum {
-    PROSPECT_REASON("0", "行业前景"),
-    DEVELOPMENT_REASON("1", "职业发展"),
-    PAY_REASON("2", "薪酬福利"),
-    CULTURE_REASON("3", "企业文化"),
-    ENVIRONMENT_REASON("4", "工作环境"),
-    STRENGTH_REASON("5", "工作强度"),
-    RELATIONSHIP_REASON("6", "同事关系"),
-    FAMILY_REASON("7", "家庭因素"),
-    OTHER_REASON("8", "其他");
+    FAMILY_REASON("0", "家庭原因"),
+    BODY_REASON("1", "身体原因"),
+    PAY_REASON("2", "薪资福利"),
+    TRAFFIC_INCONVENIENCE("3", "交通不便"),
+    ENVIRONMENT_REASON("4", "工作压力"),
+    STRENGTH_REASON("5", "管理问题"),
+    RELATIONSHIP_REASON("6", "工作环境"),
+    INDUSTRY_PROSPECT("7", "行业前景"),
+    NO_PROMOTION_OPPORTUNITIES("8", "无晋升机会"),
+    CAREER_PLANNING("9", "职业规划"),
+    EXPIRATION_CONTRACT("10", "合同到期放弃续签"),
+    OTHER_REASON("11", "其他");
 
     private String value;
     private String name;

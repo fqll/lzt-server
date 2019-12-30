@@ -7,27 +7,53 @@ import com.tomasky.departure.bo.JoinCompanyBo;
 import java.io.Serializable;
 
 /**
- * Created by sam on 2019-08-06.15:31
+ * Created by sam on 2019-12-27.15:34
  */
 
 public class UserRoleInfo extends BaseModel implements Serializable {
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     private Integer userId;
 
-    /** 公司ID */
+    /**
+     * 公司ID
+     */
     private Integer companyId;
 
-    /** 审核状态，0：待审核，1：审核通过 */
+    /**
+     * 审核状态，0：待审核，1：审核通过
+     */
     private String auditStatus;
 
-    /** 在职状态，0：在职，1：离职，2：待入职 */
+    /**
+     * 在职状态，0：在职，1：离职，2：待入职
+     */
     private String jobStatus;
 
-    /** 是否是主企业，0不是，1是 */
+    /**
+     * 是否是主企业，0不是，1是
+     */
     private String isDefault;
 
-    /** 员工昵称*/
+    /**
+     * 员工昵称
+     */
     private String nickName;
+
+    /**
+     * 电子邮箱地址
+     */
+    private String emailAddress;
+
+    /**
+     * 邮箱密码或者授权码
+     */
+    private String emailPassword;
+
+    public UserRoleInfo() {
+
+    }
 
     public UserRoleInfo(Integer companyId, String nickName, String auditStatus) {
         this.companyId = companyId;
@@ -44,33 +70,6 @@ public class UserRoleInfo extends BaseModel implements Serializable {
     public UserRoleInfo(CreateCompanyBo createCompanyBo, Integer companyId) {
         this.userId = createCompanyBo.getUserId();
         this.companyId = companyId;
-    }
-
-    public UserRoleInfo() {
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getAuditStatus() {
-        return auditStatus;
-    }
-
-    public void setAuditStatus(String auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
-    public String getJobStatus() {
-        return jobStatus;
-    }
-
-    public void setJobStatus(String jobStatus) {
-        this.jobStatus = jobStatus;
     }
 
     private static final long serialVersionUID = 1L;
@@ -91,11 +90,51 @@ public class UserRoleInfo extends BaseModel implements Serializable {
         this.companyId = companyId;
     }
 
+    public String getAuditStatus() {
+        return auditStatus;
+    }
+
+    public void setAuditStatus(String auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
+    public String getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(String jobStatus) {
+        this.jobStatus = jobStatus;
+    }
+
     public String getIsDefault() {
         return isDefault;
     }
 
     public void setIsDefault(String isDefault) {
         this.isDefault = isDefault;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getEmailPassword() {
+        return emailPassword;
+    }
+
+    public void setEmailPassword(String emailPassword) {
+        this.emailPassword = emailPassword;
     }
 }
