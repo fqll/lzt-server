@@ -2,6 +2,7 @@ package com.tomasky.departure.helper;
 
 import com.tomasky.departure.bo.MimeMessageDTO;
 import com.tomasky.departure.bo.SendEntryMailBo;
+import com.tomasky.departure.enums.MailTypeEnum;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -50,14 +51,44 @@ public class MailUtil {
 		return publicsendEmail(sendEntryMailBo);
 	}
 
+	/**
+	 * 验证登录邮箱
+	 * @param sendEntryMailBo
+	 * @return
+	 */
+	public static boolean authLogin(SendEntryMailBo sendEntryMailBo) {
+		Transport ts = null;
+		try {
+			String userName = sendEntryMailBo.getFrom();
+			String password = sendEntryMailBo.getPassword();
+			String mailType = sendEntryMailBo.getMailType();
+			Properties props = makeMailProperties(userName, mailType);
+			String hostname=SMTPUtil.getSMTPAddress(userName, mailType);
+			Session session = Session.getInstance(props, new PopupAuthenticator(userName, password));
+			ts = session.getTransport();
+			ts.connect(hostname,userName,password);
+		} catch (Exception mex) {
+			mex.printStackTrace();
+			return false;
+		} finally {
+			try {
+				ts.close();
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+
 	private static boolean publicsendEmail(SendEntryMailBo sendEntryMailBo){
 		String userName = sendEntryMailBo.getFrom();
 		String password = sendEntryMailBo.getPassword();
 		String targetAddress = sendEntryMailBo.getTo();
+		String mailType = sendEntryMailBo.getMailType();
 		MimeMessageDTO mimeMessageDTO = sendEntryMailBo.getMessage();
 		List<String> filepath = sendEntryMailBo.getFilepath();
-		Properties props = makeMailProperties(userName, sendEntryMailBo.getMailType());
-		String hostname=SMTPUtil.getSMTPAddress(userName, sendEntryMailBo.getMailType());
+		Properties props = makeMailProperties(userName, mailType);
+		String hostname=SMTPUtil.getSMTPAddress(userName, mailType);
 		Session session = Session.getInstance(props, new PopupAuthenticator(userName, password));
 		session.setDebug(true);
 		try {
@@ -158,11 +189,7 @@ public class MailUtil {
 		}
 		return true;
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * 创建邮件信息
 	 * @param userName
@@ -171,21 +198,19 @@ public class MailUtil {
 	private static Properties makeMailProperties(String userName, String mailType){
 		Properties props = new Properties();
 		String hostname=SMTPUtil.getSMTPAddress(userName, mailType);
-		if("1".equals(mailType)) {
+		if(MailTypeEnum.TENCENT_CORPORATE_EMAIL.getValue().equals(mailType)) {
 			props.put("mail.smtp.host", "smtp.exmail.qq.com");
 		} else {
 			props.put("mail.smtp.host", hostname);
 		}
 		props.setProperty("mail.smtp.auth", "true");
 		props.setProperty("mail.transport.protocol", "smtp");
-		if(hostname.indexOf(".qq.com")!=-1 || "1".equals(mailType)){
+		if(hostname.indexOf(".qq.com")!=-1 || MailTypeEnum.TENCENT_CORPORATE_EMAIL.getValue().equals(mailType)){
 			props.setProperty("mail.smtp.socketFactory.port", "465");
 			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		}
 		return props;
 	}
-	
-	
 	
 	/**
 	 * 创建邮件

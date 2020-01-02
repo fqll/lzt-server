@@ -3,6 +3,7 @@ package com.tomasky.departure.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
+import com.tomasky.departure.bo.SendEntryMailBo;
 import com.tomasky.departure.common.utils.BaseModelUtils;
 import com.tomasky.departure.common.utils.CommonUtils;
 import com.tomasky.departure.common.utils.DateUtils;
@@ -11,6 +12,7 @@ import com.tomasky.departure.enums.DepartureAuditStatusEnum;
 import com.tomasky.departure.enums.EmployeeJobStatus;
 import com.tomasky.departure.helper.EntryHelper;
 import com.tomasky.departure.helper.GuideHelper;
+import com.tomasky.departure.helper.MailUtil;
 import com.tomasky.departure.mapper.CompanyInfoMapper;
 import com.tomasky.departure.mapper.DepartureInfoMapper;
 import com.tomasky.departure.mapper.UserRoleInfoMapper;
@@ -208,7 +210,9 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public void saveEmail(AddEmailBo addEmailBo) {
+        // 校验输入参数
         checkAddEmailBo(addEmailBo);
+        boolean authLogin = MailUtil.authLogin(new SendEntryMailBo(addEmailBo));
 
     }
 
@@ -230,7 +234,7 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("邮箱地址不能为空");
         }
         String emailPassword = addEmailBo.getEmailPassword();
-        if(StringUtils.isBlank(emailAddress)) {
+        if(StringUtils.isBlank(emailPassword)) {
             throw new RuntimeException("邮箱密码不能为空");
         }
     }

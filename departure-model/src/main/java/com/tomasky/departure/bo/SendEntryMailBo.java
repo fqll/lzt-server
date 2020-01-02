@@ -16,7 +16,7 @@ public class SendEntryMailBo extends BaseBo {
     private String password;
     /** 接收邮件的邮箱*/
     private String to;
-    /** 邮箱类型，1：腾讯企业邮箱*/
+    /** 枚举类型，参考枚举类：MailTypeEnum，邮箱类型，1：腾讯企业邮箱*/
     private String mailType;
     /** 邮件消息类型*/
     private MimeMessageDTO message;
@@ -24,6 +24,15 @@ public class SendEntryMailBo extends BaseBo {
     private boolean isGroup;
     /** 附件文件路径集合*/
     private List<String> filepath;
+
+    public SendEntryMailBo() {
+    }
+
+    public SendEntryMailBo(AddEmailBo addEmailBo) {
+        this.from = addEmailBo.getEmailAddress();
+        this.password = addEmailBo.getEmailPassword();
+        this.mailType = addEmailBo.getMailType();
+    }
 
     public Integer getTemplateId() {
         return templateId;

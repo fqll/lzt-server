@@ -452,6 +452,7 @@
             AND t1.audit_user_id = #{userId}
             AND t1.company_id = #{companyId}
             AND t2.operate_type = '1'
+        ORDER BY t1.created_time DESC
   </select>
   <select id="selectCopyDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
         SELECT
@@ -470,6 +471,7 @@
             AND t2.audit_status != '-1'
             AND t1.user_id =#{userId}
             AND t2.company_id = #{companyId}
+        ORDER BY t2.created_time DESC
   </select>
   <select id="selectSelfDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
         SELECT ID AS departureId,
@@ -517,6 +519,7 @@
             AND t1.audit_result IS NOT NULL
             AND t1.user_id =#{userId}
             AND t2.company_id = #{companyId}
+        ORDER BY t2.created_time DESC
   </select>
   <select id="selectCreatedDepartureVoList" resultType="com.tomasky.departure.vo.AuditDepartureVo">
         SELECT
@@ -534,7 +537,7 @@
             AND t2.audit_status != '-1'
             AND t1.user_id =#{userId}
             AND t2.company_id = #{companyId}
-        ORDER BY t2.last_modify_time desc
+        ORDER BY t2.created_time desc
   </select>
   <select id="selectCreateLog" resultType="com.tomasky.departure.vo.ApproverLogVo">
         SELECT

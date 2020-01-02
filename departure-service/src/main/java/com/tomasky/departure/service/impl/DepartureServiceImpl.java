@@ -32,7 +32,6 @@ import com.tomasky.departure.enums.SendTypeEnum;
 import com.tomasky.departure.enums.SmsChannel;
 import com.tomasky.departure.helper.EntryHelper;
 import com.tomasky.departure.helper.GuideHelper;
-import com.tomasky.departure.mapper.ChatLogMapper;
 import com.tomasky.departure.mapper.CompanyInfoMapper;
 import com.tomasky.departure.mapper.DepartureAuditMapper;
 import com.tomasky.departure.mapper.DepartureInfoMapper;
@@ -91,8 +90,6 @@ public class DepartureServiceImpl implements DepartureService {
     private UserRoleInfoMapper userRoleInfoMapper;
     @Resource
     private GuideHelper guideHelper;
-    @Resource
-    private ChatLogMapper chatLogMapper;
     @Resource
     private EntryHelper entryHelper;
 

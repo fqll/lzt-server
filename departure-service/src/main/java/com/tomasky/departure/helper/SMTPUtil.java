@@ -1,5 +1,7 @@
 package com.tomasky.departure.helper;
 
+import com.tomasky.departure.enums.MailTypeEnum;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -41,7 +43,7 @@ public class SMTPUtil {
 			//读取properties的内容
 			smtpAddress = props.getProperty(getHost(userName).trim());
 			// 腾讯企业邮箱处理
-			if("1".equals(mailType)) {
+			if(MailTypeEnum.TENCENT_CORPORATE_EMAIL.getValue().equals(mailType)) {
 				smtpAddress = "smtp.exmail.qq.com";
 			}
 			//没有获取到
