@@ -4,7 +4,7 @@ import com.tomasky.departure.model.EntryNotice;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * Created by sam on 2019-12-27.14:26
+ * Created by sam on 2020-01-02.15:44
  */
 
 @Mapper

@@ -65,6 +65,7 @@ public class MailUtil {
 			Properties props = makeMailProperties(userName, mailType);
 			String hostname=SMTPUtil.getSMTPAddress(userName, mailType);
 			Session session = Session.getInstance(props, new PopupAuthenticator(userName, password));
+			session.setDebug(true);
 			ts = session.getTransport();
 			ts.connect(hostname,userName,password);
 		} catch (Exception mex) {

@@ -2,6 +2,7 @@ package com.tomasky.departure.service;
 
 import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
+import com.tomasky.departure.bo.SendEntryNoticeBo;
 
 import java.util.Map;
 
@@ -51,4 +52,10 @@ public interface EntryService {
      * @param addEmailBo
      */
     void saveEmail(AddEmailBo addEmailBo);
+
+    /**
+     * 发送入职通知
+     * @param sendEntryNoticeBo
+     */
+    void sendEntryNotice(SendEntryNoticeBo sendEntryNoticeBo);
 }

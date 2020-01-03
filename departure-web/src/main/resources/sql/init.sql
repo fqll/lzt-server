@@ -359,6 +359,7 @@ create table entry_notice (
    id                   SERIAL not null,
    user_id              INT4                 null,
    company_id           INT4                 null,
+   target_mail          VARCHAR(64)          null,
    entry_employee_name  VARCHAR(64)          null,
    entry_position       VARCHAR(64)          null,
    report_date          VARCHAR(32)          null,
@@ -378,6 +379,7 @@ comment on table entry_notice is '入职通知表';
 comment on column entry_notice.id is 'id';
 comment on column entry_notice.user_id is '用户ID';
 comment on column entry_notice.company_id is '公司ID';
+comment on column entry_notice.target_mail is '目标邮箱地址';
 comment on column entry_notice.entry_employee_name is '入职人姓名';
 comment on column entry_notice.entry_position is '入职职位';
 comment on column entry_notice.report_date is '报到时间';

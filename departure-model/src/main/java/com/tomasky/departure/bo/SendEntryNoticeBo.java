@@ -1,76 +1,38 @@
-package com.tomasky.departure.model;
+package com.tomasky.departure.bo;
 
-import com.tomasky.departure.BaseModel;
-
-import java.io.Serializable;
+import javax.validation.constraints.NotEmpty;
 
 /**
- * Created by sam on 2020-01-02.15:44
+ * Created by sam on 2020-01-02.15:28
  */
-
-public class EntryNotice extends BaseModel implements Serializable {
-    /**
-     * 用户ID
-     */
-    private Integer userId;
-
-    /**
-     * 公司ID
-     */
-    private Integer companyId;
-
-    /**
-     * 目标邮箱地址
-     */
+public class SendEntryNoticeBo extends BaseUserCompanyBo {
+    /** 目标邮箱地址 */
+    @NotEmpty(message = "目标邮箱地址不能为空")
     private String targetMail;
 
-    /**
-     * 入职人姓名
-     */
+    /** 入职人姓名 */
+    @NotEmpty(message = "入职人姓名不能为空")
     private String entryEmployeeName;
 
-    /**
-     * 入职职位
-     */
+    /** 入职职位 */
+    @NotEmpty(message = "入职职位不能为空")
     private String entryPosition;
 
-    /**
-     * 报到时间
-     */
+    /** 报到时间 */
+    @NotEmpty(message = "报到时间不能为空")
     private String reportDate;
 
-    /**
-     * 报到地点
-     */
+    /** 报到地点 */
+    @NotEmpty(message = "报到地点不能为空")
     private String reportLocation;
 
-    /**
-     * 接待人员
-     */
+    /** 接待人员 */
+    @NotEmpty(message = "接待人员不能为空")
     private String receptionPersonnel;
 
-    /**
-     * 联系人电话
-     */
+    /** 联系人电话 */
+    @NotEmpty(message = "联系人电话不能为空")
     private String contactNumber;
-
-    private static final long serialVersionUID = 1L;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
 
     public String getTargetMail() {
         return targetMail;
@@ -127,5 +89,4 @@ public class EntryNotice extends BaseModel implements Serializable {
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
-
 }

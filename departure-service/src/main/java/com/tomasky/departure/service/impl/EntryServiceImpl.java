@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
 import com.tomasky.departure.bo.SendEntryMailBo;
+import com.tomasky.departure.bo.SendEntryNoticeBo;
 import com.tomasky.departure.common.utils.BaseModelUtils;
 import com.tomasky.departure.common.utils.CommonUtils;
 import com.tomasky.departure.common.utils.DateUtils;
+import com.tomasky.departure.common.utils.SymmetricEncryptionUtils;
 import com.tomasky.departure.cons.Constants;
 import com.tomasky.departure.enums.DepartureAuditStatusEnum;
 import com.tomasky.departure.enums.EmployeeJobStatus;
@@ -210,10 +212,31 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public void saveEmail(AddEmailBo addEmailBo) {
+        logger.info("保存邮箱地址和密码请求参数" + JSON.toJSONString(addEmailBo));
         // 校验输入参数
         checkAddEmailBo(addEmailBo);
         boolean authLogin = MailUtil.authLogin(new SendEntryMailBo(addEmailBo));
-
+        if(! authLogin) {
+            throw new RuntimeException("用户名或者密码错误！");
+        }
+        Integer userId = addEmailBo.getUserId();
+        UserRoleInfo userRoleInfo = userRoleInfoMapper.selectByUserIdAndCompanyId(userId, addEmailBo.getCompanyId());
+        if (userRoleInfo == null) {
+            throw new RuntimeException("公司或者用户不存在");
+        }
+        // 邮箱密码加密保存
+        String encryptEmailPassword;
+        try {
+            encryptEmailPassword = SymmetricEncryptionUtils.encrypt(addEmailBo.getEmailPassword());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("加密过程出现异常");
+        }
+        userRoleInfo.setEmailAddress(addEmailBo.getEmailAddress());
+        addEmailBo.setEmailPassword(encryptEmailPassword);
+        new BaseModelUtils<UserRoleInfo>().buildModifiyEntity(userRoleInfo, userId);
+        userRoleInfoMapper.updateByPrimaryKeySelective(userRoleInfo);
+        logger.info("保存邮箱地址和密码流程结束...");
     }
 
     /**
@@ -237,5 +260,23 @@ public class EntryServiceImpl implements EntryService {
         if(StringUtils.isBlank(emailPassword)) {
             throw new RuntimeException("邮箱密码不能为空");
         }
+    }
+
+    @Override
+    public void sendEntryNotice(SendEntryNoticeBo sendEntryNoticeBo) {
+        UserRoleInfo userRoleInfo = userRoleInfoMapper.selectByUserIdAndCompanyId(sendEntryNoticeBo.getUserId(), sendEntryNoticeBo.getCompanyId());
+        if (userRoleInfo == null) {
+            throw new RuntimeException("公司或者用户不存在");
+        }
+        String encryptEmailPassword = userRoleInfo.getEmailPassword();
+        String emailPassword;
+        // 对密码进行解密
+        try {
+            emailPassword = SymmetricEncryptionUtils.decrypt(encryptEmailPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("解密过程出现异常");
+        }
+
     }
 }

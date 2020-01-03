@@ -2,6 +2,7 @@ package com.tomasky.departure.web;
 
 import com.tomasky.departure.bo.AddEmailBo;
 import com.tomasky.departure.bo.DelayEntryBo;
+import com.tomasky.departure.bo.SendEntryNoticeBo;
 import com.tomasky.departure.common.utils.CommonUtils;
 import com.tomasky.departure.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -96,7 +98,7 @@ public class EntryController {
      * @return
      */
     @PostMapping(value = "saveEmail")
-    public Map<String, Object> saveEmail(@RequestBody AddEmailBo addEmailBo) {
+    public Map<String, Object> saveEmail(@Valid @RequestBody AddEmailBo addEmailBo) {
         try {
             entryService.saveEmail(addEmailBo);
             return CommonUtils.setSuccessInfo();
@@ -105,5 +107,22 @@ public class EntryController {
             return CommonUtils.setErrorInfo(e);
         }
     }
+
+    /**
+     * 发送入职通知
+     * @param sendEntryNoticeBo
+     * @return
+     */
+    @PostMapping(value = "sendEntryNotice")
+    public Map<String, Object> sendEntryNotice(@Valid @RequestBody SendEntryNoticeBo sendEntryNoticeBo) {
+        try {
+            entryService.sendEntryNotice(sendEntryNoticeBo);
+            return CommonUtils.setSuccessInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return CommonUtils.setErrorInfo(e);
+        }
+    }
+
 
 }

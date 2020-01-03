@@ -664,13 +664,13 @@ public class DepartureServiceImpl implements DepartureService {
         if (departureInfo == null) {
             throw new RuntimeException("离职表单不存在");
         }
-        return authorizationService.getWxacode("pages/del_departure/del_departure", getScene(departureInfo));
+        return authorizationService.getWxacode("pages/departure_detail/departure_detail", getScene(departureInfo));
     }
 
     private String getScene(DepartureInfo departureInfo) {
         StringBuilder sceneBuilder = new StringBuilder();
         sceneBuilder.append("i=" + departureInfo.getId());
-        sceneBuilder.append("&f=5");
+        sceneBuilder.append("&t=share");
         return sceneBuilder.toString();
     }
 
@@ -703,11 +703,14 @@ public class DepartureServiceImpl implements DepartureService {
         // 是否已关注
         boolean followStatus = false;
         boolean chatAble = false;
+        CompanyInfo companyInfo = null;
         try {
             departureInfo = departureInfoMapper.selectByPrimaryKey(id);
             if (departureInfo == null) {
                 throw new RuntimeException("离职表单不存在");
             }
+            Integer companyId = departureInfo.getCompanyId();
+            companyInfo = companyInfoMapper.selectByPrimaryKey(companyId);
             modifiable = getModifiable(departureInfo, userId);
             cancelable = getCancelable(departureInfo, userId);
             DepartureAudit departureAudit = departureAuditMapper.selectCurrentAudit(id, userId, AuditRoleTypeEnum.AUDIT.getValue());
@@ -757,6 +760,7 @@ public class DepartureServiceImpl implements DepartureService {
             return CommonUtils.setErrorInfo(e);
         }
         Map<String, Object> result = Maps.newHashMap();
+        result.put("companyInfo", companyInfo);
         result.put("modifiable", modifiable);
         result.put("cancelable", cancelable);
         result.put("chatAble", chatAble);

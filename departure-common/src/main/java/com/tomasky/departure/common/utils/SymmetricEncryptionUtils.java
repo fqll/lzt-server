@@ -19,7 +19,7 @@ public class SymmetricEncryptionUtils {
      * @return
      * @throws Exception
      */
-    public static String Encrypt(String sSrc) throws Exception {
+    public static String encrypt(String sSrc) throws Exception {
         byte[] raw = KEY.getBytes("utf-8");
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         // "算法/模式/补码方式"
@@ -36,7 +36,7 @@ public class SymmetricEncryptionUtils {
      * @return
      * @throws Exception
      */
-    public static String Decrypt(String sSrc) throws Exception {
+    public static String decrypt(String sSrc) throws Exception {
         try {
             byte[] raw = KEY.getBytes("utf-8");
             SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
@@ -63,11 +63,11 @@ public class SymmetricEncryptionUtils {
         String cSrc = "www.gowhere.so";
         System.out.println(cSrc);
         // 加密
-        String enString = Encrypt(cSrc);
+        String enString = encrypt(cSrc);
         System.out.println("加密后的字串是：" + enString);
 
         // 解密
-        String DeString = Decrypt(enString);
+        String DeString = decrypt(enString);
         System.out.println("解密后的字串是：" + DeString);
     }
 }

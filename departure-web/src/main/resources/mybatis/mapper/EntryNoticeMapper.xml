@@ -6,6 +6,7 @@
     <id column="id" property="id" />
     <result column="user_id" property="userId" />
     <result column="company_id" property="companyId" />
+    <result column="target_mail" property="targetMail" />
     <result column="entry_employee_name" property="entryEmployeeName" />
     <result column="entry_position" property="entryPosition" />
     <result column="report_date" property="reportDate" />
@@ -22,9 +23,9 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_id, company_id, entry_employee_name, entry_position, report_date, report_location, 
-    reception_personnel, contact_number, created_id, last_modify_id, created_time, last_modify_time, 
-    version_num, deleted, is_valid
+    id, user_id, company_id, target_mail, entry_employee_name, entry_position, report_date, 
+    report_location, reception_personnel, contact_number, created_id, last_modify_id, 
+    created_time, last_modify_time, version_num, deleted, is_valid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -40,12 +41,14 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.EntryNotice" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into entry_notice (user_id, company_id, entry_employee_name, entry_position, report_date, 
-      report_location, reception_personnel, contact_number, created_id, last_modify_id, 
-      created_time, last_modify_time, version_num, deleted, is_valid)
-    values (#{userId}, #{companyId}, #{entryEmployeeName}, #{entryPosition}, #{reportDate}, 
-      #{reportLocation}, #{receptionPersonnel}, #{contactNumber}, #{createdId}, #{lastModifyId}, 
-      #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
+    insert into entry_notice (user_id, company_id, target_mail, entry_employee_name, entry_position, 
+      report_date, report_location, reception_personnel, contact_number, created_id, 
+      last_modify_id, created_time, last_modify_time, version_num, deleted, 
+      is_valid)
+    values (#{userId}, #{companyId}, #{targetMail}, #{entryEmployeeName}, #{entryPosition}, 
+      #{reportDate}, #{reportLocation}, #{receptionPersonnel}, #{contactNumber}, #{createdId}, 
+      #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, 
+      #{isValid})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.EntryNotice" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -56,6 +59,9 @@
       </if>
       <if test="companyId != null">
         company_id,
+      </if>
+      <if test="targetMail != null">
+        target_mail,
       </if>
       <if test="entryEmployeeName != null">
         entry_employee_name,
@@ -103,6 +109,9 @@
       </if>
       <if test="companyId != null">
         #{companyId},
+      </if>
+      <if test="targetMail != null">
+        #{targetMail},
       </if>
       <if test="entryEmployeeName != null">
         #{entryEmployeeName},
@@ -155,6 +164,9 @@
       <if test="companyId != null">
         company_id = #{companyId},
       </if>
+      <if test="targetMail != null">
+        target_mail = #{targetMail},
+      </if>
       <if test="entryEmployeeName != null">
         entry_employee_name = #{entryEmployeeName},
       </if>
@@ -202,6 +214,7 @@
     update entry_notice
     set user_id = #{userId},
       company_id = #{companyId},
+      target_mail = #{targetMail},
       entry_employee_name = #{entryEmployeeName},
       entry_position = #{entryPosition},
       report_date = #{reportDate},
