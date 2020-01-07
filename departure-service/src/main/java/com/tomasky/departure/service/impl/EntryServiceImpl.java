@@ -203,7 +203,8 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("公司或者用户不存在");
         }
         String emailAddress = userRoleInfo.getEmailAddress();
-        if(StringUtils.isNoneBlank(emailAddress)) {
+        String emailPassword = userRoleInfo.getEmailPassword();
+        if(StringUtils.isNoneBlank(emailAddress) && StringUtils.isNoneBlank(emailPassword)) {
             hasEmail = true;
         }
         logger.info("是否配置邮箱接口返回：" + hasEmail);
@@ -233,7 +234,7 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("加密过程出现异常");
         }
         userRoleInfo.setEmailAddress(addEmailBo.getEmailAddress());
-        addEmailBo.setEmailPassword(encryptEmailPassword);
+        userRoleInfo.setEmailPassword(encryptEmailPassword);
         new BaseModelUtils<UserRoleInfo>().buildModifiyEntity(userRoleInfo, userId);
         userRoleInfoMapper.updateByPrimaryKeySelective(userRoleInfo);
         logger.info("保存邮箱地址和密码流程结束...");
