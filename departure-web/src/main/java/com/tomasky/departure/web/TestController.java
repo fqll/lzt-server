@@ -43,6 +43,7 @@ public class TestController {
     public String say() {
         PageInfo<UserInfo> innConfigList = testService.findInnConfigList();
         List<UserInfo> list = innConfigList.getList();
+
         return JSON.toJSONString(list);
     }
 

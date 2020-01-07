@@ -6,7 +6,8 @@ package com.tomasky.departure.enums;
  */
 public enum MailTypeEnum {
     QQ_EMAIL("0", "QQ邮箱"),
-    TENCENT_CORPORATE_EMAIL("1", "腾讯企业邮箱");
+    TENCENT_CORPORATE_EMAIL("1", "腾讯企业邮箱"),
+    OTHER("9", "其他邮箱");
 
     private String value;
     private String name;

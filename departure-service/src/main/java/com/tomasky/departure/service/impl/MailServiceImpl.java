@@ -56,7 +56,10 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendEntryMail(SendEntryMailBo sendEntryMailBo) throws MessagingException {
-        MailUtil.sendEmail(sendEntryMailBo);
+        boolean result = MailUtil.sendEmail(sendEntryMailBo);
+        if (! result) {
+            throw new RuntimeException("邮件发送失败！");
+        }
     }
 
     @Override

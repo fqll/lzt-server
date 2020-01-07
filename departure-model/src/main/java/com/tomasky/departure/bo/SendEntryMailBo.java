@@ -1,13 +1,15 @@
 package com.tomasky.departure.bo;
 
+import com.tomasky.departure.model.CompanyInfo;
+import com.tomasky.departure.model.UserRoleInfo;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sam on 2019-11-26.14:17
  */
-public class SendEntryMailBo extends BaseBo {
-    /** 公司ID*/
-    private Integer companyId;
+public class SendEntryMailBo extends BaseUserCompanyBo {
     /** 模板ID*/
     private Integer templateId;
     /** 发送邮箱*/
@@ -26,6 +28,19 @@ public class SendEntryMailBo extends BaseBo {
     private List<String> filepath;
 
     public SendEntryMailBo() {
+    }
+
+    public SendEntryMailBo(SendEntryNoticeBo sendEntryNoticeBo, UserRoleInfo userRoleInfo, CompanyInfo companyInfo, String password, String enclosurePath) {
+        this.from = userRoleInfo.getEmailAddress();
+        this.password = password;
+        this.to = sendEntryNoticeBo.getTargetMail() + ",";
+        this.mailType = userRoleInfo.getMailType();
+        this.message = new MimeMessageDTO(sendEntryNoticeBo, companyInfo);
+        // 默认单个发送
+        this.isGroup = true;
+        List<String> filePathList = new ArrayList<>();
+        filePathList.add(enclosurePath);
+        this.filepath = filePathList;
     }
 
     public SendEntryMailBo(AddEmailBo addEmailBo) {
@@ -48,14 +63,6 @@ public class SendEntryMailBo extends BaseBo {
 
     public void setGroup(boolean group) {
         isGroup = group;
-    }
-
-    public Integer getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
     }
 
     public String getFrom() {

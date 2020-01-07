@@ -7,10 +7,11 @@ import com.tomasky.departure.bo.JoinCompanyBo;
 import java.io.Serializable;
 
 /**
- * Created by sam on 2019-12-27.15:34
+ * Created by sam on 2020-01-07.15:46
  */
 
 public class UserRoleInfo extends BaseModel implements Serializable {
+
     /**
      * 用户ID
      */
@@ -41,6 +42,7 @@ public class UserRoleInfo extends BaseModel implements Serializable {
      */
     private String nickName;
 
+
     /**
      * 电子邮箱地址
      */
@@ -50,6 +52,13 @@ public class UserRoleInfo extends BaseModel implements Serializable {
      * 邮箱密码或者授权码
      */
     private String emailPassword;
+
+    /**
+     * 0：QQ邮箱，1：腾讯企业邮箱，9：其他邮箱
+     */
+    private String mailType;
+
+    private static final long serialVersionUID = 1L;
 
     public UserRoleInfo() {
 
@@ -72,7 +81,6 @@ public class UserRoleInfo extends BaseModel implements Serializable {
         this.companyId = companyId;
     }
 
-    private static final long serialVersionUID = 1L;
 
     public Integer getUserId() {
         return userId;
@@ -136,5 +144,13 @@ public class UserRoleInfo extends BaseModel implements Serializable {
 
     public void setEmailPassword(String emailPassword) {
         this.emailPassword = emailPassword;
+    }
+
+    public String getMailType() {
+        return mailType;
+    }
+
+    public void setMailType(String mailType) {
+        this.mailType = mailType;
     }
 }

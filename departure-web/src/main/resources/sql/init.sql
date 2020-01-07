@@ -90,6 +90,7 @@ create table user_role_info (
    nick_name            VARCHAR(64)           null,
    email_address        VARCHAR(64)           null,
    email_password       VARCHAR(255)           null,
+   mail_type            VARCHAR(1)           null,
    created_id           INT4                 null,
    last_modify_id       INT4                 null,
    created_time         TIMESTAMP            null,
@@ -110,6 +111,7 @@ COMMENT ON COLUMN user_role_info.is_default IS '是否是主企业，0不是，1
 COMMENT ON COLUMN user_role_info.nick_name IS '员工昵称';
 COMMENT ON COLUMN user_role_info.email_address IS '电子邮箱地址';
 COMMENT ON COLUMN user_role_info.email_password IS '邮箱密码或者授权码';
+COMMENT ON COLUMN user_role_info.mail_type IS '邮箱类型，0：QQ邮箱，1：腾讯企业邮箱，9：其他邮箱';
 comment on column user_role_info.created_id is '创建人ID';
 comment on column user_role_info.last_modify_id is '最后修改人的ID';
 comment on column user_role_info.created_time is '创建时间';

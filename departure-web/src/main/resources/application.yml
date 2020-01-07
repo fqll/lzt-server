@@ -10,10 +10,12 @@ spring:
       connection-test-query: SELECT 1
   jpa:
     show-sql: true
+sys:
+  env: dev
 
 ---
 spring:
-  profiles: test
+  profiles: lzt
   datasource:
     url: jdbc:postgresql://10.10.11.24:9999/lzt-test
     username: ota
@@ -32,10 +34,12 @@ spring:
       connection-test-query: SELECT 1
   jpa:
     show-sql: true
+sys:
+  env: lzt
 
 ---
 spring:
-  profiles: u_production
+  profiles: departure
   datasource:
     url: jdbc:postgresql://10.10.11.24:9999/departure
     username: ota
@@ -52,6 +56,30 @@ spring:
     validation-query: SELECT 1
   jpa:
     show-sql: true
+sys:
+  env: departure
+
+---
+spring:
+  profiles: preview
+  datasource:
+    url: jdbc:postgresql://10.10.11.24:9999/departure
+    username: ota
+    password: ota@fanqie.COM888
+    driver-class: org.postgresql.Driver
+    max-active: 10
+    min-idle: 1
+    max-wait: 60000
+    remove-abandoned: true
+    test-on-borrow: true
+    remove-abandoned-timeout: 120
+    log-abandoned: true
+    time-between-eviction-runs-millis: 60000
+    validation-query: SELECT 1
+  jpa:
+    show-sql: true
+sys:
+  env: preview
 
 ---
 mybatis:

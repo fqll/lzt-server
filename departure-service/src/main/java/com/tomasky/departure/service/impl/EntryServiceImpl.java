@@ -15,6 +15,7 @@ import com.tomasky.departure.enums.EmployeeJobStatus;
 import com.tomasky.departure.helper.EntryHelper;
 import com.tomasky.departure.helper.GuideHelper;
 import com.tomasky.departure.helper.MailUtil;
+import com.tomasky.departure.helper.SystemHelper;
 import com.tomasky.departure.mapper.CompanyInfoMapper;
 import com.tomasky.departure.mapper.DepartureInfoMapper;
 import com.tomasky.departure.mapper.UserRoleInfoMapper;
@@ -22,6 +23,7 @@ import com.tomasky.departure.model.CompanyInfo;
 import com.tomasky.departure.model.DepartureInfo;
 import com.tomasky.departure.model.UserRoleInfo;
 import com.tomasky.departure.service.EntryService;
+import com.tomasky.departure.service.MailService;
 import com.tomasky.departure.vo.DelayEntryVo;
 import com.tomasky.departure.vo.EmployeeCheckVo;
 import org.apache.commons.lang3.StringUtils;
@@ -29,9 +31,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +58,10 @@ public class EntryServiceImpl implements EntryService {
     private GuideHelper guideHelper;
     @Resource
     private EntryHelper entryHelper;
+    @Resource
+    private MailService mailService;
+    @Resource
+    private SystemHelper systemHelper;
 
     @Override
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
@@ -235,6 +243,7 @@ public class EntryServiceImpl implements EntryService {
         }
         userRoleInfo.setEmailAddress(addEmailBo.getEmailAddress());
         userRoleInfo.setEmailPassword(encryptEmailPassword);
+        userRoleInfo.setMailType(addEmailBo.getMailType());
         new BaseModelUtils<UserRoleInfo>().buildModifiyEntity(userRoleInfo, userId);
         userRoleInfoMapper.updateByPrimaryKeySelective(userRoleInfo);
         logger.info("保存邮箱地址和密码流程结束...");
@@ -269,6 +278,11 @@ public class EntryServiceImpl implements EntryService {
         if (userRoleInfo == null) {
             throw new RuntimeException("公司或者用户不存在");
         }
+        Integer companyId = sendEntryNoticeBo.getCompanyId();
+        CompanyInfo companyInfo = companyInfoMapper.selectByPrimaryKey(companyId);
+        if (companyInfo == null) {
+            throw new RuntimeException("公司不存在");
+        }
         String encryptEmailPassword = userRoleInfo.getEmailPassword();
         String emailPassword;
         // 对密码进行解密
@@ -278,6 +292,19 @@ public class EntryServiceImpl implements EntryService {
             e.printStackTrace();
             throw new RuntimeException("解密过程出现异常");
         }
+        try {
+            mailService.sendEntryMail(new SendEntryMailBo(sendEntryNoticeBo, userRoleInfo, companyInfo, emailPassword, getEnclosurePath()));
+        } catch (MessagingException e) {
+            logger.error("邮件发送失败：" + e);
+            e.printStackTrace();
+            throw new RuntimeException("邮件发送失败");
+        }
+    }
 
+    /**
+     * 获取附件地址
+     */
+    private String getEnclosurePath() {
+        return ClassUtils.getDefaultClassLoader().getResource("static/image").getPath() + "/enclosure.jpg";
     }
 }

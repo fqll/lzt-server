@@ -19,12 +19,13 @@
     <result column="is_valid" property="isValid" />
     <result column="email_address" property="emailAddress" />
     <result column="email_password" property="emailPassword" />
+    <result column="mail_type" property="mailType" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, user_id, company_id, audit_status, job_status, is_default, nick_name, created_id, 
     last_modify_id, created_time, last_modify_time, version_num, deleted, is_valid, email_address, 
-    email_password
+    email_password, mail_type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -42,10 +43,10 @@
     <!--@mbg.generated-->
     insert into user_role_info (user_id, company_id, audit_status, job_status, is_default, nick_name, 
       created_id, last_modify_id, created_time, last_modify_time, version_num, 
-      deleted, is_valid, email_address, email_password)
+      deleted, is_valid, email_address, email_password, mail_type)
     values (#{userId}, #{companyId}, #{auditStatus}, #{jobStatus}, #{isDefault}, #{nickName}, 
       #{createdId}, #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum}, 
-      #{deleted}, #{isValid}, #{emailAddress}, #{emailPassword})
+      #{deleted}, #{isValid}, #{emailAddress}, #{emailPassword}, #{mailType})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserRoleInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -96,6 +97,9 @@
       <if test="emailPassword != null">
         email_password,
       </if>
+      <if test="mailType != null">
+        mail_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -142,6 +146,9 @@
       </if>
       <if test="emailPassword != null">
         #{emailPassword},
+      </if>
+      <if test="mailType != null">
+        #{mailType},
       </if>
     </trim>
   </insert>
@@ -194,6 +201,9 @@
       <if test="emailPassword != null">
         email_password = #{emailPassword},
       </if>
+      <if test="mailType != null">
+        mail_type = #{mailType},
+      </if>
     </set>
     where id = #{id}
   </update>
@@ -214,7 +224,8 @@
       deleted = #{deleted},
       is_valid = #{isValid},
       email_address = #{emailAddress},
-      email_password = #{emailPassword}
+      email_password = #{emailPassword},
+      mail_type = #{mailType}
     where id = #{id}
   </update>
   <delete id="deleteRefuseRecord">
