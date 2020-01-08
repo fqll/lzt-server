@@ -82,6 +82,27 @@ public class EntryController {
     }
 
     /**
+     * 查询已发送入职通知列表
+     * @param userId
+     * @param companyId
+     * @return
+     */
+    @GetMapping(value = "getEntryNoticeList")
+    public Map<String, Object> getEntryNoticeList(@RequestParam Integer userId, @RequestParam Integer companyId) {
+        return entryService.findEntryNoticeList(userId, companyId);
+    }
+
+    /**
+     * 根据ID查询入职通知详情
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getEntryNoticeDetail")
+    public Map<String, Object> getEntryNoticeDetail(@RequestParam Integer id) {
+        return entryService.findEntryNoticeDetail(id);
+    }
+
+    /**
      * 是否配置邮箱
      * @param userId
      * @param companyId

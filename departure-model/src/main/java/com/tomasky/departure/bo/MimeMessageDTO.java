@@ -34,9 +34,9 @@ public class MimeMessageDTO {
 	 */
 	private String buildText(SendEntryNoticeBo sendEntryNoticeBo, CompanyInfo companyInfo) {
 		StringBuilder textBuilder = new StringBuilder();
-		textBuilder.append("亲爱的 ");
+		textBuilder.append("亲爱的<h1>");
 		textBuilder.append(sendEntryNoticeBo.getEntryEmployeeName());
-		textBuilder.append(" : </br>");
+		textBuilder.append(" </h1>: </br>");
 		textBuilder.append("非常荣幸地通知您，您已被 ");
 		textBuilder.append(companyInfo.getCompanyName());
 		textBuilder.append(" 正式录用，聘于 ");

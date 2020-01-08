@@ -230,4 +230,13 @@
       is_valid = #{isValid}
     where id = #{id}
   </update>
+    <select id="selectEntryNoticeVoList" resultType="com.tomasky.departure.vo.EntryNoticeVo">
+        select
+        to_char( created_time, 'yyyy-MM-dd' ) as createdTime,
+        entry_employee_name as entryEmployeeName,
+        entry_position as entryPosition,
+        id as id
+        from entry_notice
+        where user_id = #{userId} and company_id = #{companyId}
+    </select>
 </mapper>

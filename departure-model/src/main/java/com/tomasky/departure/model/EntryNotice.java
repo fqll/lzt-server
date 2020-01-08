@@ -1,6 +1,7 @@
 package com.tomasky.departure.model;
 
 import com.tomasky.departure.BaseModel;
+import com.tomasky.departure.bo.SendEntryNoticeBo;
 
 import java.io.Serializable;
 
@@ -53,6 +54,21 @@ public class EntryNotice extends BaseModel implements Serializable {
      * 联系人电话
      */
     private String contactNumber;
+
+    public EntryNotice() {
+    }
+
+    public EntryNotice(SendEntryNoticeBo sendEntryNoticeBo) {
+        this.userId = sendEntryNoticeBo.getUserId();
+        this.companyId = sendEntryNoticeBo.getCompanyId();
+        this.targetMail = sendEntryNoticeBo.getTargetMail();
+        this.entryEmployeeName = sendEntryNoticeBo.getEntryEmployeeName();
+        this.entryPosition = sendEntryNoticeBo.getEntryPosition();
+        this.reportDate = sendEntryNoticeBo.getReportDate();
+        this.reportLocation = sendEntryNoticeBo.getReportLocation();
+        this.receptionPersonnel = sendEntryNoticeBo.getReceptionPersonnel();
+        this.contactNumber = sendEntryNoticeBo.getContactNumber();
+    }
 
     private static final long serialVersionUID = 1L;
 

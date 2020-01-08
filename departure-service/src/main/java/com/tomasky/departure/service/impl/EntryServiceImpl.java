@@ -14,18 +14,19 @@ import com.tomasky.departure.enums.DepartureAuditStatusEnum;
 import com.tomasky.departure.enums.EmployeeJobStatus;
 import com.tomasky.departure.helper.EntryHelper;
 import com.tomasky.departure.helper.GuideHelper;
-import com.tomasky.departure.helper.MailUtil;
-import com.tomasky.departure.helper.SystemHelper;
+import com.tomasky.departure.helper.SendMailHelper;
 import com.tomasky.departure.mapper.CompanyInfoMapper;
 import com.tomasky.departure.mapper.DepartureInfoMapper;
+import com.tomasky.departure.mapper.EntryNoticeMapper;
 import com.tomasky.departure.mapper.UserRoleInfoMapper;
 import com.tomasky.departure.model.CompanyInfo;
 import com.tomasky.departure.model.DepartureInfo;
+import com.tomasky.departure.model.EntryNotice;
 import com.tomasky.departure.model.UserRoleInfo;
 import com.tomasky.departure.service.EntryService;
-import com.tomasky.departure.service.MailService;
 import com.tomasky.departure.vo.DelayEntryVo;
 import com.tomasky.departure.vo.EmployeeCheckVo;
+import com.tomasky.departure.vo.EntryNoticeVo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,6 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import javax.mail.MessagingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +59,9 @@ public class EntryServiceImpl implements EntryService {
     @Resource
     private EntryHelper entryHelper;
     @Resource
-    private MailService mailService;
+    private EntryNoticeMapper entryNoticeMapper;
     @Resource
-    private SystemHelper systemHelper;
+    private SendMailHelper sendMailHelper;
 
     @Override
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
@@ -224,7 +224,7 @@ public class EntryServiceImpl implements EntryService {
         logger.info("保存邮箱地址和密码请求参数" + JSON.toJSONString(addEmailBo));
         // 校验输入参数
         checkAddEmailBo(addEmailBo);
-        boolean authLogin = MailUtil.authLogin(new SendEntryMailBo(addEmailBo));
+        boolean authLogin = sendMailHelper.authLogin(new SendEntryMailBo(addEmailBo));
         if(! authLogin) {
             throw new RuntimeException("用户名或者密码错误！");
         }
@@ -274,6 +274,7 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public void sendEntryNotice(SendEntryNoticeBo sendEntryNoticeBo) {
+        logger.info("开始发送入职通知，请求参数：" + JSON.toJSONString(sendEntryNoticeBo));
         UserRoleInfo userRoleInfo = userRoleInfoMapper.selectByUserIdAndCompanyId(sendEntryNoticeBo.getUserId(), sendEntryNoticeBo.getCompanyId());
         if (userRoleInfo == null) {
             throw new RuntimeException("公司或者用户不存在");
@@ -292,13 +293,15 @@ public class EntryServiceImpl implements EntryService {
             e.printStackTrace();
             throw new RuntimeException("解密过程出现异常");
         }
-        try {
-            mailService.sendEntryMail(new SendEntryMailBo(sendEntryNoticeBo, userRoleInfo, companyInfo, emailPassword, getEnclosurePath()));
-        } catch (MessagingException e) {
-            logger.error("邮件发送失败：" + e);
-            e.printStackTrace();
+        boolean result = sendMailHelper.sendEmail(new SendEntryMailBo(sendEntryNoticeBo, userRoleInfo, companyInfo, emailPassword, getEnclosurePath()));
+        if(result) {
+            EntryNotice entryNotice = new EntryNotice(sendEntryNoticeBo);
+            new BaseModelUtils<EntryNotice>().buildCreateEntity(entryNotice, sendEntryNoticeBo.getUserId());
+            entryNoticeMapper.insert(entryNotice);
+        } else {
             throw new RuntimeException("邮件发送失败");
         }
+        logger.info("发送入职通知结束");
     }
 
     /**
@@ -306,5 +309,21 @@ public class EntryServiceImpl implements EntryService {
      */
     private String getEnclosurePath() {
         return ClassUtils.getDefaultClassLoader().getResource("static/image").getPath() + "/enclosure.jpg";
+    }
+
+    @Override
+    public Map<String, Object> findEntryNoticeList(Integer userId, Integer companyId) {
+        logger.info("查询入职通知列表请求参数：userId=" + userId + "，companyId=" + companyId);
+        List<EntryNoticeVo> entryNoticeVoList = entryNoticeMapper.selectEntryNoticeVoList(userId, companyId);
+        logger.info("查询入职通知列表接口返回：" + JSON.toJSONString(entryNoticeVoList));
+        return CommonUtils.setSuccessInfo(entryNoticeVoList);
+    }
+
+    @Override
+    public Map<String, Object> findEntryNoticeDetail(Integer id) {
+        logger.info("根据ID查询入职通知详情请求参数：id=" + id);
+        EntryNotice entryNotice = entryNoticeMapper.selectByPrimaryKey(id);
+        logger.info("根据ID查询入职通知详情返回：" + JSON.toJSONString(entryNotice));
+        return CommonUtils.setSuccessInfo(entryNotice);
     }
 }

@@ -268,7 +268,7 @@ public class MailUtil {
                     mp.addBodyPart(mbp);  
                 }  
                 MimeBodyPart mbp = new MimeBodyPart();  
-                mbp.setText(mimeDTO.getText());  
+                mbp.setText(mimeDTO.getText(), "text/html;charset=UTF-8");
                 mp.addBodyPart(mbp);  
                 // 移走集合中的所有元素  
                 filepath.clear();  
@@ -278,7 +278,7 @@ public class MailUtil {
                 // 设置邮件正文  
 //            	message.setText(mimeDTO.getText());  
             	message.setContent(mimeDTO.getText(),"text/html;charset=UTF-8");
-            } 
+            }
 			message.setSubject(mimeDTO.getSubject());
 			message.saveChanges();
 		} catch (MessagingException e) {

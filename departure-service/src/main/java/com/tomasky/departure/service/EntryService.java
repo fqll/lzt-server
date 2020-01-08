@@ -58,4 +58,19 @@ public interface EntryService {
      * @param sendEntryNoticeBo
      */
     void sendEntryNotice(SendEntryNoticeBo sendEntryNoticeBo);
+
+    /**
+     * 查询已发送入职通知列表
+     * @param userId
+     * @param companyId
+     * @return
+     */
+    Map<String, Object> findEntryNoticeList(Integer userId, Integer companyId);
+
+    /**
+     * 根据ID查询入职通知详情
+     * @param id
+     * @return
+     */
+    Map<String, Object> findEntryNoticeDetail(Integer id);
 }
