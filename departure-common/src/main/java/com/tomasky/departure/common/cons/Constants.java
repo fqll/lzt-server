@@ -36,7 +36,9 @@ public class Constants {
     public final static String NOTHING = "nothing";
     public final static String TYPE = "type"; //状态类型
 
-    /** PAGE*/
+    /**
+     * PAGE
+     */
     public final static int DEFAULT_PAGE_SIZE = 10;
     public final static int DEFAULT_PAGE_NO = 1;
     public final static int DO_NOT_PAGE = -1;
@@ -64,16 +66,26 @@ public class Constants {
     public static final String CACHE_MINIAPP_PREFIX = "_miniapp_";
 
 
-    /** 数据有效*/
+    /**
+     * 数据有效
+     */
     public static final String DATA_VALID = "1";
-    /** 数据无效*/
+    /**
+     * 数据无效
+     */
     public static final String DATA_INVALID = "0";
 
-    /** 数据已经逻辑删除*/
+    /**
+     * 数据已经逻辑删除
+     */
     public static final String DATA_DELETE = "1";
-    /** 数据未逻辑删除*/
+    /**
+     * 数据未逻辑删除
+     */
     public static final String DATA_NOT_DELETE = "0";
 
-    /** 数据初始版本号1*/
+    /**
+     * 数据初始版本号1
+     */
     public static final Integer DATA_DEFAULT_VERSION = 1;
 }

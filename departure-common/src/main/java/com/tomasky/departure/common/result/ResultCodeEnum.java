@@ -16,7 +16,7 @@ public enum ResultCodeEnum {
     COMMEN_SYSTEM_EXCEPTION("500", "系统错误"),
     COMMON_SYSTEM_RPC_EXCEPTION("501", "系统RPC异常"),
     OTHER_EXCEPTION("502", "其他错误"),
-    NO_CONTENT("204","No Content");//No Content没有新文档。浏览器应该继续显示原来的文档。
+    NO_CONTENT("204", "No Content");//No Content没有新文档。浏览器应该继续显示原来的文档。
     /**
      * 状态码
      */

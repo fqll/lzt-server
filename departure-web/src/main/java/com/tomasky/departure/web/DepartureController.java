@@ -32,6 +32,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 创建离职表单
+     *
      * @param baseDepartureBo
      * @return
      */
@@ -47,6 +48,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 根据表单ID查询待填写的表单信息
+     *
      * @param id
      * @return
      */
@@ -73,6 +75,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 审批离职表单
+     *
      * @param auditBo
      * @return
      */
@@ -89,6 +92,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 关注员工，0.2.3版本暂时屏蔽关注功能
+     *
      * @param followBo
      * @return
      */
@@ -105,6 +109,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 根据用户ID查询我的离职证明列表
+     *
      * @param userId
      * @return
      */
@@ -115,6 +120,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 根据离职表单ID查询离职表单详情
+     *
      * @param id
      * @param userId
      * @return
@@ -126,6 +132,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 撤回离职表单
+     *
      * @param cancelDepartureBo
      * @return
      */
@@ -142,6 +149,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 编辑离职证明
+     *
      * @param baseDepartureBo
      * @return
      */
@@ -158,6 +166,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 分享离职证明
+     *
      * @param shareDepartureInfo
      * @return
      */
@@ -174,6 +183,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 查询离职员工库
+     *
      * @param companyId
      * @param nickName
      * @return
@@ -185,6 +195,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 查询公司离职率
+     *
      * @param companyId
      * @return
      */
@@ -195,6 +206,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 根据公司ID查询离职原因分析
+     *
      * @param companyId
      * @return
      */
@@ -205,6 +217,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 查询草稿列表
+     *
      * @param userId
      * @param companyId
      * @return
@@ -216,6 +229,7 @@ public class DepartureController extends BaseController {
 
     /**
      * 根据表单ID，用户ID和公司ID删除离职表单
+     *
      * @param removeDepartureInfoBo
      * @return
      */

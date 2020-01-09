@@ -4,9 +4,13 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-08-08.11:09
  */
 public class DepartureReasonBo {
-    /** 离职原因*/
+    /**
+     * 离职原因
+     */
     private String personalDepartureReason;
-    /** 离职人数*/
+    /**
+     * 离职人数
+     */
     private int departureEmployeeCount;
 
     public String getPersonalDepartureReason() {

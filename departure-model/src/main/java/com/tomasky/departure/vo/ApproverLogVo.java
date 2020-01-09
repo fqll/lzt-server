@@ -8,23 +8,41 @@ import com.tomasky.departure.enums.OperateTypeEnum;
  * Created by sam on 2019-09-27.11:10
  */
 public class ApproverLogVo {
-    /** 用户ID*/
+    /**
+     * 用户ID
+     */
     private Integer userId;
-    /** 审批顺序 */
+    /**
+     * 审批顺序
+     */
     private Integer auditOrder;
-    /** 审批结果*/
+    /**
+     * 审批结果
+     */
     private String auditResult;
-    /** 审批结果描述*/
+    /**
+     * 审批结果描述
+     */
     private String auditResultDesc;
-    /** 审批意见*/
+    /**
+     * 审批意见
+     */
     private String auditOpinions;
-    /** 昵称*/
+    /**
+     * 昵称
+     */
     private String nickName;
-    /** 审批人所处的阶段值*/
+    /**
+     * 审批人所处的阶段值
+     */
     private String operateType;
-    /** 审批人所处的阶段值描述*/
+    /**
+     * 审批人所处的阶段值描述
+     */
     private String operateTypeDesc;
-    /** 操作时间*/
+    /**
+     * 操作时间
+     */
     private String operateTime;
     /**
      * 审批角色类型：0：抄送人，1：审批人，2：发起人，3：撤回人
@@ -39,18 +57,18 @@ public class ApproverLogVo {
 
     public String getAuditStage() {
         // 如果是发起人
-        if(AuditRoleTypeEnum.CREATED.getValue().equals(auditRoleType)) {
+        if (AuditRoleTypeEnum.CREATED.getValue().equals(auditRoleType)) {
             return "发起申请";
-        } else if(AuditRoleTypeEnum.CANCEL.getValue().equals(auditRoleType)) {
+        } else if (AuditRoleTypeEnum.CANCEL.getValue().equals(auditRoleType)) {
             return "已撤回";
-        } else if(AuditRoleTypeEnum.AUDIT.getValue().equals(auditRoleType)) {
-            if(OperateTypeEnum.WAIT_AUDIT.getValue().equals(operateType)) {
+        } else if (AuditRoleTypeEnum.AUDIT.getValue().equals(auditRoleType)) {
+            if (OperateTypeEnum.WAIT_AUDIT.getValue().equals(operateType)) {
                 return "待审批";
-            } else if(OperateTypeEnum.IN_AUDIT.getValue().equals(operateType)) {
+            } else if (OperateTypeEnum.IN_AUDIT.getValue().equals(operateType)) {
                 return "审批中";
-            } else if(OperateTypeEnum.ADOPT.getValue().equals(operateType)) {
+            } else if (OperateTypeEnum.ADOPT.getValue().equals(operateType)) {
                 return "同意离职";
-            }else if(OperateTypeEnum.REFUSE.getValue().equals(operateType)) {
+            } else if (OperateTypeEnum.REFUSE.getValue().equals(operateType)) {
                 return "拒绝离职";
             }
         }

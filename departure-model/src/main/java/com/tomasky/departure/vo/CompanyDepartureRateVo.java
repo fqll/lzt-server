@@ -8,13 +8,21 @@ import java.util.List;
  * Created by sam on 2019-10-16.10:25
  */
 public class CompanyDepartureRateVo {
-    /** 在职人数 */
+    /**
+     * 在职人数
+     */
     private Integer incumbentsCount;
-    /** 当年离职率*/
+    /**
+     * 当年离职率
+     */
     private BigDecimal currentYearDepartureRate;
-    /** 当月离职率*/
+    /**
+     * 当月离职率
+     */
     private BigDecimal currentMonthDepartureRate;
-    /** 月离职率*/
+    /**
+     * 月离职率
+     */
     private List<MonthDepartureRateVo> monthDepartureRateList;
 
     public Integer getIncumbentsCount() {

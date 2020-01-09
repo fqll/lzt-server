@@ -4,19 +4,33 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-11-27.15:18
  */
 public class BaseOfferBo {
-    /** 入住员工姓名*/
+    /**
+     * 入住员工姓名
+     */
     private String employeeName;
-    /** 工作岗位*/
+    /**
+     * 工作岗位
+     */
     private String post;
-    /** 报到时间*/
+    /**
+     * 报到时间
+     */
     private String entryTime;
-    /** 报道地址*/
+    /**
+     * 报道地址
+     */
     private String entryAddress;
-    /** 接待人员姓名*/
+    /**
+     * 接待人员姓名
+     */
     private String receptionName;
-    /** 联系人电话*/
+    /**
+     * 联系人电话
+     */
     private String contact;
-    /** 补充事项*/
+    /**
+     * 补充事项
+     */
     private String supplement;
 
     public String getEmployeeName() {

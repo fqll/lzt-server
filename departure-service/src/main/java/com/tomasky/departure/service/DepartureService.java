@@ -17,12 +17,14 @@ import java.util.Map;
 public interface DepartureService {
     /**
      * 创建离职表单
+     *
      * @param baseDepartureBo
      */
     Integer createDeparture(BaseDepartureBo baseDepartureBo);
 
     /**
      * 根据表单ID查询待填写的表单信息
+     *
      * @param id
      * @return
      */
@@ -30,18 +32,21 @@ public interface DepartureService {
 
     /**
      * 员工填写离职表单
+     *
      * @param departureInfoBo
      */
     void submitDeparture(DepartureInfoBo departureInfoBo);
 
     /**
      * 审批离职表单
+     *
      * @param auditBo
      */
     void auditDeparture(AuditBo auditBo);
 
     /**
      * H5页面查看员工离职表单详情
+     *
      * @param id
      * @return
      */
@@ -49,12 +54,14 @@ public interface DepartureService {
 
     /**
      * 关注员工
+     *
      * @param followBo
      */
     void followDeparture(FollowBo followBo);
 
     /**
      * 根据离职表单状态判断跳转页面地址
+     *
      * @param departureId
      * @return
      */
@@ -62,6 +69,7 @@ public interface DepartureService {
 
     /**
      * 根据离职表单ID生成小程序二维码图片的二进制流
+     *
      * @param departureId
      * @return
      */
@@ -69,6 +77,7 @@ public interface DepartureService {
 
     /**
      * 根据用户ID查询我的离职证明列表
+     *
      * @param userId
      * @return
      */
@@ -76,6 +85,7 @@ public interface DepartureService {
 
     /**
      * 根据离职表单ID查询离职表单详情
+     *
      * @param id
      * @param userId
      * @return
@@ -84,6 +94,7 @@ public interface DepartureService {
 
     /**
      * 撤回离职表单
+     *
      * @param cancelDepartureBo
      * @return
      */
@@ -91,18 +102,21 @@ public interface DepartureService {
 
     /**
      * 编辑离职证明
+     *
      * @param baseDepartureBo
      */
     void editDeparture(BaseDepartureBo baseDepartureBo);
 
     /**
      * 分享离职证明
+     *
      * @param shareDepartureInfo
      */
     void shareDepartureInfo(ShareDepartureInfo shareDepartureInfo);
 
     /**
      * 查询离职员工库
+     *
      * @param companyId
      * @return
      */
@@ -110,6 +124,7 @@ public interface DepartureService {
 
     /**
      * 查询公司离职率
+     *
      * @param companyId
      * @return
      */
@@ -117,6 +132,7 @@ public interface DepartureService {
 
     /**
      * 根据公司ID查询离职原因分析
+     *
      * @param companyId
      * @return
      */
@@ -124,6 +140,7 @@ public interface DepartureService {
 
     /**
      * 查询草稿列表
+     *
      * @param userId
      * @param companyId
      * @return
@@ -132,6 +149,7 @@ public interface DepartureService {
 
     /**
      * 根据表单ID，用户ID和公司ID删除离职表单
+     *
      * @param removeDepartureInfoBo
      */
     void removeDeparture(RemoveDepartureInfoBo removeDepartureInfoBo);

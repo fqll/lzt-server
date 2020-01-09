@@ -6,10 +6,14 @@ import com.tomasky.departure.model.CompanyInfo;
  * Created by sam on 2019-09-30.15:10
  */
 public class CompanyVo {
-    /** 公司详情*/
+    /**
+     * 公司详情
+     */
     private CompanyInfo companyInfo;
 
-    /** 公司ID对应的邀请码*/
+    /**
+     * 公司ID对应的邀请码
+     */
     private String shareCode;
 
     public CompanyVo() {

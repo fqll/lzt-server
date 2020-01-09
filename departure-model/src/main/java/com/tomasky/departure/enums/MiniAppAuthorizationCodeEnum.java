@@ -5,7 +5,6 @@ import com.tomasky.departure.cons.Constants;
 /**
  * 小程序相关授权code/信息枚举
  *
- *
  * @Author momo
  * @Date 2018/9/6 18:23
  */

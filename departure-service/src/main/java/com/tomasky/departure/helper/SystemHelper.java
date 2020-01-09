@@ -15,6 +15,7 @@ public class SystemHelper {
 
     /**
      * 根据不同的环境获取不同的域名
+     *
      * @return
      */
     public String getDomainPath() {

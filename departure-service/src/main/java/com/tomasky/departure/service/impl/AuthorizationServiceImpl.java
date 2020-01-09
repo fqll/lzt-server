@@ -37,7 +37,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         if (StringUtils.isBlank(jsCode)) {
             throw new ServiceException(desc + "异常：jscode不能为空!");
         }
-        String url =  getAuthorizationUrl(jsCode);
+        String url = getAuthorizationUrl(jsCode);
         String content = HttpClientUtil.getResponseInfoByGet(url);
         LogUtil.info(this.getClass(), desc + "response", content);
         JsCode2SessionResponse result = JSON.parseObject(content, JsCode2SessionResponse.class);
@@ -52,7 +52,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Override
     public AccessTokenResponse getAccessToken() {
         String desc = "获取accessToken接口";
-        String url =  getAccessTokenUrl();
+        String url = getAccessTokenUrl();
         String content = HttpClientUtil.getResponseInfoByGet(url);
         AccessTokenResponse result = JSON.parseObject(content, AccessTokenResponse.class);
         if (null == result) {

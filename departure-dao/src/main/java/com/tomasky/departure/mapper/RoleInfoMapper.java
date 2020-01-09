@@ -41,6 +41,7 @@ public interface RoleInfoMapper {
 
     /**
      * 根据角色ID查询角色名称
+     *
      * @param roleId
      * @return
      */

@@ -5,19 +5,21 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
     <title>离职通消息</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
-        html{
+
+        html {
             font-size: 62.5%;
         }
+
         /* demo */
-        html,body {
+        html, body {
             color: #333;
             margin: 0;
             height: 100%;
-            font-family: "Myriad Set Pro","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+            font-family: "Myriad Set Pro", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             font-weight: normal;
@@ -68,7 +70,7 @@
             border: 0;
         }
 
-        button,input,optgroup,select,textarea {
+        button, input, optgroup, select, textarea {
             margin: 0;
             font: inherit;
             color: inherit;
@@ -384,7 +386,7 @@
             height: 8px;
             display: inline-block;
             border-radius: 100%;
-            background-color: rgba(255,255,255,0.4);
+            background-color: rgba(255, 255, 255, 0.4);
         }
 
         .slider-pagination > .slider-pagination-item.slider-pagination-item-active {
@@ -629,11 +631,11 @@
             color: #000000;
         }
 
-        .aui-form-group .form-control:focus,.form-group .form-control:valid {
+        .aui-form-group .form-control:focus, .form-group .form-control:valid {
             outline: 0;
         }
 
-        .aui-form-group .form-control:focus+.form-label,.form-group .form-control:valid+.form-label {
+        .aui-form-group .form-control:focus + .form-label, .form-group .form-control:valid + .form-label {
             font-size: 0.7rem;
             color: #3c9bfa;
             -ms-transform: translateY(-15px);
@@ -712,7 +714,7 @@
             -ms-flex-align: center;
             align-items: center;
             background: #ffffff;
-            padding: 1rem ;
+            padding: 1rem;
         }
 
         .aui-tabBar-item {
@@ -761,10 +763,12 @@
             left: 0;
             z-index: 49;
         }
-        .list-wrap{
+
+        .list-wrap {
 
         }
-        .each-list{
+
+        .each-list {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -772,31 +776,37 @@
             position: relative;
             height: 7rem;
             width: 100%;
-            border-bottom: 1px solid rgb(217,217,217);
+            border-bottom: 1px solid rgb(217, 217, 217);
             padding: 0 2rem;
         }
-        .each-list div{
+
+        .each-list div {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .each-list div:first-child p:first-child{
+
+        .each-list div:first-child p:first-child {
             font-size: 1.80rem;
             color: #333;
         }
-        .each-list div:first-child p:nth-child(2){
+
+        .each-list div:first-child p:nth-child(2) {
             color: #a3a4a6;
             font-size: 1.60rem;
         }
-        .each-list div:nth-child(2) img{
+
+        .each-list div:nth-child(2) img {
             width: 4rem;
             height: auto;
         }
-        .each-list div:nth-child(2) p{
+
+        .each-list div:nth-child(2) p {
             color: #a3a4a6;
             font-size: 1.40rem;
         }
-        .sign{
+
+        .sign {
             position: absolute;
             width: 3rem;
             height: 16rem;
@@ -806,116 +816,119 @@
             top: 2.5rem;
             left: -1rem;
         }
-        .sign div{
+
+        .sign div {
             width: 1.5rem;
             height: 1.5rem;
             border-radius: 1.5rem;
-            background-color: rgb(213,213,213);
+            background-color: rgb(213, 213, 213);
         }
-        .sign p{
+
+        .sign p {
             width: 0.2rem;
             height: 6rem;
-            background-color: rgb(213,213,213);
+            background-color: rgb(213, 213, 213);
         }
     </style>
 </head>
 <body style="padding-bottom: 6rem">
-    <section class="aui-flexView">
-        <header class="aui-navBar aui-navBar-fixed">
-            <div class="aui-center">
-                <span class="aui-center-title">离职通消息</span>
-            </div>
-            <!--<a href="javascript:;" class="aui-navBar-item" >-->
-                <!--<i class="icon icon-sys"></i>完成-->
-            <!--</a>-->
-        </header>
-        <section class="aui-scrollView">
-            <!--<div class="aui-daily-time">-->
-                <!--<p>根据具体情况请勾选离职原因</p>-->
-            <!--</div>-->
-            <!--<div class="aui-form-group b-line">-->
-                <!--<input required="required" value="张三" readonly class="form-control " placeholder="">-->
-                <!--<label class="form-label">姓名</label>-->
-            <!--</div>-->
-            <!--<div class="aui-link-list">-->
-                <!--<div class="aui-form-group b-line">-->
-                    <!--<select required="required" class="form-control ">-->
-                        <!--<option>请选择</option>-->
-                        <!--<option>公司原因</option>-->
-                        <!--<option>个人原因</option>-->
-                    <!--</select>-->
-                    <!--<label class="form-label">离职原因</label>-->
-                <!--</div>-->
-                <!--<div  class="aui-form-group b-line">-->
-                    <!--<div class="list-wrap">-->
-                        <!--<div class="sign">-->
-                            <!--<div></div>-->
-                            <!--<p></p>-->
-                            <!--<div></div>-->
-                            <!--<p></p>-->
-                            <!--<div></div>-->
-                        <!--</div>-->
-                        <!--<div class="each-list">-->
-                            <!--<div>-->
-                                <!--<p>审批人</p>-->
-                                <!--<p>1人审批</p>-->
-                            <!--</div>-->
-                            <!--<div>-->
-                                <!--<img src="../image/logo.png" />-->
-                                <!--<p>HR</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="each-list">-->
-                            <!--<div>-->
-                                <!--<p>添加审批人</p>-->
-                            <!--</div>-->
-                            <!--<div>-->
-                                <!--<img src="../image/add.png" />-->
-                                <!--<p></p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="each-list">-->
-                            <!--<div>-->
-                                <!--<p>添加抄送人</p>-->
-                                <!--<p></p>-->
-                            <!--</div>-->
-                            <!--<div>-->
-                                <!--<img src="../image/add.png" />-->
-                                <!--<p></p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<label class="form-label">审批流程</label>-->
-                <!--</div>-->
-                <!--<div class="aui-form-group b-line">-->
-                    <!--<select id="way" onchange="changeTab()" required="required" class="form-control ">-->
-                        <!--<option value="1">请选择</option>-->
-                        <!--<option value="2">微信发送</option>-->
-                        <!--<option value="3">短信发送</option>-->
-                        <!--<option value="4">邮箱发送</option>-->
-                    <!--</select>-->
-                    <!--<label class="form-label">发送方式</label>-->
-                <!--</div>-->
-                <!--<div style="display: none" id="way-input" class="aui-form-group b-line">-->
-                    <!--<input required="required" value="" class="form-control " placeholder="">-->
-                    <!--<label id="text-input" class="form-label">请填写</label>-->
-                <!--</div>-->
-                <!--<a id="link" style="font-size: 1.6rem;margin: 2rem;display: none" onclick="location.href='../employee/fill_departure.html'">分享员工填写链接： ../employee/fill_departure.html</a>-->
-            <!--</div>-->
-            <p style="font-size:1.4rem;margin-left: 3rem;margin-top: 1rem">7月18日 10:10</p>
-            <div style="margin: 3rem;margin-top: 2rem">
-                <p style="font-size: 1.6rem;color:rgb(37,37,37)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您收到一条HR发送的离职表单，请尽快填写并提交审核：
-                </p>
-                <a style="display:inline-block;margin-top:1rem;font-size: 1.6rem;color: #3296fa" href="../employee/fill_departure.html">https://www.lizhitong.com/fill_departure...</a>
-            </div>
+<section class="aui-flexView">
+    <header class="aui-navBar aui-navBar-fixed">
+        <div class="aui-center">
+            <span class="aui-center-title">离职通消息</span>
+        </div>
+        <!--<a href="javascript:;" class="aui-navBar-item" >-->
+        <!--<i class="icon icon-sys"></i>完成-->
+        <!--</a>-->
+    </header>
+    <section class="aui-scrollView">
+        <!--<div class="aui-daily-time">-->
+        <!--<p>根据具体情况请勾选离职原因</p>-->
+        <!--</div>-->
+        <!--<div class="aui-form-group b-line">-->
+        <!--<input required="required" value="张三" readonly class="form-control " placeholder="">-->
+        <!--<label class="form-label">姓名</label>-->
+        <!--</div>-->
+        <!--<div class="aui-link-list">-->
+        <!--<div class="aui-form-group b-line">-->
+        <!--<select required="required" class="form-control ">-->
+        <!--<option>请选择</option>-->
+        <!--<option>公司原因</option>-->
+        <!--<option>个人原因</option>-->
+        <!--</select>-->
+        <!--<label class="form-label">离职原因</label>-->
+        <!--</div>-->
+        <!--<div  class="aui-form-group b-line">-->
+        <!--<div class="list-wrap">-->
+        <!--<div class="sign">-->
+        <!--<div></div>-->
+        <!--<p></p>-->
+        <!--<div></div>-->
+        <!--<p></p>-->
+        <!--<div></div>-->
+        <!--</div>-->
+        <!--<div class="each-list">-->
+        <!--<div>-->
+        <!--<p>审批人</p>-->
+        <!--<p>1人审批</p>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<img src="../image/logo.png" />-->
+        <!--<p>HR</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="each-list">-->
+        <!--<div>-->
+        <!--<p>添加审批人</p>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<img src="../image/add.png" />-->
+        <!--<p></p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="each-list">-->
+        <!--<div>-->
+        <!--<p>添加抄送人</p>-->
+        <!--<p></p>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<img src="../image/add.png" />-->
+        <!--<p></p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<label class="form-label">审批流程</label>-->
+        <!--</div>-->
+        <!--<div class="aui-form-group b-line">-->
+        <!--<select id="way" onchange="changeTab()" required="required" class="form-control ">-->
+        <!--<option value="1">请选择</option>-->
+        <!--<option value="2">微信发送</option>-->
+        <!--<option value="3">短信发送</option>-->
+        <!--<option value="4">邮箱发送</option>-->
+        <!--</select>-->
+        <!--<label class="form-label">发送方式</label>-->
+        <!--</div>-->
+        <!--<div style="display: none" id="way-input" class="aui-form-group b-line">-->
+        <!--<input required="required" value="" class="form-control " placeholder="">-->
+        <!--<label id="text-input" class="form-label">请填写</label>-->
+        <!--</div>-->
+        <!--<a id="link" style="font-size: 1.6rem;margin: 2rem;display: none" onclick="location.href='../employee/fill_departure.html'">分享员工填写链接： ../employee/fill_departure.html</a>-->
+        <!--</div>-->
+        <p style="font-size:1.4rem;margin-left: 3rem;margin-top: 1rem">7月18日 10:10</p>
+        <div style="margin: 3rem;margin-top: 2rem">
+            <p style="font-size: 1.6rem;color:rgb(37,37,37)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您收到一条HR发送的离职表单，请尽快填写并提交审核：
+            </p>
+            <a style="display:inline-block;margin-top:1rem;font-size: 1.6rem;color: #3296fa"
+               href="../employee/fill_departure.html">https://www.lizhitong.com/fill_departure...</a>
+        </div>
 
-        </section>
-        <!--<footer onclick="submit()" class="aui-footer aui-footer-fixed" >-->
-            <!--<a href="javascript:;" class="aui-tabBar-item">-->
-                <!--<span class="aui-tabBar-item-text">发送离职申请表单</span>-->
-            <!--</a>-->
-        <!--</footer>-->
     </section>
+    <!--<footer onclick="submit()" class="aui-footer aui-footer-fixed" >-->
+    <!--<a href="javascript:;" class="aui-tabBar-item">-->
+    <!--<span class="aui-tabBar-item-text">发送离职申请表单</span>-->
+    <!--</a>-->
+    <!--</footer>-->
+</section>
 </body>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/hr.js"></script>

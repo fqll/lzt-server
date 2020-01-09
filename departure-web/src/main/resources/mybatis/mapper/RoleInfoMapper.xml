@@ -1,173 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomasky.departure.mapper.RoleInfoMapper">
-  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.RoleInfo">
-    <!--@mbg.generated-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
-    <result column="created_id" jdbcType="INTEGER" property="createdId" />
-    <result column="last_modify_id" jdbcType="INTEGER" property="lastModifyId" />
-    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
-    <result column="version_num" jdbcType="INTEGER" property="versionNum" />
-    <result column="deleted" jdbcType="VARCHAR" property="deleted" />
-    <result column="is_valid" jdbcType="VARCHAR" property="isValid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, role_name, created_id, last_modify_id, created_time, last_modify_time, version_num, 
-    deleted, is_valid
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from role_info
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from role_info
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.RoleInfo" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into role_info (role_name, created_id, last_modify_id, 
-      created_time, last_modify_time, version_num, 
-      deleted, is_valid)
-    values (#{roleName,jdbcType=VARCHAR}, #{createdId,jdbcType=INTEGER}, #{lastModifyId,jdbcType=INTEGER},
-      #{createdTime,jdbcType=TIMESTAMP}, #{lastModifyTime,jdbcType=TIMESTAMP}, #{versionNum,jdbcType=INTEGER}, 
-      #{deleted,jdbcType=VARCHAR}, #{isValid,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.RoleInfo" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into role_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="roleName != null">
-        role_name,
-      </if>
-      <if test="createdId != null">
-        created_id,
-      </if>
-      <if test="lastModifyId != null">
-        last_modify_id,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time,
-      </if>
-      <if test="versionNum != null">
-        version_num,
-      </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
-      <if test="isValid != null">
-        is_valid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="roleName != null">
-        #{roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="createdId != null">
-        #{createdId,jdbcType=INTEGER},
-      </if>
-      <if test="lastModifyId != null">
-        #{lastModifyId,jdbcType=INTEGER},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyTime != null">
-        #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="versionNum != null">
-        #{versionNum,jdbcType=INTEGER},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=VARCHAR},
-      </if>
-      <if test="isValid != null">
-        #{isValid,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.RoleInfo">
-    <!--@mbg.generated-->
-    update role_info
-    <set>
-      <if test="roleName != null">
-        role_name = #{roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="createdId != null">
-        created_id = #{createdId,jdbcType=INTEGER},
-      </if>
-      <if test="lastModifyId != null">
-        last_modify_id = #{lastModifyId,jdbcType=INTEGER},
-      </if>
-      <if test="createdTime != null">
-        created_time = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="versionNum != null">
-        version_num = #{versionNum,jdbcType=INTEGER},
-      </if>
-      <if test="deleted != null">
-        deleted = #{deleted,jdbcType=VARCHAR},
-      </if>
-      <if test="isValid != null">
-        is_valid = #{isValid,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.RoleInfo">
-    <!--@mbg.generated-->
-    update role_info
-    set role_name = #{roleName,jdbcType=VARCHAR},
-      created_id = #{createdId,jdbcType=INTEGER},
-      last_modify_id = #{lastModifyId,jdbcType=INTEGER},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      version_num = #{versionNum,jdbcType=INTEGER},
-      deleted = #{deleted,jdbcType=VARCHAR},
-      is_valid = #{isValid,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-    <select id="selectAll" resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from role_info order by id
+    <resultMap id="BaseResultMap" type="com.tomasky.departure.model.RoleInfo">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="created_id" jdbcType="INTEGER" property="createdId"/>
+        <result column="last_modify_id" jdbcType="INTEGER" property="lastModifyId"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime"/>
+        <result column="version_num" jdbcType="INTEGER" property="versionNum"/>
+        <result column="deleted" jdbcType="VARCHAR" property="deleted"/>
+        <result column="is_valid" jdbcType="VARCHAR" property="isValid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, role_name, created_id, last_modify_id, created_time, last_modify_time, version_num,
+        deleted, is_valid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from role_info
+        where id = #{id,jdbcType=INTEGER}
     </select>
-  <select id="selectAuthorityListByRoleId" resultType="com.tomasky.departure.vo.AuthorityVo">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from role_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.RoleInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into role_info (role_name, created_id, last_modify_id,
+        created_time, last_modify_time, version_num,
+        deleted, is_valid)
+        values (#{roleName,jdbcType=VARCHAR}, #{createdId,jdbcType=INTEGER}, #{lastModifyId,jdbcType=INTEGER},
+        #{createdTime,jdbcType=TIMESTAMP}, #{lastModifyTime,jdbcType=TIMESTAMP}, #{versionNum,jdbcType=INTEGER},
+        #{deleted,jdbcType=VARCHAR}, #{isValid,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.RoleInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into role_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="createdId != null">
+                created_id,
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time,
+            </if>
+            <if test="versionNum != null">
+                version_num,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="isValid != null">
+                is_valid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="createdId != null">
+                #{createdId,jdbcType=INTEGER},
+            </if>
+            <if test="lastModifyId != null">
+                #{lastModifyId,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastModifyTime != null">
+                #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="versionNum != null">
+                #{versionNum,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null">
+                #{isValid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.RoleInfo">
+        <!--@mbg.generated-->
+        update role_info
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="createdId != null">
+                created_id = #{createdId,jdbcType=INTEGER},
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id = #{lastModifyId,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="versionNum != null">
+                version_num = #{versionNum,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=VARCHAR},
+            </if>
+            <if test="isValid != null">
+                is_valid = #{isValid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.RoleInfo">
+        <!--@mbg.generated-->
+        update role_info
+        set role_name = #{roleName,jdbcType=VARCHAR},
+        created_id = #{createdId,jdbcType=INTEGER},
+        last_modify_id = #{lastModifyId,jdbcType=INTEGER},
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+        version_num = #{versionNum,jdbcType=INTEGER},
+        deleted = #{deleted,jdbcType=VARCHAR},
+        is_valid = #{isValid,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from role_info order by id
+    </select>
+    <select id="selectAuthorityListByRoleId" resultType="com.tomasky.departure.vo.AuthorityVo">
         SELECT
-            t2.authority_code AS authorityCode,
-            t2.authority_name AS authorityName
+        t2.authority_code AS authorityCode,
+        t2.authority_name AS authorityName
         FROM
-            role_authority_info t1
-            INNER JOIN authority_info t2 ON t1.authority_id = t2.ID
+        role_authority_info t1
+        INNER JOIN authority_info t2 ON t1.authority_id = t2.ID
         WHERE
-            t1.role_id =#{roleId}
-  </select>
-  <select id="selectRoleVoByUserIdAndCompanyId" resultType="com.tomasky.departure.vo.RoleVo">
+        t1.role_id =#{roleId}
+    </select>
+    <select id="selectRoleVoByUserIdAndCompanyId" resultType="com.tomasky.departure.vo.RoleVo">
         SELECT
-            t1.role_id AS roleId,
-            t2.role_name AS roleName
+        t1.role_id AS roleId,
+        t2.role_name AS roleName
         FROM
-            user_role_info t1
-            INNER JOIN role_info t2 ON t1.role_id = t2.ID
+        user_role_info t1
+        INNER JOIN role_info t2 ON t1.role_id = t2.ID
         WHERE
-            t1.user_id = #{userId}
-            AND t1.company_id = #{companyId}
-  </select>
-  <select id="selectRoleName" resultType="com.tomasky.departure.vo.RoleVo">
+        t1.user_id = #{userId}
+        AND t1.company_id = #{companyId}
+    </select>
+    <select id="selectRoleName" resultType="com.tomasky.departure.vo.RoleVo">
         select id AS roleId,role_name AS roleName
         from role_info
         where id=#{roleId}
-  </select>
+    </select>
 </mapper>

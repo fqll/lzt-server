@@ -9,28 +9,50 @@ import com.tomasky.departure.enums.ReadStatusEnum;
  * Created by sam on 2019-08-08.14:28
  */
 public class AuditDepartureVo {
-    /** 离职表单ID*/
+    /**
+     * 离职表单ID
+     */
     private Integer departureId;
-    /** 姓名 */
+    /**
+     * 姓名
+     */
     private String employeeName;
-    /** 离职表单提交时间*/
+    /**
+     * 离职表单提交时间
+     */
     private String submitDate;
-    /** 离职表单审批状态*/
+    /**
+     * 离职表单审批状态
+     */
     private String auditStatus;
-    /** 离职表单审批状态描述*/
+    /**
+     * 离职表单审批状态描述
+     */
     private String auditStatusDesc;
-    /** 是否已经关注，0：未关注，1：已关注*/
+    /**
+     * 是否已经关注，0：未关注，1：已关注
+     */
     private String followStatus;
     private String followStatusDesc;
-    /** 是否可聊天*/
+    /**
+     * 是否可聊天
+     */
     private boolean chatAble;
-    /** 离职原因 */
+    /**
+     * 离职原因
+     */
     private String departureReason;
-    /** 离职原因描述，0：公司原因，1：个人原因 */
+    /**
+     * 离职原因描述，0：公司原因，1：个人原因
+     */
     private String departureReasonDesc;
-    /** 离职时间 */
+    /**
+     * 离职时间
+     */
     private String departureDate;
-    /** 已读未读状态*/
+    /**
+     * 已读未读状态
+     */
     private String readStatus;
     private String readStatusDesc;
 
@@ -115,7 +137,7 @@ public class AuditDepartureVo {
     }
 
     public String getFollowStatusDesc() {
-        if(followStatus == null) {
+        if (followStatus == null) {
             return "";
         } else {
             return FollowStatusEnum.getNameFromValue(followStatus);

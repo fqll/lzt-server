@@ -4,11 +4,17 @@ package com.tomasky.departure.vo;
  * Created by sam on 2019-10-25.10:28
  */
 public class DraftListVo {
-    /** 离职表单ID*/
+    /**
+     * 离职表单ID
+     */
     private Integer id;
-    /** 姓名 */
+    /**
+     * 姓名
+     */
     private String employeeName;
-    /** 创建时间*/
+    /**
+     * 创建时间
+     */
     private String createdTime;
 
     public Integer getId() {

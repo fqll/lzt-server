@@ -61,16 +61,16 @@ public class CompanyServiceImpl implements CompanyService {
     private static Logger logger = LoggerFactory.getLogger(CompanyServiceImpl.class);
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Integer createCompany(CreateCompanyBo createCompanyBo) {
         logger.info("创建公司请求参数：" + JSON.toJSONString(createCompanyBo));
         String processMode = createCompanyBo.getProcessMode();
-        if(StringUtils.isBlank(processMode)) {
+        if (StringUtils.isBlank(processMode)) {
             // 默认为线下模式
             createCompanyBo.setProcessMode(ProcessModeEnum.OFF_LINE.getValue());
         }
         List<CompanyInfo> companyInfoList = companyInfoMapper.selectByCredit(createCompanyBo.getCompanyName(), createCompanyBo.getCreditCode());
-        if(! CollectionUtils.isEmpty(companyInfoList)) {
+        if (!CollectionUtils.isEmpty(companyInfoList)) {
             throw new RuntimeException("公司已经存在");
         }
         Integer userId = createCompanyBo.getUserId();
@@ -102,10 +102,10 @@ public class CompanyServiceImpl implements CompanyService {
      */
     private void initCompanyCreatedAuthority(Integer userId, Integer companyId) {
         List<AuthorityInfo> authorityInfoList = authorityInfoMapper.selectAllAuthorityInfo();
-        if(CollectionUtils.isEmpty(authorityInfoList)) {
+        if (CollectionUtils.isEmpty(authorityInfoList)) {
             throw new RuntimeException("初始化权限出错");
         }
-        for(AuthorityInfo authorityInfo: authorityInfoList) {
+        for (AuthorityInfo authorityInfo : authorityInfoList) {
             UserAuthorityInfo userAuthorityInfo = new UserAuthorityInfo(userId, companyId, authorityInfo.getId());
             new BaseModelUtils<>().buildCreateEntity(userAuthorityInfo, userId);
             userAuthorityInfoMapper.insert(userAuthorityInfo);
@@ -127,7 +127,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void joinCompany(JoinCompanyBo joinCompanyBo) {
         logger.info("加入公司请求参数：" + JSON.toJSONString(joinCompanyBo));
         Integer companyId = joinCompanyBo.getCompanyId();
@@ -138,14 +138,14 @@ public class CompanyServiceImpl implements CompanyService {
             throw new RuntimeException("不能重复加入公司");
         }
         List<UserRoleInfo> userRoleInfoList = userRoleInfoMapper.selectUserRoleInfo(companyId, nickName, EmployeeAuditStatus.INVITE.getValue());
-        if(CollectionUtils.isEmpty(userRoleInfoList)) {
-            int nickNameCount = userRoleInfoMapper.selectNickNameCount(joinCompanyBo.getCompanyId(), joinCompanyBo.getNickName(),joinCompanyBo.getUserId());
-            if(nickNameCount != 0) {
+        if (CollectionUtils.isEmpty(userRoleInfoList)) {
+            int nickNameCount = userRoleInfoMapper.selectNickNameCount(joinCompanyBo.getCompanyId(), joinCompanyBo.getNickName(), joinCompanyBo.getUserId());
+            if (nickNameCount != 0) {
                 throw new RuntimeException("员工姓名重复");
             }
             joinCompanyBo.setJobStatus(EmployeeJobStatus.INCUMBENCY.getValue());
             List<UserRoleInfo> userRoleInfoList2 = userRoleInfoMapper.selectUserRoleInfoListByCompanyAndUser(joinCompanyBo);
-            if(! CollectionUtils.isEmpty(userRoleInfoList2)) {
+            if (!CollectionUtils.isEmpty(userRoleInfoList2)) {
                 throw new RuntimeException("不能重复加入公司");
             }
             // 创建公司角色关联关系
@@ -159,7 +159,7 @@ public class CompanyServiceImpl implements CompanyService {
             userRoleInfoMapper.insert(userRoleInfo);
         } else {
             // 如果存在，且只有一条有效数据，则认为是被邀请加入的员工
-            if(userRoleInfoList.size() != 1) {
+            if (userRoleInfoList.size() != 1) {
                 throw new RuntimeException("员工姓名重复");
             }
             UserRoleInfo userRoleInfo = userRoleInfoList.get(0);
@@ -178,13 +178,13 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Map<String, Object> getAuditUserList(Integer companyId, String auditStatus, String nickName, String mode) {
         logger.info("根据公司ID查询加入公司待审批列表输入参数：companyId=" + companyId + "，auditStatus=" + auditStatus + "，nickName=" + nickName + "，mode=" + mode);
-        if(Constants.MODE_GUIDE.equals(mode)) {
+        if (Constants.MODE_GUIDE.equals(mode)) {
             return guideHelper.getAuditUserListData();
         }
         List<ApproverUserVo> approverUserVoList = null;
         try {
             approverUserVoList = companyInfoMapper.selectCompanyUserList(companyId, nickName, auditStatus);
-            if(EmployeeAuditStatus.INVITE.getValue().equals(auditStatus)) {
+            if (EmployeeAuditStatus.INVITE.getValue().equals(auditStatus)) {
                 approverUserVoList = companyInfoMapper.selectInviteList(companyId, nickName);
             }
         } catch (Exception e) {
@@ -196,13 +196,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void auditUser(UserAuditBo userAuditBo) {
         logger.info("加入公司审批接口输入参数：" + JSON.toJSONString(userAuditBo));
         // 校验输入参数
         checkUserAuditBo(userAuditBo);
         String auditResult = userAuditBo.getAuditResult();
-        if(StringUtils.isBlank(auditResult)) {
+        if (StringUtils.isBlank(auditResult)) {
             throw new RuntimeException("审批结果不能为空");
         }
         Integer companyId = userAuditBo.getCompanyId();
@@ -211,14 +211,14 @@ public class CompanyServiceImpl implements CompanyService {
             throw new RuntimeException("用户不存在");
         }
         String auditStatus = userRoleInfo.getAuditStatus();
-        if(! EmployeeAuditStatus.WAIT.getValue().equals(auditStatus)) {
+        if (!EmployeeAuditStatus.WAIT.getValue().equals(auditStatus)) {
             throw new RuntimeException("该用户已经审核过了");
         }
         CompanyInfo companyInfo = companyInfoMapper.selectByPrimaryKey(companyId);
         if (companyInfo == null) {
             throw new RuntimeException("公司不存在");
         }
-        if(EmployeeAuditStatus.ADOPT.getValue().equals(auditResult)) {
+        if (EmployeeAuditStatus.ADOPT.getValue().equals(auditResult)) {
             // 更新用户权限信息
             updateUserAuthority(userAuditBo);
             // 更新用户申请的审批状态
@@ -228,12 +228,12 @@ public class CompanyServiceImpl implements CompanyService {
             // 更新用户和公司关联关系
             userRoleInfoMapper.updateByPrimaryKeySelective(userRoleInfo);
             String processMode = companyInfo.getProcessMode();
-            if(StringUtils.isBlank(processMode) || ProcessModeEnum.OFF_LINE.getValue().equals(processMode)) {
+            if (StringUtils.isBlank(processMode) || ProcessModeEnum.OFF_LINE.getValue().equals(processMode)) {
                 companyInfo.setProcessMode(ProcessModeEnum.ON_LINE.getValue());
                 new BaseModelUtils<>().buildModifiyEntity(companyInfo, userId);
                 companyInfoMapper.updateByPrimaryKeySelective(companyInfo);
             }
-        } else if(EmployeeAuditStatus.REFUSE.getValue().equals(auditResult)) {
+        } else if (EmployeeAuditStatus.REFUSE.getValue().equals(auditResult)) {
             // 审核拒绝删除数据
             userRoleInfoMapper.deleteRefuseRecord(userAuditBo.getEmployeeId(), companyId);
         } else {
@@ -254,11 +254,11 @@ public class CompanyServiceImpl implements CompanyService {
             throw new RuntimeException("公司ID不能为空");
         }
         String nickName = userAuditBo.getNickName();
-        if(StringUtils.isBlank(nickName)) {
+        if (StringUtils.isBlank(nickName)) {
             throw new RuntimeException("审批人昵称不能为空");
         }
         int nickNameCount = userRoleInfoMapper.selectByNickName(companyId, nickName);
-        if(nickNameCount > 0) {
+        if (nickNameCount > 0) {
             throw new RuntimeException("已存在相同名称能的审批人");
         }
         CompanyInfo companyInfo = companyInfoMapper.selectByPrimaryKey(companyId);
@@ -282,8 +282,8 @@ public class CompanyServiceImpl implements CompanyService {
         // 删除全部权限数据
         userAuthorityInfoMapper.deleteUserAuthorityInfo(employeeId, companyId);
         // 新增更新后的权限数据
-        if(! CollectionUtils.isEmpty(authorityList)) {
-            for(Integer authorityId : authorityList) {
+        if (!CollectionUtils.isEmpty(authorityList)) {
+            for (Integer authorityId : authorityList) {
                 UserAuthorityInfo userAuthorityInfo = new UserAuthorityInfo(employeeId, companyId, authorityId);
                 new BaseModelUtils<>().buildCreateEntity(userAuthorityInfo, userId);
                 userAuthorityInfoMapper.insert(userAuthorityInfo);
@@ -301,6 +301,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     /**
      * 判断员工昵称是否重复
+     *
      * @param companyId
      * @param nickName
      * @param employeeId
@@ -308,7 +309,7 @@ public class CompanyServiceImpl implements CompanyService {
      */
     private boolean isSameNickName(Integer companyId, String nickName, Integer employeeId) {
         int nickNameCount = userRoleInfoMapper.selectNickNameCount(companyId, nickName, employeeId);
-        if(nickNameCount == 0) {
+        if (nickNameCount == 0) {
             return true;
         }
         return false;
@@ -316,15 +317,15 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public ResponseEntity<byte[]> findCompanyImage(Integer companyId) {
-        logger.info("根据公司ID生成公司的小程序码请求参数=" + companyId) ;
+        logger.info("根据公司ID生成公司的小程序码请求参数=" + companyId);
         return authorizationService.getWxacode("pages/join_company/join_company", "id=" + companyId);
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void updateRole(UserAuditBo userAuditBo) {
         logger.info("更新员工角色信息请求参数：" + JSON.toJSONString(userAuditBo));
-        if(! isSameNickName(userAuditBo.getCompanyId(), userAuditBo.getNickName(), userAuditBo.getEmployeeId())) {
+        if (!isSameNickName(userAuditBo.getCompanyId(), userAuditBo.getNickName(), userAuditBo.getEmployeeId())) {
             throw new RuntimeException("员工昵称重复");
         }
         UserRoleInfo userRoleInfo = userRoleInfoMapper.selectByUserIdAndCompanyId(userAuditBo.getEmployeeId(), userAuditBo.getCompanyId());
@@ -359,12 +360,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void setDefault(JoinCompanyBo joinCompanyBo) {
         logger.info("设置主企业输入参数：" + JSON.toJSONString(joinCompanyBo));
         joinCompanyBo.setJobStatus(EmployeeJobStatus.INCUMBENCY.getValue());
         List<UserRoleInfo> companyInfoList = userRoleInfoMapper.selectCompanyInfoList(joinCompanyBo);
-        if(CollectionUtils.isEmpty(companyInfoList)) {
+        if (CollectionUtils.isEmpty(companyInfoList)) {
             throw new RuntimeException("用户的公司不存在");
         }
         Integer userId = joinCompanyBo.getUserId();
@@ -377,7 +378,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void modifyIncumbentsCount(IncumbentsCountBo incumbentsCountBo) {
         logger.info("修改公司在职人数输入参数：" + JSON.toJSONString(incumbentsCountBo));
         Integer companyId = incumbentsCountBo.getCompanyId();
@@ -405,6 +406,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     /**
      * 校验参数
+     *
      * @param userAuditBo
      */
     private void checkUserAuditBo(UserAuditBo userAuditBo) {

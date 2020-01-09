@@ -33,8 +33,10 @@ import java.util.Properties;
 public class SendMailHelper {
 
     private static Logger logger = LoggerFactory.getLogger(SendMailHelper.class);
+
     /**
      * 发送邮件
+     *
      * @param sendEntryMailBo
      * @return
      */
@@ -59,6 +61,7 @@ public class SendMailHelper {
 
     /**
      * 测试登录
+     *
      * @param sendEntryMailBo
      * @return
      */
@@ -134,6 +137,7 @@ public class SendMailHelper {
 
     /**
      * 创建邮件的核心内容
+     *
      * @param session
      * @param sendEntryMailBo
      * @return

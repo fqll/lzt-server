@@ -24,6 +24,7 @@ public class ChatController extends BaseController {
 
     /**
      * 查询聊天记录列表
+     *
      * @param userId
      * @param companyId
      * @param departureId
@@ -41,6 +42,7 @@ public class ChatController extends BaseController {
 
     /**
      * 发送聊天记录
+     *
      * @param chatBo
      * @return
      */

@@ -185,9 +185,10 @@ public interface DepartureInfoMapper {
 
     /**
      * 根据背调类型，查询背调员工列表
+     *
      * @param userId
      * @param companyId
-     * @param type 0:发起背调，1：配合背调
+     * @param type      0:发起背调，1：配合背调
      * @return
      */
     List<EmployeeCheckVo> selectEmployeeCheckVoList(@Param("userId") Integer userId, @Param("companyId") Integer companyId, @Param("type") String type);

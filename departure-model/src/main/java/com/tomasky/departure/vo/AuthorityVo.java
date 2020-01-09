@@ -5,9 +5,13 @@ package com.tomasky.departure.vo;
  */
 public class AuthorityVo {
     private Integer id;
-    /** 权限编码*/
+    /**
+     * 权限编码
+     */
     private String authorityCode;
-    /** 权限名称*/
+    /**
+     * 权限名称
+     */
     private String authorityName;
 
     public Integer getId() {

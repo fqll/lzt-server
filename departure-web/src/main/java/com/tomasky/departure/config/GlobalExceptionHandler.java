@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         String msg;
         if (bindResult != null && bindResult.hasErrors()) {
             List<ObjectError> errorList = bindResult.getAllErrors();
-            for(ObjectError error : errorList) {
+            for (ObjectError error : errorList) {
                 errorMessageBuilder.append(error.getDefaultMessage() + "；");
             }
             msg = errorMessageBuilder.toString();

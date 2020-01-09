@@ -2,58 +2,58 @@ package com.tomasky.departure.vo;
 
 import java.io.Serializable;
 
-public class QrCodeVo extends CommVo implements Serializable{
+public class QrCodeVo extends CommVo implements Serializable {
 
-	private static final long serialVersionUID = 2282808458848582253L;
-	
-	private String ticket;
-	
-	private Integer expireSeconds;
-	
-	private String url;
-	
-	private String access_token;
-	
-	private Integer expires_in;
+    private static final long serialVersionUID = 2282808458848582253L;
 
-	public String getTicket() {
-		return ticket;
-	}
+    private String ticket;
 
-	public void setTicket(String ticket) {
-		this.ticket = ticket;
-	}
+    private Integer expireSeconds;
 
-	public Integer getExpireSeconds() {
-		return expireSeconds;
-	}
+    private String url;
 
-	public void setExpireSeconds(Integer expireSeconds) {
-		this.expireSeconds = expireSeconds;
-	}
+    private String access_token;
 
-	public String getUrl() {
-		return url;
-	}
+    private Integer expires_in;
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getTicket() {
+        return ticket;
+    }
 
-	public String getAccess_token() {
-		return access_token;
-	}
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
 
-	public void setAccess_token(String access_token) {
-		this.access_token = access_token;
-	}
+    public Integer getExpireSeconds() {
+        return expireSeconds;
+    }
 
-	public Integer getExpires_in() {
-		return expires_in;
-	}
+    public void setExpireSeconds(Integer expireSeconds) {
+        this.expireSeconds = expireSeconds;
+    }
 
-	public void setExpires_in(Integer expires_in) {
-		this.expires_in = expires_in;
-	}
-	
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public Integer getExpires_in() {
+        return expires_in;
+    }
+
+    public void setExpires_in(Integer expires_in) {
+        this.expires_in = expires_in;
+    }
+
 }

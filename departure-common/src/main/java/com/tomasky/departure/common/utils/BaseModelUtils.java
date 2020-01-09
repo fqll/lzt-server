@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class BaseModelUtils<T extends BaseModel> {
 
-    public void buildBaseEntity(T superEntity){
+    public void buildBaseEntity(T superEntity) {
         superEntity.setCreatedTime(new Date());
         // 新创建的数据版本号为1
         superEntity.setVersionNum(Constants.DATA_DEFAULT_VERSION);
@@ -20,13 +20,13 @@ public class BaseModelUtils<T extends BaseModel> {
         superEntity.setIsValid(Constants.DATA_VALID);
     }
 
-    public void buildCreateEntity(T superEntity, Integer userId){
+    public void buildCreateEntity(T superEntity, Integer userId) {
         // 设置创建者ID
         superEntity.setCreatedId(userId);
         buildBaseEntity(superEntity);
     }
 
-    public void buildModifiyEntity(T superEntity, Integer userId){
+    public void buildModifiyEntity(T superEntity, Integer userId) {
         // 设置创建者ID
         if (userId != null) {
             superEntity.setLastModifyId(userId);

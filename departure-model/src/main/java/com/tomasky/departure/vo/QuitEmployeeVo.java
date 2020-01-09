@@ -7,16 +7,26 @@ import com.tomasky.departure.enums.DepartureAuditStatusEnum;
  * Created by sam on 2019-10-15.09:38
  */
 public class QuitEmployeeVo {
-    /** 离职表单ID*/
+    /**
+     * 离职表单ID
+     */
     private Integer id;
-    /** 岗位/职务*/
+    /**
+     * 岗位/职务
+     */
     private String employeePost;
-    /** 离职时间 */
+    /**
+     * 离职时间
+     */
     private String departureDate;
-    /** 当前审批状态，0：创建，1：待审批，2：审批通过，3：审批退回，4：已办结 */
+    /**
+     * 当前审批状态，0：创建，1：待审批，2：审批通过，3：审批退回，4：已办结
+     */
     private String auditStatus;
     private String auditStatusDesc;
-    /** 员工姓名*/
+    /**
+     * 员工姓名
+     */
     private String nickName;
 
     public Integer getId() {

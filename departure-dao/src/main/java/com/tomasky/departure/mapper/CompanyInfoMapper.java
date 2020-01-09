@@ -63,6 +63,7 @@ public interface CompanyInfoMapper {
 
     /**
      * 查询公司的审批人列表
+     *
      * @param companyId
      * @param nickName
      * @param auditStatus
@@ -72,6 +73,7 @@ public interface CompanyInfoMapper {
 
     /**
      * 查询邀请加入公司的人员列表
+     *
      * @param companyId
      * @param nickName
      * @return

@@ -8,33 +8,49 @@ import java.util.Date;
  * Created by sam on 2019-08-05.09:39
  */
 public class BaseModel {
-    /** 数据库主键 */
+    /**
+     * 数据库主键
+     */
     private Integer id;
-    /** 创建人ID */
+    /**
+     * 创建人ID
+     */
     @JsonIgnore
     private Integer createdId;
 
-    /** 最后修改人的ID */
+    /**
+     * 最后修改人的ID
+     */
     @JsonIgnore
     private Integer lastModifyId;
 
-    /** 创建时间 */
+    /**
+     * 创建时间
+     */
     @JsonIgnore
     private Date createdTime;
 
-    /** 最后修改时间 */
+    /**
+     * 最后修改时间
+     */
     @JsonIgnore
     private Date lastModifyTime;
 
-    /** 版本号 */
+    /**
+     * 版本号
+     */
     @JsonIgnore
     private Integer versionNum;
 
-    /** 是否逻辑删除 */
+    /**
+     * 是否逻辑删除
+     */
     @JsonIgnore
     private String deleted;
 
-    /** 是否有效 */
+    /**
+     * 是否有效
+     */
     @JsonIgnore
     private String isValid;
 

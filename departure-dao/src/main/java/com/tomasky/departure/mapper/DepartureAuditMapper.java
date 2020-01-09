@@ -31,6 +31,7 @@ public interface DepartureAuditMapper {
 
     /**
      * 根据离职表单ID，用户ID和审批角色查询离职审批详情
+     *
      * @param departureId
      * @param userId
      * @param auditRoleType
@@ -40,6 +41,7 @@ public interface DepartureAuditMapper {
 
     /**
      * 查询关注人数
+     *
      * @param departureId
      * @param auditRoleType
      * @return
@@ -65,6 +67,7 @@ public interface DepartureAuditMapper {
 
     /**
      * 初始化第一顺位人审批信息
+     *
      * @param departureId
      * @return
      */
@@ -72,12 +75,14 @@ public interface DepartureAuditMapper {
 
     /**
      * 根据离职表单ID删除全部审批内容
+     *
      * @param departureId
      */
     void deleteDepartureAuditList(Integer departureId);
 
     /**
      * 初始化其他顺位审批人信息
+     *
      * @param departureId
      * @return
      */

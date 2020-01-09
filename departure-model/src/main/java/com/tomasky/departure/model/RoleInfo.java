@@ -11,8 +11,8 @@ import java.io.Serializable;
 public class RoleInfo extends BaseModel implements Serializable {
 
     /**
-    * 角色名称
-    */
+     * 角色名称
+     */
     private String roleName;
 
     private static final long serialVersionUID = 1L;

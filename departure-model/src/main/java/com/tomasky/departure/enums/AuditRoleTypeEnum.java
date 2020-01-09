@@ -18,8 +18,8 @@ public enum AuditRoleTypeEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(AuditRoleTypeEnum roleType : AuditRoleTypeEnum.values()) {
-            if(roleType.value.equals(value)) {
+        for (AuditRoleTypeEnum roleType : AuditRoleTypeEnum.values()) {
+            if (roleType.value.equals(value)) {
                 return roleType.name;
             }
         }

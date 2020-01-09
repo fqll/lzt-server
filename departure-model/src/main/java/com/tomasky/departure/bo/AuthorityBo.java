@@ -4,7 +4,9 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-10-18.17:06
  */
 public class AuthorityBo {
-    /** 权限ID*/
+    /**
+     * 权限ID
+     */
     private Integer id;
 
     public Integer getId() {

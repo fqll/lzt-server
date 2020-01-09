@@ -5,13 +5,21 @@ package com.tomasky.departure.vo;
  */
 public class EmployeeCheckVo {
     private Integer id;
-    /** 姓名 */
+    /**
+     * 姓名
+     */
     private String employeeName;
-    /** 离职时间 */
+    /**
+     * 离职时间
+     */
     private String departureDate;
-    /** 入职时间 */
+    /**
+     * 入职时间
+     */
     private String entryDate;
-    /** 预入职时间 */
+    /**
+     * 预入职时间
+     */
     private String delayEntryDate;
 
     public Integer getId() {

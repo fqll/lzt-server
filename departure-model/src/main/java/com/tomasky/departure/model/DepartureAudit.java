@@ -11,31 +11,49 @@ import java.io.Serializable;
 
 public class DepartureAudit extends BaseModel implements Serializable {
 
-    /** 离职表单ID */
+    /**
+     * 离职表单ID
+     */
     private Integer departureId;
 
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     private Integer userId;
 
-    /** 操作类型，0：待审批，1：审批中，2：同意离职，3：拒绝离职 */
+    /**
+     * 操作类型，0：待审批，1：审批中，2：同意离职，3：拒绝离职
+     */
     private String operateType;
 
-    /** 审批顺序 */
+    /**
+     * 审批顺序
+     */
     private Integer auditOrder;
 
-    /** 审批结果，0：不通过，1：通过 */
+    /**
+     * 审批结果，0：不通过，1：通过
+     */
     private String auditResult;
 
-    /** 审批意见 */
+    /**
+     * 审批意见
+     */
     private String auditOpinions;
 
-    /** 审批角色类型：0：抄送人，1：审批人，2：发起人，3：撤回人 */
+    /**
+     * 审批角色类型：0：抄送人，1：审批人，2：发起人，3：撤回人
+     */
     private String auditRoleType;
 
-    /** 已读状态：0：未读，1：已读 */
+    /**
+     * 已读状态：0：未读，1：已读
+     */
     private String readStatus;
 
-    /** 是否关注：0：未关注，1：关注 */
+    /**
+     * 是否关注：0：未关注，1：关注
+     */
     private String followStatus;
 
     public DepartureAudit(Integer departureId, Integer userId, String auditRoleType, Integer auditOrder) {

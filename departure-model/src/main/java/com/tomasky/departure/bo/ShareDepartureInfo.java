@@ -4,11 +4,17 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-10-12.16:26
  */
 public class ShareDepartureInfo extends BaseBo {
-    /** 离职表单ID*/
+    /**
+     * 离职表单ID
+     */
     private Integer id;
-    /** 发送方式，参考：SendTypeEnum*/
+    /**
+     * 发送方式，参考：SendTypeEnum
+     */
     private String sendType;
-    /** 发送的地址*/
+    /**
+     * 发送的地址
+     */
     private String address;
 
     public Integer getId() {

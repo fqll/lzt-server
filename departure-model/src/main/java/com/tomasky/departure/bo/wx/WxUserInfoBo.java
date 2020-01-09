@@ -4,13 +4,21 @@ package com.tomasky.departure.bo.wx;
  * Created by sam on 2019-08-08.16:29
  */
 public class WxUserInfoBo {
-    /** 微信的openid*/
+    /**
+     * 微信的openid
+     */
     private String openId;
-    /** 微信头像地址*/
+    /**
+     * 微信头像地址
+     */
     private String portraitUrl;
-    /** 微信昵称*/
+    /**
+     * 微信昵称
+     */
     private String nickName;
-    /** 用户ID*/
+    /**
+     * 用户ID
+     */
     private Integer userId;
 
     public String getOpenId() {

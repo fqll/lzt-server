@@ -16,8 +16,8 @@ public enum FollowStatusEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(FollowStatusEnum statusEnum : FollowStatusEnum.values()) {
-            if(statusEnum.value.equals(value)) {
+        for (FollowStatusEnum statusEnum : FollowStatusEnum.values()) {
+            if (statusEnum.value.equals(value)) {
                 return statusEnum.name;
             }
         }

@@ -4,9 +4,13 @@ package com.tomasky.departure.vo;
  * Created by sam on 2019-08-08.14:09
  */
 public class DepartureRateVo {
-    /** 离职原因*/
+    /**
+     * 离职原因
+     */
     private String personalDepartureReason;
-    /** 离职人数*/
+    /**
+     * 离职人数
+     */
     private Integer departureCount;
 
     public DepartureRateVo(String personalDepartureReason, Integer departureCount) {

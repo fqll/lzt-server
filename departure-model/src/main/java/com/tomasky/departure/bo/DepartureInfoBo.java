@@ -4,25 +4,41 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-08-09.11:13
  */
 public class DepartureInfoBo extends BaseBo {
-    /** 离职表单的ID*/
+    /**
+     * 离职表单的ID
+     */
     private Integer id;
-    /** 性别，0：女，1：男 */
+    /**
+     * 性别，0：女，1：男
+     */
     private String gender;
-    /** 身份证号码 */
+    /**
+     * 身份证号码
+     */
     private String idCardNo;
-    /** 所属部门 */
+    /**
+     * 所属部门
+     */
     private String department;
 
-    /** 岗位 */
+    /**
+     * 岗位
+     */
     private String employeePost;
 
-    /** 入职时间 */
+    /**
+     * 入职时间
+     */
     private String entryDate;
 
-    /** 离职时间 */
+    /**
+     * 离职时间
+     */
     private String departureDate;
 
-    /** 个人离职原因，0：行业前景，1：职业发展，2：薪酬福利，3：企业文化，4：工作环境，5：工作强度，6：同事关系，7：家庭因素，8：其他 */
+    /**
+     * 个人离职原因，0：行业前景，1：职业发展，2：薪酬福利，3：企业文化，4：工作环境，5：工作强度，6：同事关系，7：家庭因素，8：其他
+     */
     private String personalDepartureReason;
 
     public Integer getId() {

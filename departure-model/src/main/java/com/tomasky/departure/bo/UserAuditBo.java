@@ -6,15 +6,25 @@ import java.util.List;
  * Created by sam on 2019-08-28.14:46
  */
 public class UserAuditBo extends BaseBo {
-    /** 公司ID*/
+    /**
+     * 公司ID
+     */
     private Integer companyId;
-    /** 1通过，2拒绝*/
+    /**
+     * 1通过，2拒绝
+     */
     private String auditResult;
-    /** 员工*/
+    /**
+     * 员工
+     */
     private Integer employeeId;
-    /** 角色ID*/
+    /**
+     * 角色ID
+     */
     private List<Integer> authorityList;
-    /** 员工昵称*/
+    /**
+     * 员工昵称
+     */
     private String nickName;
 
     public Integer getCompanyId() {

@@ -9,13 +9,19 @@ import java.io.Serializable;
  */
 
 public class AuthorityInfo extends BaseModel implements Serializable {
-    /** 权限编码 */
+    /**
+     * 权限编码
+     */
     private String authorityCode;
 
-    /** 权限名称 */
+    /**
+     * 权限名称
+     */
     private String authorityName;
 
-    /** 状态，0：无效，1：有效 */
+    /**
+     * 状态，0：无效，1：有效
+     */
     private String status;
 
     private static final long serialVersionUID = 1L;

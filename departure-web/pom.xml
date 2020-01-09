@@ -9,8 +9,8 @@
     </parent>
     <artifactId>departure-web</artifactId>
     <packaging>war</packaging>
-<!--    自动化部署搞定后改为jar形式-->
-<!--    <packaging>jar</packaging>-->
+    <!--    自动化部署搞定后改为jar形式-->
+    <!--    <packaging>jar</packaging>-->
     <name>departure-web</name>
     <description>departure-web project for Spring Boot</description>
 
@@ -31,10 +31,10 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-        <groupId>com.tomasky</groupId>
-        <artifactId>departure-service</artifactId>
-        <version>${project.version}</version>
-    </dependency>
+            <groupId>com.tomasky</groupId>
+            <artifactId>departure-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

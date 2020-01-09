@@ -6,11 +6,17 @@ import com.tomasky.departure.enums.AuditResultEnum;
  * Created by sam on 2019-08-09.10:00
  */
 public class ApproverVo extends BaseUserVo {
-    /** 审批顺序 */
+    /**
+     * 审批顺序
+     */
     private Integer auditOrder;
-    /** 审批结果*/
+    /**
+     * 审批结果
+     */
     private String auditResult;
-    /** 审批结果描述*/
+    /**
+     * 审批结果描述
+     */
     private String auditResultDesc;
 
     public Integer getAuditOrder() {

@@ -12,6 +12,7 @@ public interface UserService {
 
     /**
      * 通过jscode获取用户的openid以及sessionkey
+     *
      * @param jsCode
      * @return
      */
@@ -19,6 +20,7 @@ public interface UserService {
 
     /**
      * 根据openId获取用户信息
+     *
      * @param wxUserInfoBo
      * @return
      */
@@ -26,6 +28,7 @@ public interface UserService {
 
     /**
      * 完善用户信息
+     *
      * @param wxUserInfoBo
      * @return
      */
@@ -33,12 +36,14 @@ public interface UserService {
 
     /**
      * 查询全部角色列表
+     *
      * @return
      */
     Map<String, Object> findRoleList();
 
     /**
      * 根据公司ID获取公司的管理人员
+     *
      * @param companyId
      * @return
      */
@@ -46,6 +51,7 @@ public interface UserService {
 
     /**
      * 根据公司ID和用户ID查询审批列表（待我审批的、我已审批的、我发起的、抄送我的）
+     *
      * @param userId
      * @param companyId
      * @return
@@ -54,12 +60,14 @@ public interface UserService {
 
     /**
      * 查询全部权限信息
+     *
      * @return
      */
     Map<String, Object> findAuthorityList();
 
     /**
      * 获取当前用户和公司的权限信息
+     *
      * @param userId
      * @param companyId
      * @return
@@ -68,6 +76,7 @@ public interface UserService {
 
     /**
      * 设置审批信息为已读
+     *
      * @param auditReadBo
      * @return
      */
@@ -75,6 +84,7 @@ public interface UserService {
 
     /**
      * 工作台首页展示待办事项红点
+     *
      * @param userId
      * @param companyId
      * @return

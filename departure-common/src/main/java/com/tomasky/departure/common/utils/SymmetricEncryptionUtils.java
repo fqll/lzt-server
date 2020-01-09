@@ -10,11 +10,14 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class SymmetricEncryptionUtils {
 
-    /** 此处使用AES-128-ECB加密模式，key需要为16位。*/
+    /**
+     * 此处使用AES-128-ECB加密模式，key需要为16位。
+     */
     public static final String KEY = "i23456789o123456";
 
     /**
      * 加密
+     *
      * @param sSrc
      * @return
      * @throws Exception
@@ -32,6 +35,7 @@ public class SymmetricEncryptionUtils {
 
     /**
      * 解密
+     *
      * @param sSrc
      * @return
      * @throws Exception
@@ -46,7 +50,7 @@ public class SymmetricEncryptionUtils {
             byte[] encrypted1 = new Base64().decode(sSrc);
             try {
                 byte[] original = cipher.doFinal(encrypted1);
-                String originalString = new String(original,"utf-8");
+                String originalString = new String(original, "utf-8");
                 return originalString;
             } catch (Exception e) {
                 e.printStackTrace();

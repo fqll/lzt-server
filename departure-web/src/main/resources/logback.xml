@@ -3,7 +3,7 @@
 
     <property name="APP_NAME" value="tomasky-departure"/>
     <property name="LOG_HOME" value="/Users/sam/logs/"/>
-<!--    <property name="LOG_HOME" value="/home/logs/lzt/"/>-->
+    <!--    <property name="LOG_HOME" value="/home/logs/lzt/"/>-->
     <property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd  HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n"/>
     <contextName>${APP_NAME}</contextName>
 

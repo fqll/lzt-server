@@ -18,8 +18,8 @@ public enum OperateTypeEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(OperateTypeEnum auditEnum : OperateTypeEnum.values()) {
-            if(auditEnum.value.equals(value)) {
+        for (OperateTypeEnum auditEnum : OperateTypeEnum.values()) {
+            if (auditEnum.value.equals(value)) {
                 return auditEnum.name;
             }
         }

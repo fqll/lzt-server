@@ -4,9 +4,13 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-08-16.15:13
  */
 public class DelayEntryBo extends BaseBo {
-    /** 离职表单ID */
+    /**
+     * 离职表单ID
+     */
     private Integer departureId;
-    /** 公司ID*/
+    /**
+     * 公司ID
+     */
     private Integer companyId;
 
     public Integer getDepartureId() {

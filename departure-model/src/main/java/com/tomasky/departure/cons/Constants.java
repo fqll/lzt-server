@@ -37,7 +37,9 @@ public class Constants {
     public final static String NOTHING = "nothing";
     public final static String TYPE = "type"; //状态类型
 
-    /** PAGE*/
+    /**
+     * PAGE
+     */
     public final static int DEFAULT_PAGE_SIZE = 10;
     public final static int DEFAULT_PAGE_NO = 1;
     public final static int DO_NOT_PAGE = -1;
@@ -65,74 +67,132 @@ public class Constants {
     public static final String CACHE_MINIAPP_PREFIX = "_miniapp_";
 
 
-    /** 数据有效*/
+    /**
+     * 数据有效
+     */
     public static final String DATA_VALID = "1";
-    /** 数据无效*/
+    /**
+     * 数据无效
+     */
     public static final String DATA_INVALID = "0";
 
-    /** 数据已经逻辑删除*/
+    /**
+     * 数据已经逻辑删除
+     */
     public static final String DATA_DELETE = "1";
-    /** 数据未逻辑删除*/
+    /**
+     * 数据未逻辑删除
+     */
     public static final String DATA_NOT_DELETE = "0";
 
-    /** 数据初始版本号1*/
+    /**
+     * 数据初始版本号1
+     */
     public static final Integer DATA_DEFAULT_VERSION = 1;
 
-    /** 离职表单核验码长度*/
+    /**
+     * 离职表单核验码长度
+     */
     public static final Integer DEPARTURE_CODE_LENGTH = 6;
-    /** 创建离职表单操作的顺序码*/
+    /**
+     * 创建离职表单操作的顺序码
+     */
     public static final Integer DEPARTURE_CREATED_ORDER = 0;
-    /** 撤销离职表单操作的顺序码*/
+    /**
+     * 撤销离职表单操作的顺序码
+     */
     public static final Integer DEPARTURE_CANCEL_ORDER = 999;
-    /** 第一审批顺位的顺序码*/
+    /**
+     * 第一审批顺位的顺序码
+     */
     public static final Integer DEPARTURE_FIRST_ORDER = 1;
 
-    /** 员工通过*/
+    /**
+     * 员工通过
+     */
     public static final String AUDIT_RESULT_PASS = "1";
-    /** 员工拒绝*/
+    /**
+     * 员工拒绝
+     */
     public static final String AUDIT_RESULT_REFUSE = "2";
 
-    /** 不是主企业*/
+    /**
+     * 不是主企业
+     */
     public static final String NOT_DEFAULT = "0";
-    /** 是主企业*/
+    /**
+     * 是主企业
+     */
     public static final String IS_DEFAULT = "1";
 
-    /** 预入职*/
+    /**
+     * 预入职
+     */
     public static final String DELAY_ENTRY = "0";
-    /** 已入职*/
+    /**
+     * 已入职
+     */
     public static final String ENTRY = "1";
 
-    /** 开具离职证明的权限ID*/
+    /**
+     * 开具离职证明的权限ID
+     */
     public static final Integer AUTHORITY_CREATE_DEPARTURE = 1;
 
-    /** 入职背调的权限ID*/
+    /**
+     * 入职背调的权限ID
+     */
     public static final Integer AUTHORITY_VERIFICATION_DEPARTURE = 3;
 
-    /** 保存草稿*/
+    /**
+     * 保存草稿
+     */
     public static final String SAVE_TYPE_DRAFT = "0";
-    /** 确认开具*/
+    /**
+     * 确认开具
+     */
     public static final String SAVE_TYPE_CONFIRM = "1";
 
-    /** 开具离职证明*/
+    /**
+     * 开具离职证明
+     */
     public static final String AUTHORITY_KEY_CREATE = "create_departure";
-    /** 我的审批*/
+    /**
+     * 我的审批
+     */
     public static final String AUTHORITY_KEY_APPROVAL = "my_approval";
-    /** 入职背调*/
+    /**
+     * 入职背调
+     */
     public static final String AUTHORITY_KEY_DEPARTURE = "verification_departure";
-    /** 离职员工库*/
+    /**
+     * 离职员工库
+     */
     public static final String AUTHORITY_KEY_EMPLOYEE = "employee_list";
-    /** 离职分析*/
+    /**
+     * 离职分析
+     */
     public static final String AUTHORITY_KEY_ANALYSIS = "analysis_departure";
-    /** 员工权限*/
+    /**
+     * 员工权限
+     */
     public static final String AUTHORITY_KEY_AUTHORITY = "employee_authority";
-    /** 企业专属编码*/
+    /**
+     * 企业专属编码
+     */
     public static final String AUTHORITY_KEY_CREATED = "created_info";
-    /** 引导模式*/
+    /**
+     * 引导模式
+     */
     public static final String MODE_GUIDE = "guide";
 
-    /** 背调类型：发起背调*/
+    /**
+     * 背调类型：发起背调
+     */
     public static final String CHECK_TYPE_SEND = "0";
-    /** 背调类型：参与背调*/
+    /**
+     * 背调类型：参与背调
+     */
     public static final String CHECK_TYPE_JOIN = "1";
 
 }

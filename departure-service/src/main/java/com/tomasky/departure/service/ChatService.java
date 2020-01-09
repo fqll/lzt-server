@@ -11,6 +11,7 @@ public interface ChatService {
 
     /**
      * 查询聊天记录列表
+     *
      * @param userId
      * @param companyId
      * @param departureId
@@ -20,6 +21,7 @@ public interface ChatService {
 
     /**
      * 发送聊天记录
+     *
      * @param chatBo
      */
     void sendMsg(ChatBo chatBo);

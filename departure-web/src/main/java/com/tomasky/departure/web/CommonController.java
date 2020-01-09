@@ -21,6 +21,7 @@ public class CommonController extends BaseController {
 
     /**
      * 查询下拉列表的值
+     *
      * @param type
      * @return
      */

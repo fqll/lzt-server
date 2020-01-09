@@ -23,23 +23,23 @@ public class CommonServiceImpl implements CommonService {
         List<SelectVo> selectVoList = new ArrayList<>();
         try {
             switch (type) {
-                case "officialDepartureReason" :
-                    for(OfficialDepartureReasonEnum enumOption: OfficialDepartureReasonEnum.values()) {
+                case "officialDepartureReason":
+                    for (OfficialDepartureReasonEnum enumOption : OfficialDepartureReasonEnum.values()) {
                         selectVoList.add(new SelectVo(enumOption.getValue(), enumOption.getName()));
                     }
                     break;
-                case "sendType" :
-                    for(SendTypeEnum enumOption: SendTypeEnum.values()) {
+                case "sendType":
+                    for (SendTypeEnum enumOption : SendTypeEnum.values()) {
                         selectVoList.add(new SelectVo(enumOption.getValue(), enumOption.getName()));
                     }
                     break;
-                case "personalDepartureReason" :
-                    for(PersonalDepartureReasonEnum enumOption: PersonalDepartureReasonEnum.values()) {
+                case "personalDepartureReason":
+                    for (PersonalDepartureReasonEnum enumOption : PersonalDepartureReasonEnum.values()) {
                         selectVoList.add(new SelectVo(enumOption.getValue(), enumOption.getName()));
                     }
                     break;
-                case "departureReasonEnum" :
-                    for(DepartureReasonEnum enumOption: DepartureReasonEnum.values()) {
+                case "departureReasonEnum":
+                    for (DepartureReasonEnum enumOption : DepartureReasonEnum.values()) {
                         selectVoList.add(new SelectVo(enumOption.getValue(), enumOption.getName()));
                     }
                     break;

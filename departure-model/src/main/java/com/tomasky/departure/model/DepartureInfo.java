@@ -14,18 +14,26 @@ import java.util.Date;
  */
 
 public class DepartureInfo extends BaseModel implements Serializable {
-    /** 公司ID */
+    /**
+     * 公司ID
+     */
     private Integer companyId;
 
-    /** 雇员ID */
+    /**
+     * 雇员ID
+     */
     private Integer employeeId;
 
-    /** 当前审批状态，0：创建，1：待审批，2：审批通过，3：审批退回，4：已办结 */
+    /**
+     * 当前审批状态，0：创建，1：待审批，2：审批通过，3：审批退回，4：已办结
+     */
     private String auditStatus;
 
     private String auditStatusDesc;
 
-    /** 当前审批人ID */
+    /**
+     * 当前审批人ID
+     */
     private Integer auditUserId;
 
     /**
@@ -35,60 +43,96 @@ public class DepartureInfo extends BaseModel implements Serializable {
 
     private String departureReasonDesc;
 
-    /** 公司离职原因，0：能力欠缺，1：缺乏团队精神，2：价值观不符，3：业务调整 */
+    /**
+     * 公司离职原因，0：能力欠缺，1：缺乏团队精神，2：价值观不符，3：业务调整
+     */
     private String officialDepartureReason;
 
     private String officialDepartureReasonDesc;
 
-    /** 个人离职原因，0：行业前景，1：职业发展，2：薪酬福利，3：企业文化，4：工作环境，5：工作强度，6：同事关系，7：家庭因素，8：其他 */
+    /**
+     * 个人离职原因，0：行业前景，1：职业发展，2：薪酬福利，3：企业文化，4：工作环境，5：工作强度，6：同事关系，7：家庭因素，8：其他
+     */
     private String personalDepartureReason;
 
     private String personalDepartureReasonDesc;
 
-    /** 姓名 */
+    /**
+     * 姓名
+     */
     private String employeeName;
 
-    /** 性别 */
+    /**
+     * 性别
+     */
     private String gender;
 
-    /** 身份证号码 */
+    /**
+     * 身份证号码
+     */
     private String idCardNo;
 
-    /** 所属部门 */
+    /**
+     * 所属部门
+     */
     private String department;
 
-    /** 岗位 */
+    /**
+     * 岗位
+     */
     private String employeePost;
 
-    /** 入职时间 */
+    /**
+     * 入职时间
+     */
     private String entryDate;
 
-    /** 离职时间 */
+    /**
+     * 离职时间
+     */
     private String departureDate;
 
-    /** 公司评价 */
+    /**
+     * 公司评价
+     */
     private String officialEvaluate;
 
-    /** 个人评价 */
+    /**
+     * 个人评价
+     */
     private String personalEvaluate;
 
-    /** 提交离职时间*/
+    /**
+     * 提交离职时间
+     */
     private String submitDate;
 
-    /** 是否核验，0：未核验，1：已核验 */
+    /**
+     * 是否核验，0：未核验，1：已核验
+     */
     private String isCheck;
 
-    /** 核验码 */
+    /**
+     * 核验码
+     */
     private String code;
 
-    /** 离职备注 */
+    /**
+     * 离职备注
+     */
     private String remark;
 
-    /** 下家公司ID */
+    /**
+     * 下家公司ID
+     */
     private Integer nextCompanyId;
-    /** 预入职时间 */
+    /**
+     * 预入职时间
+     */
     private Date delayEntryDate;
-    /** 办理预入职或者办理入职的人员ID，决定是否可以聊天*/
+    /**
+     * 办理预入职或者办理入职的人员ID，决定是否可以聊天
+     */
     private Integer followUserId;
 
     private String followStatus;

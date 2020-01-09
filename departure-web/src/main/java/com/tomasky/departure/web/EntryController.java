@@ -27,6 +27,7 @@ public class EntryController {
 
     /**
      * 预备入职
+     *
      * @param delayEntryBo
      * @return
      */
@@ -43,6 +44,7 @@ public class EntryController {
 
     /**
      * 根据用户ID和公司ID查询待入职列表
+     *
      * @param userId
      * @param companyId
      * @param type，0：预入职，1：已入职
@@ -55,6 +57,7 @@ public class EntryController {
 
     /**
      * 员工背调后正式入职
+     *
      * @param delayEntryBo
      * @return
      */
@@ -71,9 +74,10 @@ public class EntryController {
 
     /**
      * 查询聊天背调的员工列表
+     *
      * @param userId
      * @param companyId
-     * @param type 0:发起背调，1：配合背调
+     * @param type      0:发起背调，1：配合背调
      * @return
      */
     @GetMapping(value = "getEmployeeCheckList")
@@ -83,6 +87,7 @@ public class EntryController {
 
     /**
      * 查询已发送入职通知列表
+     *
      * @param userId
      * @param companyId
      * @return
@@ -94,6 +99,7 @@ public class EntryController {
 
     /**
      * 根据ID查询入职通知详情
+     *
      * @param id
      * @return
      */
@@ -104,6 +110,7 @@ public class EntryController {
 
     /**
      * 是否配置邮箱
+     *
      * @param userId
      * @param companyId
      * @return
@@ -115,6 +122,7 @@ public class EntryController {
 
     /**
      * 保存邮箱地址和密码
+     *
      * @param addEmailBo
      * @return
      */
@@ -131,6 +139,7 @@ public class EntryController {
 
     /**
      * 发送入职通知
+     *
      * @param sendEntryNoticeBo
      * @return
      */

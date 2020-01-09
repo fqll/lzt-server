@@ -11,23 +11,23 @@ import java.io.Serializable;
 
 public class CompanyInfo extends BaseModel implements Serializable {
     /**
-    * 公司名称
-    */
+     * 公司名称
+     */
     private String companyName;
 
     /**
-    * 在职人数
-    */
+     * 在职人数
+     */
     private Integer incumbentsCount;
 
     /**
-    * 社会统一信用代码
-    */
+     * 社会统一信用代码
+     */
     private String creditCode;
 
     /**
-    * log图片地址
-    */
+     * log图片地址
+     */
     private String logUrl;
 
     /**

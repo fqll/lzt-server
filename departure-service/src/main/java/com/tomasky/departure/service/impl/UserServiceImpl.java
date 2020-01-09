@@ -91,12 +91,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Map<String, Object> findUserInfo(WxUserInfoBo wxUserInfoBo) {
         logger.info("通过openId获取用户信息请求参数：" + JSON.toJSONString(wxUserInfoBo));
         String openId = wxUserInfoBo.getOpenId();
         // openId非空验证
-        if(StringUtils.isBlank(openId)) {
+        if (StringUtils.isBlank(openId)) {
             throw new RuntimeException("openId不能为空");
         }
         UserInfo userInfo = null;
@@ -125,12 +125,12 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> completedUserInfo(WxUserInfoBo wxUserInfoBo) {
         logger.info("完善用户信息请求参数：" + JSON.toJSONString(wxUserInfoBo));
         Integer userId = wxUserInfoBo.getUserId();
-        if(userId == null) {
+        if (userId == null) {
             throw new RuntimeException("userId不能为空");
         }
         String portraitUrl = wxUserInfoBo.getPortraitUrl();
         String nickName = wxUserInfoBo.getNickName();
-        if(StringUtils.isBlank(portraitUrl) || StringUtils.isBlank(nickName)) {
+        if (StringUtils.isBlank(portraitUrl) || StringUtils.isBlank(nickName)) {
             throw new RuntimeException("微信头像或微信昵称不得为空");
         }
         UserInfo userInfo = null;
@@ -157,13 +157,14 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 根据用户ID查询全部所属公司ID
+     *
      * @param userId
      * @return
      */
     private List<CompanyInfoVo> getCompanyInfoVoList(Integer userId) {
         List<CompanyInfoVo> companyInfoList = companyInfoMapper.selectByUserId(userId, EmployeeJobStatus.INCUMBENCY.getValue());
-        if(! CollectionUtils.isEmpty(companyInfoList)) {
-            for(CompanyInfoVo companyInfoVo: companyInfoList) {
+        if (!CollectionUtils.isEmpty(companyInfoList)) {
+            for (CompanyInfoVo companyInfoVo : companyInfoList) {
                 Integer companyId = companyInfoVo.getCompanyId();
                 List<AuthorityVo> authorityVoList = userAuthorityInfoMapper.selectUserAuthorityInfo(userId, companyId);
                 companyInfoVo.setAuthorityList(authorityVoList);
@@ -175,7 +176,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, Object> findCurrentUserInfo(Integer userId, Integer companyId, String mode) {
         logger.info("获取当前用户和公司的权限信息请求参数：userId=" + userId + ",companyId=" + companyId + ",mode=" + mode);
-        if(Constants.MODE_GUIDE.equals(mode)) {
+        if (Constants.MODE_GUIDE.equals(mode)) {
             return CommonUtils.setSuccessInfo(guideHelper.getCurrentUserInfoData());
         }
         UserInfo userInfo;
@@ -207,9 +208,9 @@ public class UserServiceImpl implements UserService {
         List<RoleAuthorityVo> roleAuthorityVoList = null;
         try {
             List<RoleInfo> roleInfoList = roleInfoMapper.selectAll();
-            if(! CollectionUtils.isEmpty(roleInfoList)) {
+            if (!CollectionUtils.isEmpty(roleInfoList)) {
                 roleAuthorityVoList = new ArrayList<>();
-                for(RoleInfo roleInfo : roleInfoList) {
+                for (RoleInfo roleInfo : roleInfoList) {
                     Integer roleId = roleInfo.getId();
                     List<AuthorityVo> authorityVoList = roleInfoMapper.selectAuthorityListByRoleId(roleId);
                     roleAuthorityVoList.add(new RoleAuthorityVo(roleInfo, authorityVoList));
@@ -235,10 +236,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> findAuditInfo(Integer userId, Integer companyId, String mode) {
-        if(Constants.MODE_GUIDE.equals(mode)) {
+        if (Constants.MODE_GUIDE.equals(mode)) {
             return CommonUtils.setSuccessInfo(guideHelper.getAuditInfoGuideData());
         }
-        logger.info("查询审批信息请求参数：userId=" + userId + "，companyId="  + companyId + ",mode=" + mode);
+        logger.info("查询审批信息请求参数：userId=" + userId + "，companyId=" + companyId + ",mode=" + mode);
         // 待我审批的
         List<AuditDepartureVo> auditDepartureVoList;
         // 我已审批的
@@ -268,14 +269,14 @@ public class UserServiceImpl implements UserService {
     }
 
     private void buildChatAble(List<AuditDepartureVo> auditedDepartureVoList, Integer userId) {
-        if(! CollectionUtils.isEmpty(auditedDepartureVoList)) {
-            for(AuditDepartureVo auditDepartureVo : auditedDepartureVoList) {
+        if (!CollectionUtils.isEmpty(auditedDepartureVoList)) {
+            for (AuditDepartureVo auditDepartureVo : auditedDepartureVoList) {
                 Integer departureId = auditDepartureVo.getDepartureId();
                 boolean chatAble = false;
                 int chatCount = chatLogMapper.selectChatLogListSize(departureId);
                 DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(departureId);
                 boolean canChat = entryHelper.isChatAble(departureInfo, userId);
-                if(chatCount > 0 && canChat) {
+                if (chatCount > 0 && canChat) {
                     chatAble = true;
                 }
                 auditDepartureVo.setChatAble(chatAble);
@@ -298,7 +299,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void setAlreadyRead(AuditReadBo auditReadBo) {
         logger.info("设置审批信息为已读请求参数：" + JSON.toJSONString(auditReadBo));
         Integer userId = auditReadBo.getUserId();
@@ -310,7 +311,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("离职表单ID不能为空");
         }
         String auditRoleType = auditReadBo.getAuditRoleType();
-        if(StringUtils.isBlank(auditRoleType)) {
+        if (StringUtils.isBlank(auditRoleType)) {
             throw new RuntimeException("操作类型不能为空");
         }
         DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(departureId);
@@ -332,17 +333,17 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> findScheduleList(Integer userId, Integer companyId) {
         logger.info("查询首页待办事项红点请求参数：userId=" + userId + ",companyId=" + companyId);
         List<AuthorityVo> authorityVoList = authorityInfoMapper.selectAuthorityVoList();
-        if(CollectionUtils.isEmpty(authorityVoList)) {
+        if (CollectionUtils.isEmpty(authorityVoList)) {
             throw new RuntimeException("权限数据初始化错误");
         }
         Map<String, Object> result = Maps.newHashMap();
-        for(AuthorityVo authorityVo : authorityVoList) {
+        for (AuthorityVo authorityVo : authorityVoList) {
             String authorityCode = authorityVo.getAuthorityCode();
             boolean showUnread = false;
             // 我的审批中是否有需要我审批，或者我关注的
-            if(Constants.AUTHORITY_KEY_APPROVAL.equals(authorityCode)) {
+            if (Constants.AUTHORITY_KEY_APPROVAL.equals(authorityCode)) {
                 showUnread = getApproval(userId, companyId);
-            } else if(Constants.AUTHORITY_KEY_AUTHORITY.equals(authorityCode)) {
+            } else if (Constants.AUTHORITY_KEY_AUTHORITY.equals(authorityCode)) {
                 // 员工是否有未处理的加入公司申请
                 showUnread = getAuthority(companyId);
             }
@@ -354,6 +355,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 我的审批中是否有需要我审批，或者我关注的
+     *
      * @param userId
      * @param companyId
      * @return
@@ -361,7 +363,7 @@ public class UserServiceImpl implements UserService {
     private boolean getApproval(Integer userId, Integer companyId) {
         int approvalCount = departureInfoMapper.selectUnreadApprovalCount(userId, companyId);
         int copyCount = departureInfoMapper.selectUnreadCopyCount(userId, companyId);
-        if(approvalCount > 0 || copyCount > 0) {
+        if (approvalCount > 0 || copyCount > 0) {
             return true;
         }
         return false;
@@ -369,12 +371,13 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 员工是否有未处理的加入公司申请
+     *
      * @param companyId
      * @return
      */
     private boolean getAuthority(Integer companyId) {
         int authorityCount = userRoleInfoMapper.selectAuthorityCount(companyId);
-        if(authorityCount > 0) {
+        if (authorityCount > 0) {
             return true;
         }
         return false;

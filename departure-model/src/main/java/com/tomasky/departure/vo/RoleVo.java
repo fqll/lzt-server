@@ -4,10 +4,14 @@ package com.tomasky.departure.vo;
  * Created by sam on 2019-09-23.17:23
  */
 public class RoleVo {
-    /** 角色ID */
+    /**
+     * 角色ID
+     */
     private Integer roleId;
 
-    /** 角色名称 */
+    /**
+     * 角色名称
+     */
     private String roleName;
 
     public Integer getRoleId() {

@@ -10,31 +10,33 @@ import java.io.Serializable;
 
 public class UserInfo extends BaseModel implements Serializable {
     /**
-    * 微信openId
-    */
+     * 微信openId
+     */
     private String openId;
 
     /**
-    * 上家公司ID
-    */
+     * 上家公司ID
+     */
     private Integer lastCompanyId;
 
     /**
-    * 雇员状态
-    */
+     * 雇员状态
+     */
     private String employeeStatus;
 
     /**
-    * 入职公司ID
-    */
+     * 入职公司ID
+     */
     private Integer entryCompanyId;
 
     /**
-    * 入职状态
-    */
+     * 入职状态
+     */
     private String entryStatus;
 
-    /** 头像地址*/
+    /**
+     * 头像地址
+     */
     private String portraitUrl;
 
     /**

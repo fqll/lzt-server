@@ -17,8 +17,8 @@ public enum ReadStatusEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(ReadStatusEnum readStatusEnum : ReadStatusEnum.values()) {
-            if(readStatusEnum.value.equals(value)) {
+        for (ReadStatusEnum readStatusEnum : ReadStatusEnum.values()) {
+            if (readStatusEnum.value.equals(value)) {
                 return readStatusEnum.name;
             }
         }

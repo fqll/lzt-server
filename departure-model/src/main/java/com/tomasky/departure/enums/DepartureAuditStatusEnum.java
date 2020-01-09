@@ -3,14 +3,15 @@ package com.tomasky.departure.enums;
 /**
  * Created by sam on 2019-08-07.17:57
  */
-public enum  DepartureAuditStatusEnum {
+public enum DepartureAuditStatusEnum {
     DRAFT("-1", "草稿"),
     CANCEL("0", "撤回"),
     AUDIT("1", "待审批"),
     AUDIT_REFUSE("2", "审批退回"),
     FINISH("3", "已办结"),
     DELAY_ENTRY("4", "待入职"),
-    ENTRY("5", "已入职"),;
+    ENTRY("5", "已入职"),
+    ;
 
     private String value;
     private String name;
@@ -21,8 +22,8 @@ public enum  DepartureAuditStatusEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(DepartureAuditStatusEnum auditEnum : DepartureAuditStatusEnum.values()) {
-            if(auditEnum.value.equals(value)) {
+        for (DepartureAuditStatusEnum auditEnum : DepartureAuditStatusEnum.values()) {
+            if (auditEnum.value.equals(value)) {
                 return auditEnum.name;
             }
         }

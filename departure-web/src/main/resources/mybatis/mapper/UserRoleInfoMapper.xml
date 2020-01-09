@@ -1,266 +1,269 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomasky.departure.mapper.UserRoleInfoMapper">
-  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.UserRoleInfo">
-    <!--@mbg.generated-->
-    <id column="id" property="id" />
-    <result column="user_id" property="userId" />
-    <result column="company_id" property="companyId" />
-    <result column="audit_status" property="auditStatus" />
-    <result column="job_status" property="jobStatus" />
-    <result column="is_default" property="isDefault" />
-    <result column="nick_name" property="nickName" />
-    <result column="created_id" property="createdId" />
-    <result column="last_modify_id" property="lastModifyId" />
-    <result column="created_time" property="createdTime" />
-    <result column="last_modify_time" property="lastModifyTime" />
-    <result column="version_num" property="versionNum" />
-    <result column="deleted" property="deleted" />
-    <result column="is_valid" property="isValid" />
-    <result column="email_address" property="emailAddress" />
-    <result column="email_password" property="emailPassword" />
-    <result column="mail_type" property="mailType" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, user_id, company_id, audit_status, job_status, is_default, nick_name, created_id, 
-    last_modify_id, created_time, last_modify_time, version_num, deleted, is_valid, email_address, 
-    email_password, mail_type
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from user_role_info
-    where id = #{id}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from user_role_info
-    where id = #{id}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserRoleInfo" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_role_info (user_id, company_id, audit_status, job_status, is_default, nick_name, 
-      created_id, last_modify_id, created_time, last_modify_time, version_num, 
-      deleted, is_valid, email_address, email_password, mail_type)
-    values (#{userId}, #{companyId}, #{auditStatus}, #{jobStatus}, #{isDefault}, #{nickName}, 
-      #{createdId}, #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum}, 
-      #{deleted}, #{isValid}, #{emailAddress}, #{emailPassword}, #{mailType})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserRoleInfo" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_role_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="companyId != null">
-        company_id,
-      </if>
-      <if test="auditStatus != null">
-        audit_status,
-      </if>
-      <if test="jobStatus != null">
-        job_status,
-      </if>
-      <if test="isDefault != null">
-        is_default,
-      </if>
-      <if test="nickName != null">
-        nick_name,
-      </if>
-      <if test="createdId != null">
-        created_id,
-      </if>
-      <if test="lastModifyId != null">
-        last_modify_id,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time,
-      </if>
-      <if test="versionNum != null">
-        version_num,
-      </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
-      <if test="isValid != null">
-        is_valid,
-      </if>
-      <if test="emailAddress != null">
-        email_address,
-      </if>
-      <if test="emailPassword != null">
-        email_password,
-      </if>
-      <if test="mailType != null">
-        mail_type,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId},
-      </if>
-      <if test="companyId != null">
-        #{companyId},
-      </if>
-      <if test="auditStatus != null">
-        #{auditStatus},
-      </if>
-      <if test="jobStatus != null">
-        #{jobStatus},
-      </if>
-      <if test="isDefault != null">
-        #{isDefault},
-      </if>
-      <if test="nickName != null">
-        #{nickName},
-      </if>
-      <if test="createdId != null">
-        #{createdId},
-      </if>
-      <if test="lastModifyId != null">
-        #{lastModifyId},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime},
-      </if>
-      <if test="lastModifyTime != null">
-        #{lastModifyTime},
-      </if>
-      <if test="versionNum != null">
-        #{versionNum},
-      </if>
-      <if test="deleted != null">
-        #{deleted},
-      </if>
-      <if test="isValid != null">
-        #{isValid},
-      </if>
-      <if test="emailAddress != null">
-        #{emailAddress},
-      </if>
-      <if test="emailPassword != null">
-        #{emailPassword},
-      </if>
-      <if test="mailType != null">
-        #{mailType},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.UserRoleInfo">
-    <!--@mbg.generated-->
-    update user_role_info
-    <set>
-      <if test="userId != null">
-        user_id = #{userId},
-      </if>
-      <if test="companyId != null">
-        company_id = #{companyId},
-      </if>
-      <if test="auditStatus != null">
-        audit_status = #{auditStatus},
-      </if>
-      <if test="jobStatus != null">
-        job_status = #{jobStatus},
-      </if>
-      <if test="isDefault != null">
-        is_default = #{isDefault},
-      </if>
-      <if test="nickName != null">
-        nick_name = #{nickName},
-      </if>
-      <if test="createdId != null">
-        created_id = #{createdId},
-      </if>
-      <if test="lastModifyId != null">
-        last_modify_id = #{lastModifyId},
-      </if>
-      <if test="createdTime != null">
-        created_time = #{createdTime},
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time = #{lastModifyTime},
-      </if>
-      <if test="versionNum != null">
-        version_num = #{versionNum},
-      </if>
-      <if test="deleted != null">
-        deleted = #{deleted},
-      </if>
-      <if test="isValid != null">
-        is_valid = #{isValid},
-      </if>
-      <if test="emailAddress != null">
-        email_address = #{emailAddress},
-      </if>
-      <if test="emailPassword != null">
-        email_password = #{emailPassword},
-      </if>
-      <if test="mailType != null">
-        mail_type = #{mailType},
-      </if>
-    </set>
-    where id = #{id}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.UserRoleInfo">
-    <!--@mbg.generated-->
-    update user_role_info
-    set user_id = #{userId},
-      company_id = #{companyId},
-      audit_status = #{auditStatus},
-      job_status = #{jobStatus},
-      is_default = #{isDefault},
-      nick_name = #{nickName},
-      created_id = #{createdId},
-      last_modify_id = #{lastModifyId},
-      created_time = #{createdTime},
-      last_modify_time = #{lastModifyTime},
-      version_num = #{versionNum},
-      deleted = #{deleted},
-      is_valid = #{isValid},
-      email_address = #{emailAddress},
-      email_password = #{emailPassword},
-      mail_type = #{mailType}
-    where id = #{id}
-  </update>
-  <delete id="deleteRefuseRecord">
-    delete from user_role_info
-    where user_id = #{userId} and company_id=#{companyId}
-  </delete>
-    <select id="selectUserRoleInfoListByCompanyAndUser" resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from user_role_info
-      where user_id = #{userId} and company_id=#{companyId} and job_status=#{jobStatus}
-      <if test="auditStatus != null and auditStatus != ''">
-        AND audit_status = #{auditStatus}
-      </if>
+    <resultMap id="BaseResultMap" type="com.tomasky.departure.model.UserRoleInfo">
+        <!--@mbg.generated-->
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="audit_status" property="auditStatus"/>
+        <result column="job_status" property="jobStatus"/>
+        <result column="is_default" property="isDefault"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="created_id" property="createdId"/>
+        <result column="last_modify_id" property="lastModifyId"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="last_modify_time" property="lastModifyTime"/>
+        <result column="version_num" property="versionNum"/>
+        <result column="deleted" property="deleted"/>
+        <result column="is_valid" property="isValid"/>
+        <result column="email_address" property="emailAddress"/>
+        <result column="email_password" property="emailPassword"/>
+        <result column="mail_type" property="mailType"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, company_id, audit_status, job_status, is_default, nick_name, created_id,
+        last_modify_id, created_time, last_modify_time, version_num, deleted, is_valid, email_address,
+        email_password, mail_type
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_role_info
+        where id = #{id}
     </select>
-  <select id="selectByUserIdAndCompanyId" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from user_role_info
-    where user_id = #{userId} and company_id=#{companyId}
-  </select>
-  <select id="selectNickNameCount" resultType="int">
-        select count(id) from user_role_info where company_id=#{companyId} and nick_name=#{nickName} AND user_id != #{employeeId}
-  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from user_role_info
+        where id = #{id}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserRoleInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_role_info (user_id, company_id, audit_status, job_status, is_default, nick_name,
+        created_id, last_modify_id, created_time, last_modify_time, version_num,
+        deleted, is_valid, email_address, email_password, mail_type)
+        values (#{userId}, #{companyId}, #{auditStatus}, #{jobStatus}, #{isDefault}, #{nickName},
+        #{createdId}, #{lastModifyId}, #{createdTime}, #{lastModifyTime}, #{versionNum},
+        #{deleted}, #{isValid}, #{emailAddress}, #{emailPassword}, #{mailType})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.tomasky.departure.model.UserRoleInfo" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_role_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="jobStatus != null">
+                job_status,
+            </if>
+            <if test="isDefault != null">
+                is_default,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="createdId != null">
+                created_id,
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time,
+            </if>
+            <if test="versionNum != null">
+                version_num,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="isValid != null">
+                is_valid,
+            </if>
+            <if test="emailAddress != null">
+                email_address,
+            </if>
+            <if test="emailPassword != null">
+                email_password,
+            </if>
+            <if test="mailType != null">
+                mail_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="companyId != null">
+                #{companyId},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus},
+            </if>
+            <if test="jobStatus != null">
+                #{jobStatus},
+            </if>
+            <if test="isDefault != null">
+                #{isDefault},
+            </if>
+            <if test="nickName != null">
+                #{nickName},
+            </if>
+            <if test="createdId != null">
+                #{createdId},
+            </if>
+            <if test="lastModifyId != null">
+                #{lastModifyId},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime},
+            </if>
+            <if test="lastModifyTime != null">
+                #{lastModifyTime},
+            </if>
+            <if test="versionNum != null">
+                #{versionNum},
+            </if>
+            <if test="deleted != null">
+                #{deleted},
+            </if>
+            <if test="isValid != null">
+                #{isValid},
+            </if>
+            <if test="emailAddress != null">
+                #{emailAddress},
+            </if>
+            <if test="emailPassword != null">
+                #{emailPassword},
+            </if>
+            <if test="mailType != null">
+                #{mailType},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.UserRoleInfo">
+        <!--@mbg.generated-->
+        update user_role_info
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus},
+            </if>
+            <if test="jobStatus != null">
+                job_status = #{jobStatus},
+            </if>
+            <if test="isDefault != null">
+                is_default = #{isDefault},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName},
+            </if>
+            <if test="createdId != null">
+                created_id = #{createdId},
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id = #{lastModifyId},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime},
+            </if>
+            <if test="versionNum != null">
+                version_num = #{versionNum},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+            <if test="isValid != null">
+                is_valid = #{isValid},
+            </if>
+            <if test="emailAddress != null">
+                email_address = #{emailAddress},
+            </if>
+            <if test="emailPassword != null">
+                email_password = #{emailPassword},
+            </if>
+            <if test="mailType != null">
+                mail_type = #{mailType},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.UserRoleInfo">
+        <!--@mbg.generated-->
+        update user_role_info
+        set user_id = #{userId},
+        company_id = #{companyId},
+        audit_status = #{auditStatus},
+        job_status = #{jobStatus},
+        is_default = #{isDefault},
+        nick_name = #{nickName},
+        created_id = #{createdId},
+        last_modify_id = #{lastModifyId},
+        created_time = #{createdTime},
+        last_modify_time = #{lastModifyTime},
+        version_num = #{versionNum},
+        deleted = #{deleted},
+        is_valid = #{isValid},
+        email_address = #{emailAddress},
+        email_password = #{emailPassword},
+        mail_type = #{mailType}
+        where id = #{id}
+    </update>
+    <delete id="deleteRefuseRecord">
+        delete from user_role_info
+        where user_id = #{userId} and company_id=#{companyId}
+    </delete>
+    <select id="selectUserRoleInfoListByCompanyAndUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_role_info
+        where user_id = #{userId} and company_id=#{companyId} and job_status=#{jobStatus}
+        <if test="auditStatus != null and auditStatus != ''">
+            AND audit_status = #{auditStatus}
+        </if>
+    </select>
+    <select id="selectByUserIdAndCompanyId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_role_info
+        where user_id = #{userId} and company_id=#{companyId}
+    </select>
+    <select id="selectNickNameCount" resultType="int">
+        select count(id) from user_role_info where company_id=#{companyId} and nick_name=#{nickName} AND user_id !=
+        #{employeeId}
+    </select>
     <select id="selectUserRoleInfo" resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from user_role_info
-      where company_id=#{companyId}
-      and nick_name=#{nickName}
-      and audit_status=#{auditStatus}
+        select
+        <include refid="Base_Column_List"/>
+        from user_role_info
+        where company_id=#{companyId}
+        and nick_name=#{nickName}
+        and audit_status=#{auditStatus}
     </select>
     <select id="selectCompanyInfoList" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from user_role_info
         where user_id=#{userId}
         and company_id = #{companyId}
@@ -269,17 +272,19 @@
     </select>
 
     <update id="setDefaultCompany">
-        update user_role_info set is_default='1' where user_id=#{userId} and company_id=#{companyId} and audit_status='1'
+        update user_role_info set is_default='1' where user_id=#{userId} and company_id=#{companyId} and
+        audit_status='1'
     </update>
     <update id="setNotDefaultCompany">
-        update user_role_info set is_default='0' where user_id=#{userId} and company_id!=#{companyId} and audit_status='1'
+        update user_role_info set is_default='0' where user_id=#{userId} and company_id!=#{companyId} and
+        audit_status='1'
     </update>
     <select id="selectAuthorityCount" resultType="int">
-      select count(id) from user_role_info
-      where company_id=#{companyId}
-      AND audit_status='0'
+        select count(id) from user_role_info
+        where company_id=#{companyId}
+        AND audit_status='0'
     </select>
-  <select id="selectByNickName" resultType="int">
+    <select id="selectByNickName" resultType="int">
         select count(id) from user_role_info where company_id=#{companyId} and nick_name=#{nickName}
-  </select>
+    </select>
 </mapper>

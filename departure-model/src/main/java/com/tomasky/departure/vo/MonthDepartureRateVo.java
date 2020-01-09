@@ -6,13 +6,21 @@ import java.math.BigDecimal;
  * Created by sam on 2019-10-16.10:28
  */
 public class MonthDepartureRateVo {
-    /** 月份*/
+    /**
+     * 月份
+     */
     private String monthValue;
-    /** 离职人数*/
+    /**
+     * 离职人数
+     */
     private Integer departureCount;
-    /** 月离职率*/
+    /**
+     * 月离职率
+     */
     private BigDecimal monthDepartureRate;
-    /** 月末在职人数*/
+    /**
+     * 月末在职人数
+     */
     private Integer incumbentsCount;
 
     public MonthDepartureRateVo() {
@@ -41,10 +49,10 @@ public class MonthDepartureRateVo {
     }
 
     public BigDecimal getMonthDepartureRate() {
-        if(incumbentsCount == null || incumbentsCount.equals(0)) {
+        if (incumbentsCount == null || incumbentsCount.equals(0)) {
             return BigDecimal.ZERO;
         }
-        if(departureCount == null || departureCount.equals(0)) {
+        if (departureCount == null || departureCount.equals(0)) {
             return BigDecimal.ZERO;
         }
         // 离职率=离职人数/（离职人数+期末数）×100%。

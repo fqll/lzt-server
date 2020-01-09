@@ -32,6 +32,7 @@ public interface UserInfoMapper {
 
     /**
      * 根据公司ID和openId查询员工是否属于该公司
+     *
      * @param companyId
      * @param openId
      * @return
@@ -42,6 +43,7 @@ public interface UserInfoMapper {
 
     /**
      * 根据用户ID集合查询用户信息集合
+     *
      * @param userIdList
      * @return
      */

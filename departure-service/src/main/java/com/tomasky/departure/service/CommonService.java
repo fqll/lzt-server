@@ -8,6 +8,7 @@ import java.util.Map;
 public interface CommonService {
     /**
      * 根据下拉列表的类型查询下拉列表的全部值集合
+     *
      * @param type
      * @return
      */

@@ -5,19 +5,21 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
     <title>员工填写离职申请</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
-        html{
+
+        html {
             font-size: 62.5%;
         }
+
         /* demo */
-        html,body {
+        html, body {
             color: #333;
             margin: 0;
             height: 100%;
-            font-family: "Myriad Set Pro","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+            font-family: "Myriad Set Pro", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             font-weight: normal;
@@ -68,7 +70,7 @@
             border: 0;
         }
 
-        button,input,optgroup,select,textarea {
+        button, input, optgroup, select, textarea {
             margin: 0;
             font: inherit;
             color: inherit;
@@ -385,7 +387,7 @@
             height: 8px;
             display: inline-block;
             border-radius: 100%;
-            background-color: rgba(255,255,255,0.4);
+            background-color: rgba(255, 255, 255, 0.4);
         }
 
         .slider-pagination > .slider-pagination-item.slider-pagination-item-active {
@@ -630,11 +632,11 @@
             color: #000000;
         }
 
-        .aui-form-group .form-control:focus,.form-group .form-control:valid {
+        .aui-form-group .form-control:focus, .form-group .form-control:valid {
             outline: 0;
         }
 
-        .aui-form-group .form-control:focus+.form-label,.form-group .form-control:valid+.form-label {
+        .aui-form-group .form-control:focus + .form-label, .form-group .form-control:valid + .form-label {
             font-size: 0.7rem;
             color: #3c9bfa;
             -ms-transform: translateY(-15px);
@@ -713,7 +715,7 @@
             -ms-flex-align: center;
             align-items: center;
             background: #ffffff;
-            padding: 1rem ;
+            padding: 1rem;
         }
 
         .aui-tabBar-item {
@@ -763,10 +765,11 @@
             z-index: 49;
         }
 
-        .list-wrap{
+        .list-wrap {
 
         }
-        .each-list{
+
+        .each-list {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -774,31 +777,37 @@
             position: relative;
             height: 7rem;
             width: 100%;
-            border-bottom: 1px solid rgb(217,217,217);
+            border-bottom: 1px solid rgb(217, 217, 217);
             padding: 0 2rem;
         }
-        .each-list div{
+
+        .each-list div {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .each-list div:first-child p:first-child{
+
+        .each-list div:first-child p:first-child {
             font-size: 1.80rem;
             color: #333;
         }
-        .each-list div:first-child p:nth-child(2){
+
+        .each-list div:first-child p:nth-child(2) {
             color: #a3a4a6;
             font-size: 1.60rem;
         }
-        .each-list div:nth-child(2) img{
+
+        .each-list div:nth-child(2) img {
             width: 4rem;
             height: auto;
         }
-        .each-list div:nth-child(2) p{
+
+        .each-list div:nth-child(2) p {
             color: #a3a4a6;
             font-size: 1.40rem;
         }
-        .sign{
+
+        .sign {
             position: absolute;
             width: 3rem;
             display: flex;
@@ -807,30 +816,33 @@
             top: 2.5rem;
             left: -1rem;
         }
-        .sign .sign-div{
+
+        .sign .sign-div {
             width: 1.5rem;
             height: 1.5rem;
             border-radius: 1.5rem;
-            background-color: rgb(213,213,213);
+            background-color: rgb(213, 213, 213);
         }
-        .sign .sign-p{
+
+        .sign .sign-p {
             width: 0.2rem;
             height: 6rem;
-            background-color: rgb(213,213,213);
+            background-color: rgb(213, 213, 213);
         }
-        .sign-flex-div{
+
+        .sign-flex-div {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
     </style>
-    <link rel="stylesheet" href="/css/dateTimePicker.css" />
+    <link rel="stylesheet" href="/css/dateTimePicker.css"/>
 </head>
 <body>
 <section class="aui-flexView">
     <header class="aui-navBar aui-navBar-fixed">
         <!--<a onclick="history.go(-1)" href="javascript:;" class="aui-navBar-item">-->
-            <!--<i class="icon icon-return"></i>返回-->
+        <!--<i class="icon icon-return"></i>返回-->
         <!--</a>-->
         <div class="aui-center">
             <span class="aui-center-title">填写离职申请表单</span>
@@ -842,12 +854,15 @@
     <section class="aui-scrollView">
         <div class="aui-link-list">
             <div class="aui-form-group b-line">
-                <input required="required"  readonly th:value="${fillDepartureInfo.departureInfo.officialDepartureReasonDesc}" class="form-control " placeholder="">
+                <input required="required" readonly
+                       th:value="${fillDepartureInfo.departureInfo.officialDepartureReasonDesc}" class="form-control "
+                       placeholder="">
                 <label class="form-label">离职原因</label>
             </div>
             <div class="aui-form-group b-line">
                 <input type="hidden" th:value="${fillDepartureInfo.departureInfo.id}" id="departureId"/>
-                <input required="required" readonly th:value="${fillDepartureInfo.departureInfo.employeeName}" class="form-control " placeholder="">
+                <input required="required" readonly th:value="${fillDepartureInfo.departureInfo.employeeName}"
+                       class="form-control " placeholder="">
                 <label class="form-label">姓名</label>
             </div>
             <div class="aui-form-group b-line">
@@ -871,7 +886,7 @@
                 <label class="form-label">岗位</label>
             </div>
             <div id="formStart" class="aui-form-group b-line">
-                <input name="entryDate"  required="required" class="form-control" placeholder="">
+                <input name="entryDate" required="required" class="form-control" placeholder="">
                 <label class="form-label">入职时间</label>
             </div>
             <div class="aui-form-group b-line">
@@ -909,7 +924,7 @@
                             <p>1人审批</p>
                         </div>
                         <div>
-                            <img src="/image/logo.png" />
+                            <img src="/image/logo.png"/>
                             <p th:text="${approver.roleName}"></p>
                         </div>
                     </div>
@@ -920,7 +935,7 @@
                             <p>1人抄送</p>
                         </div>
                         <div>
-                            <img src="/image/logo.png" />
+                            <img src="/image/logo.png"/>
                             <p th:text="${approver.roleName}"></p>
                         </div>
                     </div>
@@ -930,7 +945,7 @@
         </div>
 
     </section>
-    <footer onclick="submitForm()" class="aui-footer aui-footer-fixed" >
+    <footer onclick="submitForm()" class="aui-footer aui-footer-fixed">
         <a href="javascript:;" class="aui-tabBar-item">
             <span class="aui-tabBar-item-text">提交审核</span>
         </a>
@@ -950,19 +965,19 @@
             id: $("#departureId").val(),
             personalDepartureReason: $("#personalDepartureReason").val(),
             gender: $("#gender").val(),
-            idCardNo: $("input[ name='idCardNo' ]").val() ,
+            idCardNo: $("input[ name='idCardNo' ]").val(),
             department: $("input[ name='department' ]").val(),
             employeePost: $("input[ name='employeePost' ]").val(),
             entryDate: $("input[ name='entryDate' ]").val(),
             departureDate: $("input[ name='departureDate' ]").val()
         }
         $.ajax({
-            type : "POST", //提交方式
-            url : "/departure/submitDeparture",//路径
-            contentType:'application/json',
-            dataType : "json",
-            data : JSON.stringify(data),//数据，这里使用的是Json格式进行传输
-            success : function(result) {//返回数据根据结果进行相应的处理
+            type: "POST", //提交方式
+            url: "/departure/submitDeparture",//路径
+            contentType: 'application/json',
+            dataType: "json",
+            data: JSON.stringify(data),//数据，这里使用的是Json格式进行传输
+            success: function (result) {//返回数据根据结果进行相应的处理
                 console.log(result);
                 window.location.href = '/web/success?message=' + result.message;
             }

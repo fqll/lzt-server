@@ -36,6 +36,7 @@ public interface UserAuthorityInfoMapper {
 
     /**
      * 根据用户ID和权限ID，删除权限关联关系
+     *
      * @param userId
      * @param companyId
      */

@@ -94,10 +94,10 @@ public class DepartureServiceImpl implements DepartureService {
     private EntryHelper entryHelper;
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public Integer createDeparture(BaseDepartureBo baseDepartureBo) {
         logger.info("创建离职表单请求参数：" + JSON.toJSONString(baseDepartureBo));
-        if(baseDepartureBo.isGuideMode()) {
+        if (baseDepartureBo.isGuideMode()) {
             return 0;
         }
         DepartureInfo departureInfo = baseDepartureBo.getDepartureInfo();
@@ -105,7 +105,7 @@ public class DepartureServiceImpl implements DepartureService {
         Integer departureId = departureInfo.getId();
         // 初始化离职表单对象
         initDepartureInfo(departureInfo, baseDepartureBo);
-        if(departureId == null) {
+        if (departureId == null) {
             // 初始化审计字段
             new BaseModelUtils<>().buildCreateEntity(departureInfo, baseDepartureBo.getUserId());
             // 保存离职表单
@@ -113,7 +113,7 @@ public class DepartureServiceImpl implements DepartureService {
             departureId = departureInfo.getId();
         } else {
             DepartureInfo departureInfoExist = departureInfoMapper.selectByPrimaryKey(departureId);
-            if(departureInfoExist == null) {
+            if (departureInfoExist == null) {
                 throw new RuntimeException("离职表单不存在");
             }
             // 清空审批人和抄送人数据
@@ -132,6 +132,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 保存审批人信息
+     *
      * @param baseDepartureBo
      * @param departureId
      */
@@ -145,11 +146,11 @@ public class DepartureServiceImpl implements DepartureService {
         saveDepartureAudit(departureAuditCreated, userId);
         // 保存审批人
         List<AuditUserInfoBo> auditUserList = baseDepartureBo.getAuditUserList();
-        if(! CollectionUtils.isEmpty(auditUserList)) {
-            for(AuditUserInfoBo auditUserInfoBo : auditUserList) {
+        if (!CollectionUtils.isEmpty(auditUserList)) {
+            for (AuditUserInfoBo auditUserInfoBo : auditUserList) {
                 OperateTypeEnum operateTypeEnum = OperateTypeEnum.WAIT_AUDIT;
                 // 如果是第一审批顺位
-                if(auditUserInfoBo.getAuditOrder().equals(Constants.DEPARTURE_FIRST_ORDER)) {
+                if (auditUserInfoBo.getAuditOrder().equals(Constants.DEPARTURE_FIRST_ORDER)) {
                     operateTypeEnum = OperateTypeEnum.IN_AUDIT;
                 }
                 DepartureAudit departureAudit = new DepartureAudit(auditUserInfoBo, departureId, operateTypeEnum.getValue(), AuditRoleTypeEnum.AUDIT.getValue());
@@ -162,14 +163,15 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 保存抄送人列表
+     *
      * @param baseDepartureBo
      * @param departureId
      */
     private void saveDepartureCopyList(BaseDepartureBo baseDepartureBo, Integer departureId) {
         // 保存抄送人
         List<AuditUserInfoBo> copyUserList = baseDepartureBo.getCopyUserList();
-        if(! CollectionUtils.isEmpty(copyUserList)) {
-            for(AuditUserInfoBo auditUserInfoBo : copyUserList) {
+        if (!CollectionUtils.isEmpty(copyUserList)) {
+            for (AuditUserInfoBo auditUserInfoBo : copyUserList) {
                 DepartureAudit departureAudit = new DepartureAudit(departureId, auditUserInfoBo.getUserId(), AuditRoleTypeEnum.COPY.getValue(), auditUserInfoBo.getAuditOrder());
                 // 默认为未读
                 departureAudit.setReadStatus(ReadStatusEnum.UNREAD.getValue());
@@ -180,6 +182,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 保存审批对象
+     *
      * @param departureAudit
      * @param userId
      */
@@ -190,6 +193,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 初始化离职表单对象
+     *
      * @param departureInfo
      * @param baseDepartureBo
      */
@@ -197,14 +201,14 @@ public class DepartureServiceImpl implements DepartureService {
         String saveType = baseDepartureBo.getSaveType();
         // 默认审批状态为'待审批'
         DepartureAuditStatusEnum departureAuditStatus = DepartureAuditStatusEnum.AUDIT;
-        if(Constants.SAVE_TYPE_DRAFT.equals(saveType)) {
+        if (Constants.SAVE_TYPE_DRAFT.equals(saveType)) {
             departureAuditStatus = DepartureAuditStatusEnum.DRAFT;
-        } else if(Constants.SAVE_TYPE_CONFIRM.equals(saveType)) {
+        } else if (Constants.SAVE_TYPE_CONFIRM.equals(saveType)) {
             // 校验离职表单内容
             checkDepartureInfo(departureInfo);
             // 获得第一顺位审批人
             Integer currentAuditUserId = getCurrentAuditUserId(baseDepartureBo);
-            if(currentAuditUserId != null) {
+            if (currentAuditUserId != null) {
                 // 设置当前审批人
                 departureInfo.setAuditUserId(currentAuditUserId);
             } else {
@@ -225,7 +229,7 @@ public class DepartureServiceImpl implements DepartureService {
         // 根据名称查询是否是线上员工
         String employeeName = departureInfo.getEmployeeName();
         List<UserRoleInfo> userRoleInfoList = userRoleInfoMapper.selectUserRoleInfo(departureInfo.getCompanyId(), employeeName, EmployeeAuditStatus.ADOPT.getValue());
-        if(! CollectionUtils.isEmpty(userRoleInfoList)) {
+        if (!CollectionUtils.isEmpty(userRoleInfoList)) {
             UserRoleInfo userRoleInfo = userRoleInfoList.get(0);
             departureInfo.setEmployeeId(userRoleInfo.getUserId());
         }
@@ -233,6 +237,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 随机生成核验码，如果和数据库中重复，则重新生成一次
+     *
      * @return
      */
     private String getDepartureCode() {
@@ -240,7 +245,7 @@ public class DepartureServiceImpl implements DepartureService {
             // 初始化核验码
             String departureCode = GenerateAlphanum.getAlphanumString(Constants.DEPARTURE_CODE_LENGTH);
             int sameCodeCount = departureInfoMapper.selectDepartureCode(departureCode);
-            if(sameCodeCount >= 1) {
+            if (sameCodeCount >= 1) {
                 continue;
             } else {
                 return departureCode;
@@ -250,6 +255,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 校验新建离职表单信息是否有效
+     *
      * @param departureInfo
      */
     private void checkDepartureInfo(DepartureInfo departureInfo) {
@@ -258,49 +264,49 @@ public class DepartureServiceImpl implements DepartureService {
             throw new RuntimeException("公司ID不能为空");
         }
         String employeeName = departureInfo.getEmployeeName();
-        if(StringUtils.isBlank(employeeName)) {
+        if (StringUtils.isBlank(employeeName)) {
             throw new RuntimeException("员工姓名不能为空");
         }
         String gender = departureInfo.getGender();
-        if(StringUtils.isBlank(gender)) {
+        if (StringUtils.isBlank(gender)) {
             throw new RuntimeException("性别不能为空");
         }
         String idCardNo = departureInfo.getIdCardNo();
-        if(StringUtils.isBlank(idCardNo)) {
+        if (StringUtils.isBlank(idCardNo)) {
             throw new RuntimeException("身份证号不能为空");
         }
         String department = departureInfo.getDepartment();
-        if(StringUtils.isBlank(department)) {
+        if (StringUtils.isBlank(department)) {
             throw new RuntimeException("部门不能为空");
         }
         String employeePost = departureInfo.getEmployeePost();
-        if(StringUtils.isBlank(employeePost)) {
+        if (StringUtils.isBlank(employeePost)) {
             throw new RuntimeException("岗位不能为空");
         }
         String entryDate = departureInfo.getEntryDate();
-        if(StringUtils.isBlank(entryDate)) {
+        if (StringUtils.isBlank(entryDate)) {
             throw new RuntimeException("入职时间不能为空");
         }
         String submitDate = departureInfo.getSubmitDate();
-        if(StringUtils.isBlank(submitDate)) {
+        if (StringUtils.isBlank(submitDate)) {
             throw new RuntimeException("提出离职时间不能为空");
         }
         String departureDate = departureInfo.getDepartureDate();
-        if(StringUtils.isBlank(departureDate)) {
+        if (StringUtils.isBlank(departureDate)) {
             throw new RuntimeException("离职时间不能为空");
         }
         String departureReason = departureInfo.getDepartureReason();
-        if(StringUtils.isBlank(departureReason)) {
+        if (StringUtils.isBlank(departureReason)) {
             throw new RuntimeException("离职原因类型不能为空");
         }
-        if(DepartureReasonEnum.COMPANY_REASON.getValue().equals(departureReason)) {
+        if (DepartureReasonEnum.COMPANY_REASON.getValue().equals(departureReason)) {
             String officialDepartureReason = departureInfo.getOfficialDepartureReason();
-            if(StringUtils.isBlank(officialDepartureReason)) {
+            if (StringUtils.isBlank(officialDepartureReason)) {
                 throw new RuntimeException("公司离职原因不能为空");
             }
-        } else if(DepartureReasonEnum.PERSONAL_REASON.getValue().equals(departureReason)) {
+        } else if (DepartureReasonEnum.PERSONAL_REASON.getValue().equals(departureReason)) {
             String personalDepartureReason = departureInfo.getPersonalDepartureReason();
-            if(StringUtils.isBlank(personalDepartureReason)) {
+            if (StringUtils.isBlank(personalDepartureReason)) {
                 throw new RuntimeException("个人离职原因不能为空");
             }
         } else {
@@ -312,20 +318,21 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 获取当前审批人ID
+     *
      * @param baseDepartureBo
      * @return
      */
     private Integer getCurrentAuditUserId(BaseDepartureBo baseDepartureBo) {
         List<AuditUserInfoBo> auditUserList = baseDepartureBo.getAuditUserList();
-        if(! CollectionUtils.isEmpty(auditUserList)) {
+        if (!CollectionUtils.isEmpty(auditUserList)) {
             Integer currentAuditUserId = null;
-            for(AuditUserInfoBo auditUserInfoBo : auditUserList) {
-                if(auditUserInfoBo.getAuditOrder().equals(1)) {
-                    currentAuditUserId =  auditUserInfoBo.getUserId();
+            for (AuditUserInfoBo auditUserInfoBo : auditUserList) {
+                if (auditUserInfoBo.getAuditOrder().equals(1)) {
+                    currentAuditUserId = auditUserInfoBo.getUserId();
                     return currentAuditUserId;
                 }
             }
-            if(currentAuditUserId == null) {
+            if (currentAuditUserId == null) {
                 throw new RuntimeException("缺少第一顺位审批人");
             }
         }
@@ -334,6 +341,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 构造短信内容
+     *
      * @param companyInfo
      * @return
      */
@@ -348,6 +356,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 构造邮件内容
+     *
      * @param companyInfo
      * @return
      */
@@ -374,12 +383,12 @@ public class DepartureServiceImpl implements DepartureService {
                 throw new RuntimeException("离职表单不存在");
             }
             modifiable = getModifiable(departureInfo);
-            if(DepartureSearchTypeEnum.FILL.getValue().equals(type)) {
+            if (DepartureSearchTypeEnum.FILL.getValue().equals(type)) {
                 // 只有创建状态的表单才可以被填写
-                if(! DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
+                if (!DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
                     throw new RuntimeException("离职表单状态异常");
                 }
-            } else if(DepartureSearchTypeEnum.AUDIT.getValue().equals(type)) {
+            } else if (DepartureSearchTypeEnum.AUDIT.getValue().equals(type)) {
                 // 只有待审批状态的表单才可以被审批
                 if (!DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
                     throw new RuntimeException("离职表单状态异常");
@@ -403,18 +412,19 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 判断离职表单是否可以修改
+     *
      * @param departureInfo
      * @return
      */
     private boolean getModifiable(DepartureInfo departureInfo) {
         boolean modifiable = false;
         String auditStatus = departureInfo.getAuditStatus();
-        if(DepartureAuditStatusEnum.AUDIT_REFUSE.getValue().equals(auditStatus)) {
+        if (DepartureAuditStatusEnum.AUDIT_REFUSE.getValue().equals(auditStatus)) {
             modifiable = true;
-        } else if(DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
+        } else if (DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
             // 如果是审批中，需要判断是否有人审批
             List<DepartureAudit> auditedDepartureList = departureAuditMapper.selectAuditedDepartureList(departureInfo.getId());
-            if(CollectionUtils.isEmpty(auditedDepartureList)) {
+            if (CollectionUtils.isEmpty(auditedDepartureList)) {
                 modifiable = true;
             }
         }
@@ -423,13 +433,13 @@ public class DepartureServiceImpl implements DepartureService {
 
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void submitDeparture(DepartureInfoBo departureInfoBo) {
         logger.info("员工填写离职表单请求参数：" + JSON.toJSONString(departureInfoBo));
         checkDepartureInfoBo(departureInfoBo);
         Integer id = departureInfoBo.getId();
         DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(id);
-        if(departureInfo == null) {
+        if (departureInfo == null) {
             throw new RuntimeException("离职表单不存在");
         }
         Integer userId = departureInfoBo.getUserId();
@@ -450,11 +460,11 @@ public class DepartureServiceImpl implements DepartureService {
             userRoleInfoMapper.insert(userRoleInfo);
         }
         boolean modifiable = getModifiable(departureInfo);
-        if(! modifiable) {
+        if (!modifiable) {
             throw new RuntimeException("离职表单状态异常");
         }
         BeanUtils.copyProperties(departureInfoBo, departureInfo);
-        if(userId != null) {
+        if (userId != null) {
             departureInfo.setEmployeeId(userId);
         }
         new BaseModelUtils<>().buildModifiyEntity(departureInfo, userId);
@@ -470,37 +480,37 @@ public class DepartureServiceImpl implements DepartureService {
             throw new RuntimeException("id不能为空");
         }
         String gender = departureInfoBo.getGender();
-        if(StringUtils.isBlank(gender)) {
+        if (StringUtils.isBlank(gender)) {
             throw new RuntimeException("性别不能为空");
         }
         String idCardNo = departureInfoBo.getIdCardNo();
-        if(StringUtils.isBlank(idCardNo)) {
+        if (StringUtils.isBlank(idCardNo)) {
             throw new RuntimeException("身份证号不能为空");
         }
         String department = departureInfoBo.getDepartment();
-        if(StringUtils.isBlank(department)) {
+        if (StringUtils.isBlank(department)) {
             throw new RuntimeException("部门不能为空");
         }
         String employeePost = departureInfoBo.getEmployeePost();
-        if(StringUtils.isBlank(employeePost)) {
+        if (StringUtils.isBlank(employeePost)) {
             throw new RuntimeException("岗位不能为空");
         }
         String entryDate = departureInfoBo.getEntryDate();
-        if(StringUtils.isBlank(entryDate)) {
+        if (StringUtils.isBlank(entryDate)) {
             throw new RuntimeException("入职时间不能为空");
         }
         String departureDate = departureInfoBo.getDepartureDate();
-        if(StringUtils.isBlank(departureDate)) {
+        if (StringUtils.isBlank(departureDate)) {
             throw new RuntimeException("离职时间不能为空");
         }
         String personalDepartureReason = departureInfoBo.getPersonalDepartureReason();
-        if(StringUtils.isBlank(personalDepartureReason)) {
+        if (StringUtils.isBlank(personalDepartureReason)) {
             throw new RuntimeException("离职原因不能为空");
         }
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void auditDeparture(AuditBo auditBo) {
         logger.info("审批离职表单请求参数：" + JSON.toJSONString(auditBo));
         // 审批结果，0：不通过，1：通过
@@ -510,16 +520,16 @@ public class DepartureServiceImpl implements DepartureService {
         }
         Integer departureId = auditBo.getDepartureId();
         DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(departureId);
-        if(departureInfo == null) {
+        if (departureInfo == null) {
             throw new RuntimeException("离职表单不存在");
         }
         // 只有待审批状态的表单才可以被审批
-        if(! DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
+        if (!DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
             throw new RuntimeException("离职表单状态异常");
         }
         Integer auditUserId = departureInfo.getAuditUserId();
         Integer userId = auditBo.getUserId();
-        if(! userId.equals(auditUserId)) {
+        if (!userId.equals(auditUserId)) {
             throw new RuntimeException("您没有审批权限");
         }
         // 更新当前审批人的审批记录
@@ -531,7 +541,7 @@ public class DepartureServiceImpl implements DepartureService {
         departureAuditMapper.updateByPrimaryKeySelective(departureAudit);
 
         // 如果是审批通过
-        if(AuditResultEnum.ADOPT.getValue().equals(auditResult)) {
+        if (AuditResultEnum.ADOPT.getValue().equals(auditResult)) {
             // 查询下一审批人信息
             DepartureAudit nextDepartureAudit = departureAuditMapper.selectNextAudit(departureId, departureAudit.getAuditOrder() + 1);
             // 如果审批流程里没有下一审批人，则离职表单状态变为已办结，并更新公司在职人员数据
@@ -550,7 +560,7 @@ public class DepartureServiceImpl implements DepartureService {
                 // 设置离职表单的当前审批人为下一审批顺位审批人
                 departureInfo.setAuditUserId(nextDepartureAudit.getUserId());
             }
-        } else if(AuditResultEnum.REFUSE.getValue().equals(auditResult)) {
+        } else if (AuditResultEnum.REFUSE.getValue().equals(auditResult)) {
             // 审批节点回滚
 //            DepartureAudit preDepartureAudit = departureAuditMapper.selectNextAudit(departureId, 1);
 //            departureInfo.setAuditUserId(preDepartureAudit.getUserId());
@@ -567,13 +577,14 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 根据审批结果判断审批流转状态
+     *
      * @param auditResult
      * @return
      */
     private String getOperateTypeEnumValue(String auditResult) {
-        if(AuditResultEnum.ADOPT.getValue().equals(auditResult)) {
+        if (AuditResultEnum.ADOPT.getValue().equals(auditResult)) {
             return OperateTypeEnum.ADOPT.getValue();
-        } else if(AuditResultEnum.REFUSE.getValue().equals(auditResult)) {
+        } else if (AuditResultEnum.REFUSE.getValue().equals(auditResult)) {
             return OperateTypeEnum.REFUSE.getValue();
         } else {
             throw new RuntimeException("审批结果类型异常");
@@ -606,8 +617,8 @@ public class DepartureServiceImpl implements DepartureService {
         int departureCopyListSize = CollectionUtils.isEmpty(departureCopyList) ? 0 : departureCopyList.size();
         int departureAuditListSize = CollectionUtils.isEmpty(departureAuditList) ? 0 : departureAuditList.size();
         int styleSize = departureCopyListSize + departureAuditListSize - 1;
-        if(styleSize > 0) {
-            for(int i = 0; i < styleSize; i ++) {
+        if (styleSize > 0) {
+            for (int i = 0; i < styleSize; i++) {
                 styleList.add(i);
             }
         }
@@ -615,7 +626,7 @@ public class DepartureServiceImpl implements DepartureService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void followDeparture(FollowBo followBo) {
         logger.info("关注员工接口输入参数：" + JSON.toJSONString(followBo));
         Integer departureId = followBo.getDepartureId();
@@ -635,7 +646,7 @@ public class DepartureServiceImpl implements DepartureService {
             throw new RuntimeException("离职审批人信息不存在");
         }
         String followStatus = departureAudit.getFollowStatus();
-        if(FollowStatusEnum.FOLLOW.getValue().equals(followStatus)) {
+        if (FollowStatusEnum.FOLLOW.getValue().equals(followStatus)) {
             throw new RuntimeException("已关注");
         }
         // 设置为已关注
@@ -649,9 +660,9 @@ public class DepartureServiceImpl implements DepartureService {
     public String findForwardPath(Integer departureId) {
         DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(departureId);
         String auditStatus = departureInfo.getAuditStatus();
-        if(DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
+        if (DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
             return "employee/fill_departure";
-        } else if(DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)){
+        } else if (DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
             return "forward:/web/success?message=离职证明还在" + DepartureAuditStatusEnum.getNameFromValue(auditStatus) + "状态";
         } else {
             return "employee/export_certificate";
@@ -690,7 +701,7 @@ public class DepartureServiceImpl implements DepartureService {
     @Override
     public Map<String, Object> findDepartureInfo(Integer id, Integer userId, String mode) {
         logger.info("根据表单ID查询离职表单详情接口请求参数：id=" + id + ",userId=" + userId + ",mode=" + mode);
-        if(Constants.MODE_GUIDE.equals(mode)) {
+        if (Constants.MODE_GUIDE.equals(mode)) {
             return CommonUtils.setSuccessInfo(guideHelper.getDepartureInfoDetailGuideData());
         }
         DepartureInfo departureInfo = null;
@@ -716,7 +727,7 @@ public class DepartureServiceImpl implements DepartureService {
             DepartureAudit departureAudit = departureAuditMapper.selectCurrentAudit(id, userId, AuditRoleTypeEnum.AUDIT.getValue());
             if (departureAudit != null) {
                 String followStatus1 = departureAudit.getFollowStatus();
-                if(FollowStatusEnum.FOLLOW.getValue().equals(followStatus1)) {
+                if (FollowStatusEnum.FOLLOW.getValue().equals(followStatus1)) {
                     followStatus = true;
                 }
             }
@@ -726,29 +737,29 @@ public class DepartureServiceImpl implements DepartureService {
             String auditStatus = departureInfo.getAuditStatus();
             int size = tmpDepartureAuditList.size();
             // 如果是审批退回，需要把退回后的节点屏蔽掉
-            if(DepartureAuditStatusEnum.AUDIT_REFUSE.getValue().equals(auditStatus)) {
+            if (DepartureAuditStatusEnum.AUDIT_REFUSE.getValue().equals(auditStatus)) {
                 int subEndIndex = size;
-                for(int i = 0; i < size; i ++) {
+                for (int i = 0; i < size; i++) {
                     ApproverLogVo approverLogVo = tmpDepartureAuditList.get(i);
                     String auditRoleType = approverLogVo.getAuditRoleType();
                     String operateType = approverLogVo.getOperateType();
-                    if(AuditRoleTypeEnum.AUDIT.getValue().equals(auditRoleType) && OperateTypeEnum.REFUSE.getValue().equals(operateType)) {
+                    if (AuditRoleTypeEnum.AUDIT.getValue().equals(auditRoleType) && OperateTypeEnum.REFUSE.getValue().equals(operateType)) {
                         subEndIndex = i;
                     }
                 }
                 departureAuditList = tmpDepartureAuditList.subList(0, subEndIndex + 1);
-            } else if(DepartureAuditStatusEnum.CANCEL.getValue().equals(auditStatus)) {
+            } else if (DepartureAuditStatusEnum.CANCEL.getValue().equals(auditStatus)) {
                 int subEndIndex = size;
-                for(int i = 0; i < size; i ++) {
+                for (int i = 0; i < size; i++) {
                     ApproverLogVo approverLogVo = tmpDepartureAuditList.get(i);
                     String auditRoleType = approverLogVo.getAuditRoleType();
-                    if(AuditRoleTypeEnum.CANCEL.getValue().equals(auditRoleType)) {
+                    if (AuditRoleTypeEnum.CANCEL.getValue().equals(auditRoleType)) {
                         subEndIndex = i;
                     }
                 }
                 departureAuditList = tmpDepartureAuditList.subList(0, subEndIndex + 1);
-            } else if(DepartureAuditStatusEnum.DRAFT.getValue().equals(auditStatus)) {
-                if(size > 0) {
+            } else if (DepartureAuditStatusEnum.DRAFT.getValue().equals(auditStatus)) {
+                if (size > 0) {
                     departureAuditList = tmpDepartureAuditList.subList(1, tmpDepartureAuditList.size());
                 }
             } else {
@@ -773,7 +784,7 @@ public class DepartureServiceImpl implements DepartureService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void cancelDepartureInfo(CancelDepartureBo cancelDepartureBo) {
         logger.info("撤回离职表单接口请求参数：" + JSON.toJSONString(cancelDepartureBo));
         Integer id = cancelDepartureBo.getId();
@@ -785,15 +796,15 @@ public class DepartureServiceImpl implements DepartureService {
             throw new RuntimeException("用户ID不能为空");
         }
         DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(id);
-        if(departureInfo == null) {
+        if (departureInfo == null) {
             throw new RuntimeException("离职表单不存在");
         }
         // 只有待审批状态的表单才可以被撤回
-        if(! DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
+        if (!DepartureAuditStatusEnum.AUDIT.getValue().equals(departureInfo.getAuditStatus())) {
             throw new RuntimeException("离职表单状态异常");
         }
         Integer createdId = departureInfo.getCreatedId();
-        if(! userId.equals(createdId)) {
+        if (!userId.equals(createdId)) {
             throw new RuntimeException("只有创建人才可退回");
         }
         // 修改离职表单状态为撤回
@@ -808,7 +819,7 @@ public class DepartureServiceImpl implements DepartureService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void editDeparture(BaseDepartureBo baseDepartureBo) {
         logger.info("编辑离职表单接口请求参数：" + JSON.toJSONString(baseDepartureBo));
         DepartureInfo departureInfoParam = baseDepartureBo.getDepartureInfo();
@@ -817,12 +828,12 @@ public class DepartureServiceImpl implements DepartureService {
         }
         Integer departureId = departureInfoParam.getId();
         DepartureInfo departureInfoExist = departureInfoMapper.selectByPrimaryKey(departureId);
-        if(departureInfoExist == null) {
+        if (departureInfoExist == null) {
             throw new RuntimeException("离职表单不存在");
         }
         Integer userId = baseDepartureBo.getUserId();
         boolean modifiable = getModifiable(departureInfoExist, userId);
-        if(! modifiable) {
+        if (!modifiable) {
             throw new RuntimeException("离职表单不能被修改");
         }
         BeanUtils.copyProperties(departureInfoParam, departureInfoExist);
@@ -830,9 +841,9 @@ public class DepartureServiceImpl implements DepartureService {
         new BaseModelUtils<>().buildModifiyEntity(departureInfoExist, userId);
         String saveType = baseDepartureBo.getSaveType();
         DepartureAuditStatusEnum auditStatus = null;
-        if(Constants.SAVE_TYPE_DRAFT.equals(saveType)) {
+        if (Constants.SAVE_TYPE_DRAFT.equals(saveType)) {
             auditStatus = DepartureAuditStatusEnum.DRAFT;
-        } else if(Constants.SAVE_TYPE_CONFIRM.equals(saveType)) {
+        } else if (Constants.SAVE_TYPE_CONFIRM.equals(saveType)) {
             auditStatus = DepartureAuditStatusEnum.AUDIT;
         } else {
             throw new RuntimeException("未知的保存操作类型");
@@ -868,10 +879,10 @@ public class DepartureServiceImpl implements DepartureService {
         String address = shareDepartureInfo.getAddress();
         String sendType = shareDepartureInfo.getSendType();
         // 发送短信
-        if(SendTypeEnum.PHONE_SEND.getValue().equals(sendType)) {
+        if (SendTypeEnum.PHONE_SEND.getValue().equals(sendType)) {
             new ShortMessageHelper().sendShortMessage(address, buildMessageContent(companyInfo, departureInfo.getId()), SmsChannel.SEND_TYPE_VIP);
             logger.info("短信发送成功");
-        } else if(SendTypeEnum.MAIL_SEND.getValue().equals(sendType)) {
+        } else if (SendTypeEnum.MAIL_SEND.getValue().equals(sendType)) {
             try {
                 mailService.sendHtmlMail(address, "离职表单", buildMailContent(companyInfo, departureInfo.getId()));
                 logger.info("邮件发送成功");
@@ -921,8 +932,8 @@ public class DepartureServiceImpl implements DepartureService {
             companyDepartureRateVo.setCurrentMonthDepartureRate(monthlyTurnoverRate);
             List<MonthDepartureRateVo> monthDepartureRateVoList = departureInfoMapper.selectMonthDepartureRateVoList(companyId, DateUtils.getFirstDayOfCurrentYear(), DateUtils.getLastDayOfCurrentYear());
             Map<String, Integer> monthDepartureMap = new HashMap<>();
-            if(! CollectionUtils.isEmpty(monthDepartureRateVoList)) {
-                for(MonthDepartureRateVo monthDepartureRateVo : monthDepartureRateVoList) {
+            if (!CollectionUtils.isEmpty(monthDepartureRateVoList)) {
+                for (MonthDepartureRateVo monthDepartureRateVo : monthDepartureRateVoList) {
                     monthDepartureMap.put(monthDepartureRateVo.getMonthValue(), monthDepartureRateVo.getDepartureCount());
                 }
             }
@@ -930,9 +941,9 @@ public class DepartureServiceImpl implements DepartureService {
             List<MonthDepartureRateVo> monthDepartureRateVos = new ArrayList<>();
             // 月末在职人数，
             Integer currentMonthIncumbentsCount = incumbentsCount;
-            for(int i = 0; i < currentYearMonthStrList.size(); i ++) {
+            for (int i = 0; i < currentYearMonthStrList.size(); i++) {
                 String yearMonth = currentYearMonthStrList.get(i);
-                if(i > 0) {
+                if (i > 0) {
                     String lastMonth = DateUtils.getLastMonth(yearMonth);
                     // 上月离职人数
                     Integer lastMonthDepartureCount = monthDepartureMap.get(lastMonth) == null ? 0 : monthDepartureMap.get(lastMonth);
@@ -943,7 +954,7 @@ public class DepartureServiceImpl implements DepartureService {
 
                 // 当月离职人数
                 Integer departureCount = monthDepartureMap.get(yearMonth);
-                if(departureCount != null) {
+                if (departureCount != null) {
                     currentDepartureCount = departureCount;
                 }
                 MonthDepartureRateVo monthDepartureRateVo = new MonthDepartureRateVo(yearMonth, currentDepartureCount, currentMonthIncumbentsCount);
@@ -961,7 +972,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     @Override
     public Map<String, Object> findDepartureReasonInfo(Integer companyId) {
-        logger.info("根据公司ID查询离职原因分析请求参数：companyId="  + companyId);
+        logger.info("根据公司ID查询离职原因分析请求参数：companyId=" + companyId);
         List<DepartureRateVo> personalDepartureRateVoList = null;
         List<DepartureRateVo> companyDepartureReasonInfo = null;
         try {
@@ -985,19 +996,20 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 获取个人离职原因饼状图数据
+     *
      * @param companyId
      * @return
      */
     private List<DepartureRateVo> getPersonalDepartureRateVoList(Integer companyId) {
         List<DepartureRateVo> departureRateVoList = departureInfoMapper.selectDepartureRateVoList(companyId);
         Map<String, DepartureRateVo> dataMap = new HashMap<>();
-        if(! CollectionUtils.isEmpty(departureRateVoList)) {
-            for(DepartureRateVo departureRateVo : departureRateVoList) {
+        if (!CollectionUtils.isEmpty(departureRateVoList)) {
+            for (DepartureRateVo departureRateVo : departureRateVoList) {
                 dataMap.put(departureRateVo.getPersonalDepartureReason(), departureRateVo);
             }
         }
         List<DepartureRateVo> tempDepartureRateVo = new ArrayList<>();
-        for(PersonalDepartureReasonEnum reasonEnum : PersonalDepartureReasonEnum.values()) {
+        for (PersonalDepartureReasonEnum reasonEnum : PersonalDepartureReasonEnum.values()) {
             String reasonEnumValue = reasonEnum.getValue();
             DepartureRateVo temp = dataMap.get(reasonEnumValue);
             if (temp == null) {
@@ -1011,19 +1023,20 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 获取公司离职原因饼状图数据
+     *
      * @param companyId
      * @return
      */
     private List<DepartureRateVo> getCompanyDepartureRateVoList(Integer companyId) {
         List<DepartureRateVo> departureRateVoList = departureInfoMapper.selectCompanyDepartureRateVoList(companyId);
         Map<String, DepartureRateVo> dataMap = new HashMap<>();
-        if(! CollectionUtils.isEmpty(departureRateVoList)) {
-            for(DepartureRateVo departureRateVo : departureRateVoList) {
+        if (!CollectionUtils.isEmpty(departureRateVoList)) {
+            for (DepartureRateVo departureRateVo : departureRateVoList) {
                 dataMap.put(departureRateVo.getPersonalDepartureReason(), departureRateVo);
             }
         }
         List<DepartureRateVo> tempDepartureRateVo = new ArrayList<>();
-        for(OfficialDepartureReasonEnum reasonEnum : OfficialDepartureReasonEnum.values()) {
+        for (OfficialDepartureReasonEnum reasonEnum : OfficialDepartureReasonEnum.values()) {
             String reasonEnumValue = reasonEnum.getValue();
             DepartureRateVo temp = dataMap.get(reasonEnumValue);
             if (temp == null) {
@@ -1037,16 +1050,16 @@ public class DepartureServiceImpl implements DepartureService {
 
     @Override
     public Map<String, Object> findDraftList(Integer userId, Integer companyId) {
-        logger.info("查询草稿列表请求参数：companyId="  + companyId + ",userId=" + userId);
+        logger.info("查询草稿列表请求参数：companyId=" + companyId + ",userId=" + userId);
         List<DraftListVo> draftListVoList = departureInfoMapper.selectDraftLis(userId, companyId);
         Map<String, Object> result = Maps.newHashMap();
         result.put("draftList", draftListVoList);
-        logger.info("查询草稿列表接口返回"  + JSON.toJSONString(result));
+        logger.info("查询草稿列表接口返回" + JSON.toJSONString(result));
         return CommonUtils.setSuccessInfo(result);
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void removeDeparture(RemoveDepartureInfoBo removeDepartureInfoBo) {
         logger.info("删除离职表单接口请求参数：" + JSON.toJSONString(removeDepartureInfoBo));
         Integer id = removeDepartureInfoBo.getId();
@@ -1054,10 +1067,10 @@ public class DepartureServiceImpl implements DepartureService {
             throw new RuntimeException("离职表单ID不能为空");
         }
         DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(id);
-        if(departureInfo == null) {
+        if (departureInfo == null) {
             throw new RuntimeException("离职表单不存在");
         }
-        if(! DepartureAuditStatusEnum.DRAFT.getValue().equals(departureInfo.getAuditStatus())) {
+        if (!DepartureAuditStatusEnum.DRAFT.getValue().equals(departureInfo.getAuditStatus())) {
             throw new RuntimeException("只有草稿状态的离职表单才可以删除");
         }
         Integer userId = removeDepartureInfoBo.getUserId();
@@ -1068,7 +1081,7 @@ public class DepartureServiceImpl implements DepartureService {
         if (companyId == null) {
             throw new RuntimeException("公司ID不能为空");
         }
-        if(!userId.equals(departureInfo.getCreatedId()) || ! companyId.equals(departureInfo.getCompanyId())) {
+        if (!userId.equals(departureInfo.getCreatedId()) || !companyId.equals(departureInfo.getCompanyId())) {
             throw new RuntimeException("您没有删除权限");
         }
         departureInfoMapper.deleteByPrimaryKey(id);
@@ -1077,15 +1090,16 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 根据在职人数和离职人数，计算离职率
+     *
      * @param incumbentsCount 当前在职人数
-     * @param departureCount 本期离职人数
+     * @param departureCount  本期离职人数
      * @return
      */
     private BigDecimal calcDepartureRate(Integer incumbentsCount, Integer departureCount) {
-        if(departureCount == null || departureCount.equals(0)) {
+        if (departureCount == null || departureCount.equals(0)) {
             return BigDecimal.ZERO;
         }
-        if(incumbentsCount == null || incumbentsCount.equals(0)) {
+        if (incumbentsCount == null || incumbentsCount.equals(0)) {
             return BigDecimal.ZERO;
         }
         // 离职率=离职人数/（离职人数+期末数）×100%。
@@ -1096,6 +1110,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 判断离职表单是否可以修改
+     *
      * @param departureInfo
      * @param userId
      * @return
@@ -1103,7 +1118,7 @@ public class DepartureServiceImpl implements DepartureService {
     private boolean getModifiable(DepartureInfo departureInfo, Integer userId) {
         Integer createdId = departureInfo.getCreatedId();
         String auditStatus = departureInfo.getAuditStatus();
-        if(DepartureAuditStatusEnum.AUDIT_REFUSE.getValue().equals(auditStatus) && userId.equals(createdId)) {
+        if (DepartureAuditStatusEnum.AUDIT_REFUSE.getValue().equals(auditStatus) && userId.equals(createdId)) {
             return true;
         }
         return false;
@@ -1111,6 +1126,7 @@ public class DepartureServiceImpl implements DepartureService {
 
     /**
      * 判断离职表单是否可以撤销
+     *
      * @param departureInfo
      * @param userId
      * @return
@@ -1119,7 +1135,7 @@ public class DepartureServiceImpl implements DepartureService {
         Integer createdId = departureInfo.getCreatedId();
         String auditStatus = departureInfo.getAuditStatus();
         // 当前用户是离职表单的创建者，并且离职表单状态是审批中才可以撤销
-        if(userId.equals(createdId) && DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
+        if (userId.equals(createdId) && DepartureAuditStatusEnum.AUDIT.getValue().equals(auditStatus)) {
             return true;
         }
         return false;

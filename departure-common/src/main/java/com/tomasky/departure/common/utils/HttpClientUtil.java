@@ -510,7 +510,7 @@ public class HttpClientUtil {
             if (entity != null) {
                 return EntityUtils.toString(entity);
             }
-            new RuntimeException("请求["+url+"]出错");
+            new RuntimeException("请求[" + url + "]出错");
         } catch (IOException e) {
             new RuntimeException(e.getMessage());
         } finally {

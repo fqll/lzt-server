@@ -8,9 +8,13 @@ import java.util.List;
  * Created by sam on 2019-09-23.15:52
  */
 public class RoleAuthorityVo {
-    /** 角色*/
+    /**
+     * 角色
+     */
     private RoleInfo roleInfo;
-    /** 权限列表*/
+    /**
+     * 权限列表
+     */
     private List<AuthorityVo> authorityVoList;
 
     public RoleAuthorityVo() {

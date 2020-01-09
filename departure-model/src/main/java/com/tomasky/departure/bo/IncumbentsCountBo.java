@@ -4,10 +4,14 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-10-16.17:01
  */
 public class IncumbentsCountBo extends BaseBo {
-    /** 公司ID*/
+    /**
+     * 公司ID
+     */
     private Integer companyId;
 
-    /** 在职人数 */
+    /**
+     * 在职人数
+     */
     private Integer incumbentsCount;
 
     public Integer getCompanyId() {

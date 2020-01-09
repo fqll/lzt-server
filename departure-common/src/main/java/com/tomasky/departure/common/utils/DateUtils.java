@@ -24,6 +24,7 @@ public class DateUtils {
 
     /**
      * 获取当月第一天
+     *
      * @return
      */
     public static String getFirstDayOfCurrentMonth() {
@@ -34,6 +35,7 @@ public class DateUtils {
 
     /**
      * 获取当年的第一天
+     *
      * @return
      */
     public static String getFirstDayOfCurrentYear() {
@@ -44,20 +46,22 @@ public class DateUtils {
 
     /**
      * 获取当年的最后一天
+     *
      * @return
      */
     public static String getLastDayOfCurrentYear() {
-        Calendar currCal=Calendar.getInstance();
+        Calendar currCal = Calendar.getInstance();
         int currentYear = currCal.get(Calendar.YEAR);
         return getYearLast(currentYear);
     }
 
     /**
-     * 获取某年最后一天日期
-     * @param year 年份
-     * @return Date
-     */
-    public static String getYearLast(int year){
+     *      * 获取某年最后一天日期
+     *      * @param year 年份
+     *      * @return Date
+     *      
+     */
+    public static String getYearLast(int year) {
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
         calendar.set(Calendar.YEAR, year);
@@ -68,7 +72,7 @@ public class DateUtils {
     public static List<String> getCurrentYearMonthStrList() {
         List<String> currentYearMonthStrList = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
-        for(int i = 0; i < 12; i ++) {
+        for (int i = 0; i < 12; i++) {
             calendar.set(Calendar.MONTH, i);
             currentYearMonthStrList.add(format(calendar.getTime(), FORMAT_MONTH_STR));
         }
@@ -78,6 +82,7 @@ public class DateUtils {
 
     /**
      * 获取上月
+     *
      * @param yearMonth 格式为yyyy-MM
      * @return
      */

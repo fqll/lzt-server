@@ -16,8 +16,8 @@ public enum DepartureReasonEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(DepartureReasonEnum reasonEnum : DepartureReasonEnum.values()) {
-            if(reasonEnum.value.equals(value)) {
+        for (DepartureReasonEnum reasonEnum : DepartureReasonEnum.values()) {
+            if (reasonEnum.value.equals(value)) {
                 return reasonEnum.name;
             }
         }

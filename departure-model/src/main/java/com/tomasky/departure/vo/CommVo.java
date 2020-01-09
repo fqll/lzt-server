@@ -1,27 +1,26 @@
 package com.tomasky.departure.vo;
 
 public class CommVo {
-	
-	private String errcode;
-	
-	private String errmsg;
 
-	public String getErrcode() {
-		return errcode;
-	}
+    private String errcode;
 
-	public void setErrcode(String errcode) {
-		this.errcode = errcode;
-	}
+    private String errmsg;
 
-	public String getErrmsg() {
-		return errmsg;
-	}
+    public String getErrcode() {
+        return errcode;
+    }
 
-	public void setErrmsg(String errmsg) {
-		this.errmsg = errmsg;
-	}
-	
-	
+    public void setErrcode(String errcode) {
+        this.errcode = errcode;
+    }
+
+    public String getErrmsg() {
+        return errmsg;
+    }
+
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
+    }
+
 
 }

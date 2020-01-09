@@ -4,15 +4,25 @@ package com.tomasky.departure.vo;
  * Created by sam on 2019-08-16.16:35
  */
 public class DelayEntryVo {
-    /** 用户ID*/
+    /**
+     * 用户ID
+     */
     private Integer userId;
-    /** 离职表单ID */
+    /**
+     * 离职表单ID
+     */
     private Integer departureId;
-    /** 员工姓名*/
+    /**
+     * 员工姓名
+     */
     private String employeeName;
-    /** 预备入职时间*/
+    /**
+     * 预备入职时间
+     */
     private String delayEntryDate;
-    /** 是否可聊天*/
+    /**
+     * 是否可聊天
+     */
     private boolean chatAble;
 
     public Integer getUserId() {

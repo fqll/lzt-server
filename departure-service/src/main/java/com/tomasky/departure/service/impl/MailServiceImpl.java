@@ -29,6 +29,7 @@ public class MailServiceImpl implements MailService {
 
     @Autowired
     private JavaMailSender mailSender;
+
     @Override
     public void sendSimpleMail(String to, String subject, String content) {
 
@@ -40,6 +41,7 @@ public class MailServiceImpl implements MailService {
 
         mailSender.send(message);
     }
+
     @Override
     public void sendHtmlMail(String to, String subject, String content) throws MessagingException {
         logger.info("发送HTML邮件开始：{},{},{}", to, subject, content);
@@ -57,7 +59,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendEntryMail(SendEntryMailBo sendEntryMailBo) throws MessagingException {
         boolean result = MailUtil.sendEmail(sendEntryMailBo);
-        if (! result) {
+        if (!result) {
             throw new RuntimeException("邮件发送失败！");
         }
     }
@@ -86,6 +88,7 @@ public class MailServiceImpl implements MailService {
 
 
     }
+
     @Override
     public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) {
 

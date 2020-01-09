@@ -1,186 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomasky.departure.mapper.ChatLogMapper">
-  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.ChatLog">
-    <!--@mbg.generated-->
-    <id column="id" property="id" />
-    <result column="departure_id" property="departureId" />
-    <result column="user_id" property="userId" />
-    <result column="chat_content" property="chatContent" />
-    <result column="created_id" property="createdId" />
-    <result column="last_modify_id" property="lastModifyId" />
-    <result column="created_time" property="createdTime" />
-    <result column="last_modify_time" property="lastModifyTime" />
-    <result column="version_num" property="versionNum" />
-    <result column="deleted" property="deleted" />
-    <result column="is_valid" property="isValid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, departure_id, user_id, chat_content, created_id, last_modify_id, created_time, 
-    last_modify_time, version_num, deleted, is_valid
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from chat_log
-    where id = #{id}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from chat_log
-    where id = #{id}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.ChatLog" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into chat_log (departure_id, user_id, chat_content, created_id, last_modify_id, 
-      created_time, last_modify_time, version_num, deleted, is_valid)
-    values (#{departureId}, #{userId}, #{chatContent}, #{createdId}, #{lastModifyId}, 
-      #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.ChatLog" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into chat_log
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="departureId != null">
-        departure_id,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="chatContent != null">
-        chat_content,
-      </if>
-      <if test="createdId != null">
-        created_id,
-      </if>
-      <if test="lastModifyId != null">
-        last_modify_id,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time,
-      </if>
-      <if test="versionNum != null">
-        version_num,
-      </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
-      <if test="isValid != null">
-        is_valid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="departureId != null">
-        #{departureId},
-      </if>
-      <if test="userId != null">
-        #{userId},
-      </if>
-      <if test="chatContent != null">
-        #{chatContent},
-      </if>
-      <if test="createdId != null">
-        #{createdId},
-      </if>
-      <if test="lastModifyId != null">
-        #{lastModifyId},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime},
-      </if>
-      <if test="lastModifyTime != null">
-        #{lastModifyTime},
-      </if>
-      <if test="versionNum != null">
-        #{versionNum},
-      </if>
-      <if test="deleted != null">
-        #{deleted},
-      </if>
-      <if test="isValid != null">
-        #{isValid},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.ChatLog">
-    <!--@mbg.generated-->
-    update chat_log
-    <set>
-      <if test="departureId != null">
-        departure_id = #{departureId},
-      </if>
-      <if test="userId != null">
+    <resultMap id="BaseResultMap" type="com.tomasky.departure.model.ChatLog">
+        <!--@mbg.generated-->
+        <id column="id" property="id"/>
+        <result column="departure_id" property="departureId"/>
+        <result column="user_id" property="userId"/>
+        <result column="chat_content" property="chatContent"/>
+        <result column="created_id" property="createdId"/>
+        <result column="last_modify_id" property="lastModifyId"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="last_modify_time" property="lastModifyTime"/>
+        <result column="version_num" property="versionNum"/>
+        <result column="deleted" property="deleted"/>
+        <result column="is_valid" property="isValid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, departure_id, user_id, chat_content, created_id, last_modify_id, created_time,
+        last_modify_time, version_num, deleted, is_valid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from chat_log
+        where id = #{id}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from chat_log
+        where id = #{id}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.ChatLog"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into chat_log (departure_id, user_id, chat_content, created_id, last_modify_id,
+        created_time, last_modify_time, version_num, deleted, is_valid)
+        values (#{departureId}, #{userId}, #{chatContent}, #{createdId}, #{lastModifyId},
+        #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.ChatLog"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into chat_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="departureId != null">
+                departure_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="chatContent != null">
+                chat_content,
+            </if>
+            <if test="createdId != null">
+                created_id,
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time,
+            </if>
+            <if test="versionNum != null">
+                version_num,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="isValid != null">
+                is_valid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="departureId != null">
+                #{departureId},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="chatContent != null">
+                #{chatContent},
+            </if>
+            <if test="createdId != null">
+                #{createdId},
+            </if>
+            <if test="lastModifyId != null">
+                #{lastModifyId},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime},
+            </if>
+            <if test="lastModifyTime != null">
+                #{lastModifyTime},
+            </if>
+            <if test="versionNum != null">
+                #{versionNum},
+            </if>
+            <if test="deleted != null">
+                #{deleted},
+            </if>
+            <if test="isValid != null">
+                #{isValid},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.ChatLog">
+        <!--@mbg.generated-->
+        update chat_log
+        <set>
+            <if test="departureId != null">
+                departure_id = #{departureId},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="chatContent != null">
+                chat_content = #{chatContent},
+            </if>
+            <if test="createdId != null">
+                created_id = #{createdId},
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id = #{lastModifyId},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime},
+            </if>
+            <if test="versionNum != null">
+                version_num = #{versionNum},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+            <if test="isValid != null">
+                is_valid = #{isValid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.ChatLog">
+        <!--@mbg.generated-->
+        update chat_log
+        set departure_id = #{departureId},
         user_id = #{userId},
-      </if>
-      <if test="chatContent != null">
         chat_content = #{chatContent},
-      </if>
-      <if test="createdId != null">
         created_id = #{createdId},
-      </if>
-      <if test="lastModifyId != null">
         last_modify_id = #{lastModifyId},
-      </if>
-      <if test="createdTime != null">
         created_time = #{createdTime},
-      </if>
-      <if test="lastModifyTime != null">
         last_modify_time = #{lastModifyTime},
-      </if>
-      <if test="versionNum != null">
         version_num = #{versionNum},
-      </if>
-      <if test="deleted != null">
         deleted = #{deleted},
-      </if>
-      <if test="isValid != null">
-        is_valid = #{isValid},
-      </if>
-    </set>
-    where id = #{id}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.ChatLog">
-    <!--@mbg.generated-->
-    update chat_log
-    set departure_id = #{departureId},
-      user_id = #{userId},
-      chat_content = #{chatContent},
-      created_id = #{createdId},
-      last_modify_id = #{lastModifyId},
-      created_time = #{createdTime},
-      last_modify_time = #{lastModifyTime},
-      version_num = #{versionNum},
-      deleted = #{deleted},
-      is_valid = #{isValid}
-    where id = #{id}
-  </update>
+        is_valid = #{isValid}
+        where id = #{id}
+    </update>
     <select id="selectChatLogListByDepartureId" resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List" />
-      from chat_log
-      where departure_id = #{departureId}
-      order by created_time
+        select
+        <include refid="Base_Column_List"/>
+        from chat_log
+        where departure_id = #{departureId}
+        order by created_time
     </select>
     <select id="selectChatLogListSize" resultType="java.lang.Integer">
-      select
-            count(id)
-      from chat_log
-      where departure_id = #{departureId}
+        select
+        count(id)
+        from chat_log
+        where departure_id = #{departureId}
     </select>
-  <select id="selectOtherUserIdListInChat" resultType="java.lang.Integer">
+    <select id="selectOtherUserIdListInChat" resultType="java.lang.Integer">
         SELECT
-            user_id
+        user_id
         FROM
-            chat_log
+        chat_log
         WHERE
-            departure_id = #{departureId}
-            AND user_id != #{userId}
+        departure_id = #{departureId}
+        AND user_id != #{userId}
         GROUP BY
-            user_id
-  </select>
+        user_id
+    </select>
 </mapper>

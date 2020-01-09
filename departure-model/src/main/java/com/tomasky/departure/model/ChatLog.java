@@ -11,16 +11,24 @@ import java.util.Date;
  */
 
 public class ChatLog extends BaseModel implements Serializable {
-    /** 离职表单ID */
+    /**
+     * 离职表单ID
+     */
     private Integer departureId;
 
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     private Integer userId;
 
-    /** 聊天内容 */
+    /**
+     * 聊天内容
+     */
     private String chatContent;
 
-    /** 聊天发送时间*/
+    /**
+     * 聊天发送时间
+     */
     private String chatTime;
 
     public ChatLog() {

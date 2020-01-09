@@ -28,9 +28,9 @@ public class TestServiceImpl implements TestService {
     @Override
     public PageInfo<UserInfo> findInnConfigList() {
         System.out.println(systemConfig.getEnv());
-        PageHelper.startPage(1,10);
+        PageHelper.startPage(1, 10);
         LOGGER.info("123123123");
-        List<UserInfo> list= userInfoMapper.selectUserInfoList();
+        List<UserInfo> list = userInfoMapper.selectUserInfoList();
         PageInfo<UserInfo> pageInfo = new PageInfo<UserInfo>(list);
         return pageInfo;
     }

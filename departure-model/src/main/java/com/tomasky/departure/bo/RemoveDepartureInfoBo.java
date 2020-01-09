@@ -4,11 +4,17 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-10-25.16:41
  */
 public class RemoveDepartureInfoBo {
-    /** 离职表单ID*/
+    /**
+     * 离职表单ID
+     */
     private Integer id;
-    /** 用户ID*/
+    /**
+     * 用户ID
+     */
     private Integer userId;
-    /** 公司ID*/
+    /**
+     * 公司ID
+     */
     private Integer companyId;
 
     public Integer getId() {

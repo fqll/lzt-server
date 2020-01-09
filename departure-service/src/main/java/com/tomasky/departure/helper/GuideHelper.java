@@ -41,6 +41,7 @@ public class GuideHelper {
 
     /**
      * 待审批
+     *
      * @return
      */
     private AuditDepartureVo getAuditDepartureVoGuideData() {
@@ -50,6 +51,7 @@ public class GuideHelper {
 
     /**
      * 已办结
+     *
      * @return
      */
     private AuditDepartureVo getCreatedDepartureVoGuideData() {
@@ -69,6 +71,7 @@ public class GuideHelper {
 
     /**
      * 引导待入职离职表单数据
+     *
      * @return
      */
     public Map<String, Object> getDelayEntryDepartureInfo() {
@@ -78,6 +81,7 @@ public class GuideHelper {
 
     /**
      * 查询预入职列表
+     *
      * @return
      */
     public Map<String, Object> getDelayEntryListData() {
@@ -87,6 +91,7 @@ public class GuideHelper {
 
     /**
      * 获取引导的聊天列表
+     *
      * @return
      */
     public Map<String, Object> getChatListData() {
@@ -96,6 +101,7 @@ public class GuideHelper {
 
     /**
      * 获取当前登录用户信息
+     *
      * @return
      */
     public Map<String, Object> getCurrentUserInfoData() {
@@ -105,6 +111,7 @@ public class GuideHelper {
 
     /**
      * 获取引导的审批人列表
+     *
      * @return
      */
     public Map<String, Object> getAuditUserListData() {

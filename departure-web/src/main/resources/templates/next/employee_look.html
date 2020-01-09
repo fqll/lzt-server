@@ -5,19 +5,21 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
     <title>张三的离职证明</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
-        html{
+
+        html {
             font-size: 62.5%;
         }
+
         /* demo */
-        html,body {
+        html, body {
             color: #333;
             margin: 0;
             height: 100%;
-            font-family: "Myriad Set Pro","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+            font-family: "Myriad Set Pro", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             font-weight: normal;
@@ -68,7 +70,7 @@
             border: 0;
         }
 
-        button,input,optgroup,select,textarea {
+        button, input, optgroup, select, textarea {
             margin: 0;
             font: inherit;
             color: inherit;
@@ -384,7 +386,7 @@
             height: 8px;
             display: inline-block;
             border-radius: 100%;
-            background-color: rgba(255,255,255,0.4);
+            background-color: rgba(255, 255, 255, 0.4);
         }
 
         .slider-pagination > .slider-pagination-item.slider-pagination-item-active {
@@ -629,11 +631,11 @@
             color: #000000;
         }
 
-        .aui-form-group .form-control:focus,.form-group .form-control:valid {
+        .aui-form-group .form-control:focus, .form-group .form-control:valid {
             outline: 0;
         }
 
-        .aui-form-group .form-control:focus+.form-label,.form-group .form-control:valid+.form-label {
+        .aui-form-group .form-control:focus + .form-label, .form-group .form-control:valid + .form-label {
             font-size: 0.7rem;
             color: #3c9bfa;
             -ms-transform: translateY(-15px);
@@ -712,7 +714,7 @@
             -ms-flex-align: center;
             align-items: center;
             background: #ffffff;
-            padding: 1rem ;
+            padding: 1rem;
         }
 
         .aui-tabBar-item {
@@ -772,14 +774,14 @@
         <div class="aui-center">
             <span style="font-size: 1.4rem" class="aui-center-title">张三的离职证明（已被关注）</span>
         </div>
-        <a onclick="location.href='../next/chat.html'" href="javascript:;" class="aui-navBar-item" >
+        <a onclick="location.href='../next/chat.html'" href="javascript:;" class="aui-navBar-item">
             <i class="icon icon-sys"></i>联系
         </a>
     </header>
     <section class="aui-scrollView">
         <div class="aui-link-list">
             <div class="aui-form-group b-line">
-                <input required="required"  readonly value="公司原因" class="form-control " placeholder="">
+                <input required="required" readonly value="公司原因" class="form-control " placeholder="">
                 <label class="form-label">离职原因</label>
             </div>
             <div class="aui-form-group b-line">
@@ -815,24 +817,27 @@
                 <label class="form-label">员工离职原因（匿名）</label>
             </div>
             <div class="aui-form-group b-line">
-                <textarea required="required" readonly value="" class="form-control" placeholder="">该员工工作态度较差，业务能力欠缺</textarea>
+                <textarea required="required" readonly value="" class="form-control"
+                          placeholder="">该员工工作态度较差，业务能力欠缺</textarea>
                 <label class="form-label">公司评语</label>
             </div>
             <div class="aui-form-group b-line">
-                <textarea required="required"  readonly value="我竟无言以对" class="form-control" placeholder="">我竟无言以对</textarea>
+                <textarea required="required" readonly value="我竟无言以对" class="form-control"
+                          placeholder="">我竟无言以对</textarea>
                 <label class="form-label">员工自评</label>
             </div>
         </div>
 
     </section>
-    <footer onclick="alert('分享链接')" class="aui-footer aui-footer-fixed" >
+    <footer onclick="alert('分享链接')" class="aui-footer aui-footer-fixed">
         <a href="javascript:;" class="aui-tabBar-item">
             <span class="aui-tabBar-item-text">分享链接</span>
         </a>
     </footer>
 
 
-    <footer style="bottom: 5rem" onclick="location.href='../employee/export_certificate.html'" class="aui-footer aui-footer-fixed" >
+    <footer style="bottom: 5rem" onclick="location.href='../employee/export_certificate.html'"
+            class="aui-footer aui-footer-fixed">
         <a href="javascript:;" class="aui-tabBar-item">
             <span class="aui-tabBar-item-text">打印离职证明</span>
         </a>

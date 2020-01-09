@@ -26,12 +26,14 @@ public interface AuthorityInfoMapper {
 
     /**
      * 查询全部功能权限列表
+     *
      * @return
      */
     List<AuthorityVo> selectAuthorityVoList();
 
     /**
      * 查询全部功能权限
+     *
      * @return
      */
     List<AuthorityInfo> selectAllAuthorityInfo();

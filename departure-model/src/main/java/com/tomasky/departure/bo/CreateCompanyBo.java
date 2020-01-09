@@ -4,17 +4,29 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-08-05.15:57
  */
 public class CreateCompanyBo extends BaseBo {
-    /** 公司名称 */
+    /**
+     * 公司名称
+     */
     private String companyName;
-    /** 在职人数 */
+    /**
+     * 在职人数
+     */
     private Integer incumbentsCount;
-    /** 社会统一信用代码 */
+    /**
+     * 社会统一信用代码
+     */
     private String creditCode;
-    /** log图片地址 */
+    /**
+     * log图片地址
+     */
     private String logUrl;
-    /** 员工姓名*/
+    /**
+     * 员工姓名
+     */
     private String nickName;
-    /** 运营模式，0：线下模式，1：线上模式*/
+    /**
+     * 运营模式，0：线下模式，1：线上模式
+     */
     private String processMode;
 
     public String getCompanyName() {

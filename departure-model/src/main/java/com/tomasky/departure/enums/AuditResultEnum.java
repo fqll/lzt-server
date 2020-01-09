@@ -16,8 +16,8 @@ public enum AuditResultEnum {
     }
 
     public static String getNameFromValue(String value) {
-        for(AuditResultEnum auditEnum : AuditResultEnum.values()) {
-            if(auditEnum.value.equals(value)) {
+        for (AuditResultEnum auditEnum : AuditResultEnum.values()) {
+            if (auditEnum.value.equals(value)) {
                 return auditEnum.name;
             }
         }

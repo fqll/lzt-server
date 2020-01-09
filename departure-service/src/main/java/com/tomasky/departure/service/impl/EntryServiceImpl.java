@@ -64,10 +64,10 @@ public class EntryServiceImpl implements EntryService {
     private SendMailHelper sendMailHelper;
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void delayEntry(DelayEntryBo delayEntryBo) {
         logger.info("预备入职接口入参：" + JSON.toJSONString(delayEntryBo));
-        if(delayEntryBo.isGuideMode()) {
+        if (delayEntryBo.isGuideMode()) {
             return;
         }
         checkDelayEntryBo(delayEntryBo);
@@ -79,7 +79,7 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("离职表单不存在");
         }
         String auditStatus = departureInfo.getAuditStatus();
-        if(! DepartureAuditStatusEnum.FINISH.getValue().equals(auditStatus)) {
+        if (!DepartureAuditStatusEnum.FINISH.getValue().equals(auditStatus)) {
             throw new RuntimeException("离职表单状态不是已办结");
         }
         Integer userId = delayEntryBo.getUserId();
@@ -94,10 +94,10 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void join(DelayEntryBo delayEntryBo) {
         logger.info("入职接口入参：" + JSON.toJSONString(delayEntryBo));
-        if(delayEntryBo.isGuideMode()) {
+        if (delayEntryBo.isGuideMode()) {
             return;
         }
         checkDelayEntryBo(delayEntryBo);
@@ -109,12 +109,12 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("离职表单不存在");
         }
         String auditStatus = departureInfo.getAuditStatus();
-        if(! DepartureAuditStatusEnum.DELAY_ENTRY.getValue().equals(auditStatus) && ! DepartureAuditStatusEnum.FINISH.getValue().equals(auditStatus)) {
+        if (!DepartureAuditStatusEnum.DELAY_ENTRY.getValue().equals(auditStatus) && !DepartureAuditStatusEnum.FINISH.getValue().equals(auditStatus)) {
             throw new RuntimeException("离职表单状态不是已办结或预备入职状态");
         }
         departureInfo.setAuditStatus(DepartureAuditStatusEnum.ENTRY.getValue());
         Integer followUserId = departureInfo.getFollowUserId();
-        if(followUserId == null) {
+        if (followUserId == null) {
             departureInfo.setFollowUserId(userId);
         }
         // 设置入职时间
@@ -137,13 +137,13 @@ public class EntryServiceImpl implements EntryService {
     public Map<String, Object> findDelayEntry(Integer userId, Integer companyId, String type, String mode, String nickName) {
         logger.info("查询离职列表接口入参userId：" + userId + "，companyId：" + companyId + ",type=" + type + ",mode=" + mode + ",nickName=" + nickName);
         try {
-            if(Constants.MODE_GUIDE.equals(mode)) {
+            if (Constants.MODE_GUIDE.equals(mode)) {
                 return guideHelper.getDelayEntryListData();
             }
             DepartureAuditStatusEnum departureAuditStatusEnum = null;
-            if(Constants.DELAY_ENTRY.equals(type)) {
+            if (Constants.DELAY_ENTRY.equals(type)) {
                 departureAuditStatusEnum = DepartureAuditStatusEnum.DELAY_ENTRY;
-            } else if(Constants.ENTRY.equals(type)) {
+            } else if (Constants.ENTRY.equals(type)) {
                 departureAuditStatusEnum = DepartureAuditStatusEnum.ENTRY;
             } else {
                 throw new RuntimeException("位置的状态类型");
@@ -152,27 +152,28 @@ public class EntryServiceImpl implements EntryService {
             if (userRoleInfo == null) {
                 throw new RuntimeException("用户不存在");
             }
-            if(! EmployeeJobStatus.INCUMBENCY.getValue().equals(userRoleInfo.getJobStatus())) {
+            if (!EmployeeJobStatus.INCUMBENCY.getValue().equals(userRoleInfo.getJobStatus())) {
                 throw new RuntimeException("当前用户在职状态异常");
             }
-        List<DelayEntryVo> delayEntryVoList = departureInfoMapper.selectDelayEntryVoList(companyId, departureAuditStatusEnum.getValue(), nickName);
-        if(! CollectionUtils.isEmpty(delayEntryVoList)) {
-            for(DelayEntryVo delayEntryVo : delayEntryVoList) {
-                DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(delayEntryVo.getDepartureId());
-                boolean chatAble = entryHelper.isChatAble(departureInfo, userId);
-                delayEntryVo.setChatAble(chatAble);
+            List<DelayEntryVo> delayEntryVoList = departureInfoMapper.selectDelayEntryVoList(companyId, departureAuditStatusEnum.getValue(), nickName);
+            if (!CollectionUtils.isEmpty(delayEntryVoList)) {
+                for (DelayEntryVo delayEntryVo : delayEntryVoList) {
+                    DepartureInfo departureInfo = departureInfoMapper.selectByPrimaryKey(delayEntryVo.getDepartureId());
+                    boolean chatAble = entryHelper.isChatAble(departureInfo, userId);
+                    delayEntryVo.setChatAble(chatAble);
+                }
             }
+            logger.info("查询离职列表接口结束");
+            return CommonUtils.setSuccessInfo(delayEntryVoList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return CommonUtils.setErrorInfo(e);
         }
-        logger.info("查询离职列表接口结束");
-        return CommonUtils.setSuccessInfo(delayEntryVoList);
-    } catch (Exception e) {
-        e.printStackTrace();
-        return CommonUtils.setErrorInfo(e);
     }
-}
 
     /**
      * 校验输入参数
+     *
      * @param delayEntryBo
      */
     private void checkDelayEntryBo(DelayEntryBo delayEntryBo) {
@@ -184,7 +185,7 @@ public class EntryServiceImpl implements EntryService {
         if (companyId == null) {
             throw new RuntimeException("公司ID不能为空");
         }
-        if(departureId.equals(companyId)) {
+        if (departureId.equals(companyId)) {
             throw new RuntimeException("不能再次入职到原公司");
         }
         Integer userId = delayEntryBo.getUserId();
@@ -195,7 +196,7 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public Map<String, Object> findEmployeeCheckList(Integer userId, Integer companyId, String type) {
-        if(! Constants.CHECK_TYPE_SEND.equals(type) && ! Constants.CHECK_TYPE_JOIN.equals(type)) {
+        if (!Constants.CHECK_TYPE_SEND.equals(type) && !Constants.CHECK_TYPE_JOIN.equals(type)) {
             throw new RuntimeException("未知的背调类型");
         }
         List<EmployeeCheckVo> employeeCheckVoList = departureInfoMapper.selectEmployeeCheckVoList(userId, companyId, type);
@@ -212,7 +213,7 @@ public class EntryServiceImpl implements EntryService {
         }
         String emailAddress = userRoleInfo.getEmailAddress();
         String emailPassword = userRoleInfo.getEmailPassword();
-        if(StringUtils.isNoneBlank(emailAddress) && StringUtils.isNoneBlank(emailPassword)) {
+        if (StringUtils.isNoneBlank(emailAddress) && StringUtils.isNoneBlank(emailPassword)) {
             hasEmail = true;
         }
         logger.info("是否配置邮箱接口返回：" + hasEmail);
@@ -225,7 +226,7 @@ public class EntryServiceImpl implements EntryService {
         // 校验输入参数
         checkAddEmailBo(addEmailBo);
         boolean authLogin = sendMailHelper.authLogin(new SendEntryMailBo(addEmailBo));
-        if(! authLogin) {
+        if (!authLogin) {
             throw new RuntimeException("用户名或者密码错误！");
         }
         Integer userId = addEmailBo.getUserId();
@@ -251,6 +252,7 @@ public class EntryServiceImpl implements EntryService {
 
     /**
      * 校验输入参数
+     *
      * @param addEmailBo
      */
     private void checkAddEmailBo(AddEmailBo addEmailBo) {
@@ -263,11 +265,11 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("公司ID不能为空");
         }
         String emailAddress = addEmailBo.getEmailAddress();
-        if(StringUtils.isBlank(emailAddress)) {
+        if (StringUtils.isBlank(emailAddress)) {
             throw new RuntimeException("邮箱地址不能为空");
         }
         String emailPassword = addEmailBo.getEmailPassword();
-        if(StringUtils.isBlank(emailPassword)) {
+        if (StringUtils.isBlank(emailPassword)) {
             throw new RuntimeException("邮箱密码不能为空");
         }
     }
@@ -294,7 +296,7 @@ public class EntryServiceImpl implements EntryService {
             throw new RuntimeException("解密过程出现异常");
         }
         boolean result = sendMailHelper.sendEmail(new SendEntryMailBo(sendEntryNoticeBo, userRoleInfo, companyInfo, emailPassword, getEnclosurePath()));
-        if(result) {
+        if (result) {
             EntryNotice entryNotice = new EntryNotice(sendEntryNoticeBo);
             new BaseModelUtils<EntryNotice>().buildCreateEntity(entryNotice, sendEntryNoticeBo.getUserId());
             entryNoticeMapper.insert(entryNotice);

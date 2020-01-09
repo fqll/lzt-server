@@ -4,13 +4,21 @@ package com.tomasky.departure.bo;
  * Created by sam on 2019-08-07.14:24
  */
 public class JoinCompanyBo extends BaseBo {
-    /** 公司ID*/
+    /**
+     * 公司ID
+     */
     private Integer companyId;
-    /** 入职状态*/
+    /**
+     * 入职状态
+     */
     private String jobStatus;
-    /** 员工昵称*/
+    /**
+     * 员工昵称
+     */
     private String nickName;
-    /** 审批状态*/
+    /**
+     * 审批状态
+     */
     private String auditStatus;
 
     public JoinCompanyBo(Integer userId, Integer companyId, String jobStatus, String auditStatus) {

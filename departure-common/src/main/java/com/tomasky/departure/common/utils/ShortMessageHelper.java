@@ -29,6 +29,7 @@ public class ShortMessageHelper {
 
     /**
      * 根据指定手机号码发送短信
+     *
      * @param phoneNum
      * @param content
      * @param channel
@@ -42,6 +43,7 @@ public class ShortMessageHelper {
 
     /**
      * 根据指定手机号码集合发送短信
+     *
      * @param receivers
      * @param content
      * @param channel
@@ -59,16 +61,16 @@ public class ShortMessageHelper {
                 logger.info(new StringBuilder().append("send sms total:").append(receivers.size()).toString());
                 messageSendResult.setStatus(true);
             } else {
-                logger.info( "sms 发送失败:"+ content);
+                logger.info("sms 发送失败:" + content);
                 messageSendResult.setStatus(false);
             }
-            messageSendResult.setCode(new StringBuilder().append(responseMap.get("mterrcode")).append("_").append((String)responseMap.get("mtstat")).toString());
+            messageSendResult.setCode(new StringBuilder().append(responseMap.get("mterrcode")).append("_").append((String) responseMap.get("mtstat")).toString());
         }
         return messageSendResult;
     }
 
     private Map<String, Object> buildParams(List<String> receivers, String content, SmsChannel channel) {
-        Map<String,Object> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         switch (channel) {
             case SEND_TYPE_AUTO:
                 params.put("spid", "6278");
@@ -118,7 +120,7 @@ public class ShortMessageHelper {
     }
 
     private Map<String, String> analyzeResponse(String responseStr) {
-        Map<String,String> responseMap = null;
+        Map<String, String> responseMap = null;
         if (StringUtils.isNotBlank(responseStr)) {
             responseMap = new HashMap<>();
             String[] result = responseStr.split("&");

@@ -11,6 +11,7 @@ public interface AuthorizationService {
 
     /**
      * 通过jscode换取用户的openid以及sessionkey
+     *
      * @param jsCode
      * @return
      */
@@ -18,13 +19,15 @@ public interface AuthorizationService {
 
     /**
      * 获取微信的AccessToken
+     *
      * @return
      */
     AccessTokenResponse getAccessToken();
 
     /**
      * 根据accessToken和业务参数生成
-     * @param page 页面路径
+     *
+     * @param page  页面路径
      * @param scene 参数
      * @return
      */

@@ -29,6 +29,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 根据用户ID和搜索关键字查询用户尚未加入的公司列表
+     *
      * @param userId
      * @param keyWords
      * @return
@@ -40,6 +41,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 创建公司
+     *
      * @param createCompanyBo
      * @return
      */
@@ -55,6 +57,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 加入公司
+     *
      * @param joinCompanyBo
      * @return
      */
@@ -71,9 +74,10 @@ public class CompanyController extends BaseController {
 
     /**
      * 根据公司ID查询待加入公司的待审批人员列表
+     *
      * @param companyId
      * @param auditStatus,0:申请加入，1：已加入
-     * @param nickName 员工昵称
+     * @param nickName                 员工昵称
      * @return
      */
     @GetMapping(value = "getUserList")
@@ -83,6 +87,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 根据用户ID、公司ID、审批结果，修改用户加入公司的审批状态
+     *
      * @param userAuditBo
      * @return
      */
@@ -99,6 +104,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 邀请加入公司
+     *
      * @param userAuditBo
      * @return
      */
@@ -116,6 +122,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 更新员工角色信息
+     *
      * @param userAuditBo
      * @return
      */
@@ -132,6 +139,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 校验员工姓名在企业中的唯一性
+     *
      * @param companyId
      * @param nickName
      * @param employeeId
@@ -144,6 +152,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 根据公司ID生成公司的小程序码
+     *
      * @param companyId
      * @return
      */
@@ -159,6 +168,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 根据公司ID查询公司详情
+     *
      * @param companyId
      * @return
      */
@@ -169,6 +179,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 设置主企业
+     *
      * @param joinCompanyBo
      * @return
      */
@@ -185,6 +196,7 @@ public class CompanyController extends BaseController {
 
     /**
      * 修改在职人数
+     *
      * @param incumbentsCountBo
      * @return
      */

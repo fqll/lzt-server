@@ -55,6 +55,7 @@ public class PushServiceImpl implements PushService {
     /**
      * 获取微信推送接口的完整地址
      * https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=ACCESS_TOKEN
+     *
      * @return
      */
     private String getSendUrl(String accessToken) {

@@ -4,25 +4,25 @@
     width: 19em
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
     .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-        width:38em
+        width: 38em
     }
 }
 
-@media(min-width: 992px) {
+@media (min-width: 992px) {
     .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-        width:38em
+        width: 38em
     }
 }
 
-@media(min-width: 1200px) {
+@media (min-width: 1200px) {
     .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
-        width:38em
+        width: 38em
     }
 }
 
-.bootstrap-datetimepicker-widget.dropdown-menu:before,.bootstrap-datetimepicker-widget.dropdown-menu:after {
+.bootstrap-datetimepicker-widget.dropdown-menu:before, .bootstrap-datetimepicker-widget.dropdown-menu:after {
     content: '';
     display: inline-block;
     position: absolute
@@ -32,7 +32,7 @@
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-bottom: 7px solid #ccc;
-    border-bottom-color: rgba(0,0,0,.2);
+    border-bottom-color: rgba(0, 0, 0, .2);
     top: -7px;
     left: 7px
 }
@@ -49,7 +49,7 @@
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-top: 7px solid #ccc;
-    border-top-color: rgba(0,0,0,.2);
+    border-top-color: rgba(0, 0, 0, .2);
     bottom: -7px;
     left: 6px
 }
@@ -84,7 +84,7 @@
     box-shadow: none
 }
 
-.bootstrap-datetimepicker-widget .timepicker-hour,.bootstrap-datetimepicker-widget .timepicker-minute,.bootstrap-datetimepicker-widget .timepicker-second {
+.bootstrap-datetimepicker-widget .timepicker-hour, .bootstrap-datetimepicker-widget .timepicker-minute, .bootstrap-datetimepicker-widget .timepicker-second {
     width: 54px;
     font-weight: 700;
     font-size: 1.2em;
@@ -102,7 +102,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Increment Hours"
 }
@@ -114,7 +114,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Increment Minutes"
 }
@@ -126,7 +126,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Decrement Hours"
 }
@@ -138,7 +138,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Decrement Minutes"
 }
@@ -150,7 +150,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Show Hours"
 }
@@ -162,7 +162,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Show Minutes"
 }
@@ -174,7 +174,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Toggle AM/PM"
 }
@@ -190,7 +190,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Toggle Date and Time Screens"
 }
@@ -214,7 +214,7 @@
     margin: 0
 }
 
-.bootstrap-datetimepicker-widget td,.bootstrap-datetimepicker-widget th {
+.bootstrap-datetimepicker-widget td, .bootstrap-datetimepicker-widget th {
     text-align: center;
     border-radius: 4px
 }
@@ -229,7 +229,7 @@
     width: 145px
 }
 
-.bootstrap-datetimepicker-widget th.disabled,.bootstrap-datetimepicker-widget th.disabled:hover {
+.bootstrap-datetimepicker-widget th.disabled, .bootstrap-datetimepicker-widget th.disabled:hover {
     background: 0 0;
     color: #777;
     cursor: not-allowed
@@ -242,7 +242,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Previous Month"
 }
@@ -254,7 +254,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
     content: "Next Month"
 }
@@ -286,12 +286,12 @@
     width: 20px
 }
 
-.bootstrap-datetimepicker-widget td.day:hover,.bootstrap-datetimepicker-widget td.hour:hover,.bootstrap-datetimepicker-widget td.minute:hover,.bootstrap-datetimepicker-widget td.second:hover {
+.bootstrap-datetimepicker-widget td.day:hover, .bootstrap-datetimepicker-widget td.hour:hover, .bootstrap-datetimepicker-widget td.minute:hover, .bootstrap-datetimepicker-widget td.second:hover {
     background: #eee;
     cursor: pointer
 }
 
-.bootstrap-datetimepicker-widget td.old,.bootstrap-datetimepicker-widget td.new {
+.bootstrap-datetimepicker-widget td.old, .bootstrap-datetimepicker-widget td.new {
     color: #777
 }
 
@@ -304,23 +304,23 @@
     display: inline-block;
     border-left: 7px solid transparent;
     border-bottom: 7px solid #428bca;
-    border-top-color: rgba(0,0,0,.2);
+    border-top-color: rgba(0, 0, 0, .2);
     position: absolute;
     bottom: 4px;
     right: 4px
 }
 
-.bootstrap-datetimepicker-widget td.active,.bootstrap-datetimepicker-widget td.active:hover {
+.bootstrap-datetimepicker-widget td.active, .bootstrap-datetimepicker-widget td.active:hover {
     background-color: #428bca;
     color: #fff;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.25)
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25)
 }
 
 .bootstrap-datetimepicker-widget td.active.today:before {
     border-bottom-color: #fff
 }
 
-.bootstrap-datetimepicker-widget td.disabled,.bootstrap-datetimepicker-widget td.disabled:hover {
+.bootstrap-datetimepicker-widget td.disabled, .bootstrap-datetimepicker-widget td.disabled:hover {
     background: 0 0;
     color: #777;
     cursor: not-allowed
@@ -343,14 +343,14 @@
 .bootstrap-datetimepicker-widget td span.active {
     background-color: #428bca;
     color: #fff;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.25)
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25)
 }
 
 .bootstrap-datetimepicker-widget td span.old {
     color: #777
 }
 
-.bootstrap-datetimepicker-widget td span.disabled,.bootstrap-datetimepicker-widget td span.disabled:hover {
+.bootstrap-datetimepicker-widget td span.disabled, .bootstrap-datetimepicker-widget td span.disabled:hover {
     background: 0 0;
     color: #777;
     cursor: not-allowed
@@ -372,6 +372,6 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0
 }

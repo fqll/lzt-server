@@ -34,10 +34,10 @@ public class TestController {
     private PushService pushService;
 
     @GetMapping(value = "send")
-    public Map<String, Object> send () {
+    public Map<String, Object> send() {
         pushService.pushUnreadMessage();
         return CommonUtils.setSuccessInfo();
-}
+    }
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
     public String say() {

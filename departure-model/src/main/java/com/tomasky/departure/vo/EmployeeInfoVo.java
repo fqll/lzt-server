@@ -9,19 +9,33 @@ import java.math.BigDecimal;
  * Created by sam on 2019-08-08.10:52
  */
 public class EmployeeInfoVo {
-    /** 公司ID*/
+    /**
+     * 公司ID
+     */
     private Integer companyId;
-    /** 公司名称 */
+    /**
+     * 公司名称
+     */
     private String companyName;
-    /** 在职人数 */
+    /**
+     * 在职人数
+     */
     private Integer incumbentsCount;
-    /** log图片地址 */
+    /**
+     * log图片地址
+     */
     private String logUrl;
-    /** 年离职率*/
+    /**
+     * 年离职率
+     */
     private BigDecimal annualTurnoverRate;
-    /** 月离职率*/
+    /**
+     * 月离职率
+     */
     private BigDecimal monthlyTurnoverRate;
-    /** 公司ID对应的邀请码*/
+    /**
+     * 公司ID对应的邀请码
+     */
     private String shareCode;
 
     public EmployeeInfoVo(CompanyInfo companyInfo, BigDecimal annualTurnoverRate, BigDecimal monthlyTurnoverRate) {

@@ -10,21 +10,37 @@ import java.util.List;
  * Created by sam on 2019-11-26.14:17
  */
 public class SendEntryMailBo extends BaseUserCompanyBo {
-    /** 模板ID*/
+    /**
+     * 模板ID
+     */
     private Integer templateId;
-    /** 发送邮箱*/
+    /**
+     * 发送邮箱
+     */
     private String from;
-    /** 密码*/
+    /**
+     * 密码
+     */
     private String password;
-    /** 接收邮件的邮箱*/
+    /**
+     * 接收邮件的邮箱
+     */
     private String to;
-    /** 枚举类型，参考枚举类：MailTypeEnum，邮箱类型，1：腾讯企业邮箱*/
+    /**
+     * 枚举类型，参考枚举类：MailTypeEnum，邮箱类型，1：腾讯企业邮箱
+     */
     private String mailType;
-    /** 邮件消息类型*/
+    /**
+     * 邮件消息类型
+     */
     private MimeMessageDTO message;
-    /** 是否是群发*/
+    /**
+     * 是否是群发
+     */
     private boolean isGroup;
-    /** 附件文件路径集合*/
+    /**
+     * 附件文件路径集合
+     */
     private List<String> filepath;
 
     public SendEntryMailBo() {

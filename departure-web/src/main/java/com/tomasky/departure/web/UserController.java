@@ -25,6 +25,7 @@ public class UserController extends BaseController {
 
     /**
      * 微信首次登录系统获取openId
+     *
      * @param jsCode
      * @return
      */
@@ -35,6 +36,7 @@ public class UserController extends BaseController {
 
     /**
      * 根据openId获取用户信息和用户所属的公司信息
+     *
      * @param wxUserInfoBo
      * @return
      */
@@ -45,6 +47,7 @@ public class UserController extends BaseController {
 
     /**
      * 完善用户信息
+     *
      * @param wxUserInfoBo
      * @return
      */
@@ -56,6 +59,7 @@ public class UserController extends BaseController {
 
     /**
      * 获取当前用户和公司的权限信息
+     *
      * @param userId
      * @param companyId
      * @return
@@ -67,6 +71,7 @@ public class UserController extends BaseController {
 
     /**
      * 查询全部角色信息
+     *
      * @return
      */
 //    @RequestMapping(value = "getRoleList", method = RequestMethod.GET)
@@ -76,6 +81,7 @@ public class UserController extends BaseController {
 
     /**
      * 查询全部权限信息
+     *
      * @return
      */
     @RequestMapping(value = "getAuthorityList", method = RequestMethod.GET)
@@ -86,6 +92,7 @@ public class UserController extends BaseController {
 
     /**
      * 根据公司ID获取公司的管理人员
+     *
      * @param companyId
      * @return
      */
@@ -96,6 +103,7 @@ public class UserController extends BaseController {
 
     /**
      * 根据公司ID和用户ID查询审批列表（待我审批的、我已审批的、我发起的、抄送我的）
+     *
      * @param userId
      * @param companyId
      * @return
@@ -107,6 +115,7 @@ public class UserController extends BaseController {
 
     /**
      * 设置审批信息为已读
+     *
      * @param auditReadBo
      * @return
      */
@@ -123,6 +132,7 @@ public class UserController extends BaseController {
 
     /**
      * 工作台首页展示待办事项红点
+     *
      * @param userId
      * @param companyId
      * @return

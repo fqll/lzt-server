@@ -1,179 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomasky.departure.mapper.UserAuthorityInfoMapper">
-  <resultMap id="BaseResultMap" type="com.tomasky.departure.model.UserAuthorityInfo">
-    <!--@mbg.generated-->
-    <id column="id" property="id" />
-    <result column="user_id" property="userId" />
-    <result column="company_id" property="companyId" />
-    <result column="authority_id" property="authorityId" />
-    <result column="created_id" property="createdId" />
-    <result column="last_modify_id" property="lastModifyId" />
-    <result column="created_time" property="createdTime" />
-    <result column="last_modify_time" property="lastModifyTime" />
-    <result column="version_num" property="versionNum" />
-    <result column="deleted" property="deleted" />
-    <result column="is_valid" property="isValid" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, user_id, company_id, authority_id, created_id, last_modify_id, created_time, 
-    last_modify_time, version_num, deleted, is_valid
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from user_authority_info
-    where id = #{id}
-  </select>
+    <resultMap id="BaseResultMap" type="com.tomasky.departure.model.UserAuthorityInfo">
+        <!--@mbg.generated-->
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="authority_id" property="authorityId"/>
+        <result column="created_id" property="createdId"/>
+        <result column="last_modify_id" property="lastModifyId"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="last_modify_time" property="lastModifyTime"/>
+        <result column="version_num" property="versionNum"/>
+        <result column="deleted" property="deleted"/>
+        <result column="is_valid" property="isValid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, company_id, authority_id, created_id, last_modify_id, created_time,
+        last_modify_time, version_num, deleted, is_valid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_authority_info
+        where id = #{id}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from user_authority_info
-    where id = #{id}
-  </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserAuthorityInfo" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_authority_info (user_id, company_id, authority_id, created_id, last_modify_id,
-      created_time, last_modify_time, version_num, deleted, is_valid)
-    values (#{userId}, #{companyId}, #{authorityId}, #{createdId}, #{lastModifyId},
-      #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserAuthorityInfo" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_authority_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="companyId != null">
-        company_id,
-      </if>
-      <if test="authorityId != null">
-        authority_id,
-      </if>
-      <if test="createdId != null">
-        created_id,
-      </if>
-      <if test="lastModifyId != null">
-        last_modify_id,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="lastModifyTime != null">
-        last_modify_time,
-      </if>
-      <if test="versionNum != null">
-        version_num,
-      </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
-      <if test="isValid != null">
-        is_valid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId},
-      </if>
-      <if test="companyId != null">
-        #{companyId},
-      </if>
-      <if test="authorityId != null">
-        #{authorityId},
-      </if>
-      <if test="createdId != null">
-        #{createdId},
-      </if>
-      <if test="lastModifyId != null">
-        #{lastModifyId},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime},
-      </if>
-      <if test="lastModifyTime != null">
-        #{lastModifyTime},
-      </if>
-      <if test="versionNum != null">
-        #{versionNum},
-      </if>
-      <if test="deleted != null">
-        #{deleted},
-      </if>
-      <if test="isValid != null">
-        #{isValid},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.UserAuthorityInfo">
-    <!--@mbg.generated-->
-    update user_authority_info
-    <set>
-      <if test="userId != null">
-        user_id = #{userId},
-      </if>
-      <if test="companyId != null">
+        <!--@mbg.generated-->
+        delete from user_authority_info
+        where id = #{id}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tomasky.departure.model.UserAuthorityInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_authority_info (user_id, company_id, authority_id, created_id, last_modify_id,
+        created_time, last_modify_time, version_num, deleted, is_valid)
+        values (#{userId}, #{companyId}, #{authorityId}, #{createdId}, #{lastModifyId},
+        #{createdTime}, #{lastModifyTime}, #{versionNum}, #{deleted}, #{isValid})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.tomasky.departure.model.UserAuthorityInfo" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_authority_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="authorityId != null">
+                authority_id,
+            </if>
+            <if test="createdId != null">
+                created_id,
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time,
+            </if>
+            <if test="versionNum != null">
+                version_num,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="isValid != null">
+                is_valid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="companyId != null">
+                #{companyId},
+            </if>
+            <if test="authorityId != null">
+                #{authorityId},
+            </if>
+            <if test="createdId != null">
+                #{createdId},
+            </if>
+            <if test="lastModifyId != null">
+                #{lastModifyId},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime},
+            </if>
+            <if test="lastModifyTime != null">
+                #{lastModifyTime},
+            </if>
+            <if test="versionNum != null">
+                #{versionNum},
+            </if>
+            <if test="deleted != null">
+                #{deleted},
+            </if>
+            <if test="isValid != null">
+                #{isValid},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tomasky.departure.model.UserAuthorityInfo">
+        <!--@mbg.generated-->
+        update user_authority_info
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="authorityId != null">
+                authority_id = #{authorityId},
+            </if>
+            <if test="createdId != null">
+                created_id = #{createdId},
+            </if>
+            <if test="lastModifyId != null">
+                last_modify_id = #{lastModifyId},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="lastModifyTime != null">
+                last_modify_time = #{lastModifyTime},
+            </if>
+            <if test="versionNum != null">
+                version_num = #{versionNum},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+            <if test="isValid != null">
+                is_valid = #{isValid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.UserAuthorityInfo">
+        <!--@mbg.generated-->
+        update user_authority_info
+        set user_id = #{userId},
         company_id = #{companyId},
-      </if>
-      <if test="authorityId != null">
         authority_id = #{authorityId},
-      </if>
-      <if test="createdId != null">
         created_id = #{createdId},
-      </if>
-      <if test="lastModifyId != null">
         last_modify_id = #{lastModifyId},
-      </if>
-      <if test="createdTime != null">
         created_time = #{createdTime},
-      </if>
-      <if test="lastModifyTime != null">
         last_modify_time = #{lastModifyTime},
-      </if>
-      <if test="versionNum != null">
         version_num = #{versionNum},
-      </if>
-      <if test="deleted != null">
         deleted = #{deleted},
-      </if>
-      <if test="isValid != null">
-        is_valid = #{isValid},
-      </if>
-    </set>
-    where id = #{id}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tomasky.departure.model.UserAuthorityInfo">
-    <!--@mbg.generated-->
-    update user_authority_info
-    set user_id = #{userId},
-      company_id = #{companyId},
-      authority_id = #{authorityId},
-      created_id = #{createdId},
-      last_modify_id = #{lastModifyId},
-      created_time = #{createdTime},
-      last_modify_time = #{lastModifyTime},
-      version_num = #{versionNum},
-      deleted = #{deleted},
-      is_valid = #{isValid}
-    where id = #{id}
-  </update>
+        is_valid = #{isValid}
+        where id = #{id}
+    </update>
 
-  <select id="selectUserAuthorityInfo" resultType="com.tomasky.departure.vo.AuthorityVo">
+    <select id="selectUserAuthorityInfo" resultType="com.tomasky.departure.vo.AuthorityVo">
         SELECT
-          t2.ID AS ID,
-          t2.authority_code AS authorityCode,
-          t2.authority_name AS authorityName
-      FROM
-          user_authority_info t1
-          INNER JOIN authority_info t2 ON t1.authority_id = t2.ID
-      WHERE
-          t1.user_id = #{userId}
-          AND t1.company_id =#{companyId}
-  </select>
-  <delete id="deleteUserAuthorityInfo">
+        t2.ID AS ID,
+        t2.authority_code AS authorityCode,
+        t2.authority_name AS authorityName
+        FROM
+        user_authority_info t1
+        INNER JOIN authority_info t2 ON t1.authority_id = t2.ID
+        WHERE
+        t1.user_id = #{userId}
+        AND t1.company_id =#{companyId}
+    </select>
+    <delete id="deleteUserAuthorityInfo">
         delete from user_authority_info where user_id = #{userId}
-          AND company_id =#{companyId}
-  </delete>
+        AND company_id =#{companyId}
+    </delete>
 </mapper>

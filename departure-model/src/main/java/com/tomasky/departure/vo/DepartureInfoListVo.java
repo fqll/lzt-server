@@ -4,13 +4,21 @@ package com.tomasky.departure.vo;
  * Created by sam on 2019-09-23.17:37
  */
 public class DepartureInfoListVo {
-    /** 离职表单ID*/
+    /**
+     * 离职表单ID
+     */
     private Integer id;
-    /** 公司名称*/
+    /**
+     * 公司名称
+     */
     private String companyName;
-    /** 岗位*/
+    /**
+     * 岗位
+     */
     private String employeePost;
-    /** 离职时间*/
+    /**
+     * 离职时间
+     */
     private String departureDate;
 
     public Integer getId() {

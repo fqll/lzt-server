@@ -46,8 +46,8 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public Map<String, Object> findChatList(Integer userId, Integer companyId, Integer departureId, String mode) {
-        logger.info("查询聊天记录列表接口输入参数：userId=" + userId + ",companyId=" + companyId +  "，departureId=" + departureId + ",mode=" + mode);
-        if(Constants.MODE_GUIDE.equals(mode)) {
+        logger.info("查询聊天记录列表接口输入参数：userId=" + userId + ",companyId=" + companyId + "，departureId=" + departureId + ",mode=" + mode);
+        if (Constants.MODE_GUIDE.equals(mode)) {
             return guideHelper.getChatListData();
         }
         // 校验离职表单
@@ -58,12 +58,12 @@ public class ChatServiceImpl implements ChatService {
         String chatTitle = "";
         Integer otherCompanyId = null;
         Integer departureInfoCompanyId = departureInfo.getCompanyId();
-        if(companyId.equals(departureInfoCompanyId)) {
+        if (companyId.equals(departureInfoCompanyId)) {
             otherCompanyId = departureInfo.getNextCompanyId();
         } else {
             otherCompanyId = departureInfoCompanyId;
         }
-        if(otherCompanyId == null) {
+        if (otherCompanyId == null) {
             throw new RuntimeException("获取其他公司ID失败");
         }
         CompanyInfo companyInfo = companyInfoMapper.selectByPrimaryKey(otherCompanyId);
@@ -77,7 +77,7 @@ public class ChatServiceImpl implements ChatService {
         }
         List<UserInfo> otherUserInfoList = null;
         List<Integer> userIdList = chatLogMapper.selectOtherUserIdListInChat(departureId, userId);
-        if(! CollectionUtils.isEmpty(userIdList)) {
+        if (!CollectionUtils.isEmpty(userIdList)) {
             otherUserInfoList = userInfoMapper.selectByUserIdList(userIdList);
         }
         // 查询聊天记录
@@ -92,7 +92,7 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void sendMsg(ChatBo chatBo) {
         logger.info("聊天接口输入参数:" + JSON.toJSONString(chatBo));
 
@@ -109,9 +109,9 @@ public class ChatServiceImpl implements ChatService {
             throw new RuntimeException("离职表单对象不存在");
         }
         String checkStage = departureInfo.getCheckStage();
-        if(StringUtils.isBlank(checkStage) || CheckStageEnum.NOT_BEGUN.getValue().equals(checkStage)) {
+        if (StringUtils.isBlank(checkStage) || CheckStageEnum.NOT_BEGUN.getValue().equals(checkStage)) {
             int listSize = chatLogMapper.selectChatLogListSize(departureId);
-            if(listSize == 0) {
+            if (listSize == 0) {
                 // 第一次发起聊天时，修改背调状态为：开始聊天背调
                 departureInfo.setCheckStage(CheckStageEnum.IN_CHAT.getValue());
                 new BaseModelUtils<>().buildModifiyEntity(departureInfo, userId);
