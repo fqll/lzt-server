@@ -7,11 +7,7 @@ import com.tomasky.departure.enums.OperateTypeEnum;
 /**
  * Created by sam on 2019-09-27.11:10
  */
-public class ApproverLogVo {
-    /**
-     * 用户ID
-     */
-    private Integer userId;
+public class ApproverLogVo extends BaseUserVo {
     /**
      * 审批顺序
      */
@@ -77,14 +73,6 @@ public class ApproverLogVo {
 
     public void setAuditStage(String auditStage) {
         this.auditStage = auditStage;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getAuditOrder() {
