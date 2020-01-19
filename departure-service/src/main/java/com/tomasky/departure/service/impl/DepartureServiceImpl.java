@@ -905,8 +905,16 @@ public class DepartureServiceImpl implements DepartureService {
             logger.error("出现异常：" + e.getMessage());
             return CommonUtils.setErrorInfo(e);
         }
+        String sinceTime = null;
+        Map<String, Object> result = Maps.newHashMap();
+        if(! CollectionUtils.isEmpty(quitEmployeeVoList)) {
+            QuitEmployeeVo quitEmployeeVo = quitEmployeeVoList.get(0);
+            sinceTime = quitEmployeeVo.getDepartureDate();
+        }
+        result.put("sinceTime", sinceTime);
+        result.put("quitEmployeeList", quitEmployeeVoList);
         logger.info("查询离职员工库接口返回：" + JSON.toJSONString(quitEmployeeVoList));
-        return CommonUtils.setSuccessInfo(quitEmployeeVoList);
+        return CommonUtils.setSuccessInfo(result);
     }
 
     @Override

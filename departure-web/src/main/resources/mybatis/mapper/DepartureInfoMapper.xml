@@ -565,9 +565,11 @@
         departure_info
         WHERE
         company_id = #{companyId}
+        AND audit_status in ('3','4','5')
         <if test="nickName != null and nickName != ''">
             AND employee_name like '%${nickName}%'
         </if>
+        order by departure_date ASC
     </select>
     <select id="selectMonthDepartureRateVoList" resultType="com.tomasky.departure.vo.MonthDepartureRateVo">
         SELECT
